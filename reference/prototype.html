@@ -1,0 +1,1842 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SORARY — Preview</title>
+<meta name="description" content="SORARY is a marketplace for original contemporary art. Free for artists to sell, with buyer protection for collectors. Opening soon in Stockholm.">
+<link rel="canonical" href="https://sorary.se/preview/">
+<meta property="og:type" content="website"><meta property="og:url" content="https://sorary.se/"><meta property="og:title" content="SORARY — Original contemporary art">
+<meta property="og:description" content="Collect the artists of now. Free for artists to sell, with buyer protection for collectors.">
+<meta property="og:image" content="https://sorary.se/art/sorary-390834.webp"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=DM+Mono:wght@300;400&display=swap">
+<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}/* SORARY — gallery-white platform. Layout: generous margins, left-aligned editorial columns, 12-col grid on desktop. */
+:root{
+  --bg:#FFFFFF; --fg:#111111; --muted:#777777; --line:#EAEAEA; --surface:#F8F8F6; --hover:#F4F4F2;
+  --danger:#8A2B2B; --sold:#A3352A; --ok:#3F5A45;
+  --sans:"Jost","Avenir Next","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --serif:"Cormorant Garamond","Cormorant",Georgia,"Times New Roman",serif;
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --max:1320px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+img{display:block;max-width:100%}
+h1,h2,h3,h4{font-weight:300;margin:0;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:1px solid var(--fg);outline-offset:3px}
+::selection{background:#111;color:#fff}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:clamp(0px,3vw,40px)}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.muted{color:var(--muted)}
+.rule{border:0;border-top:1px solid var(--line);margin:0}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Logo */
+.logo{display:inline-flex;align-items:center;color:var(--fg)}
+.logo svg{height:13px;width:auto;fill:currentColor;display:block}
+.logo.lg svg{height:22px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--fg);color:#fff;
+  font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;padding:17px 30px;min-height:52px;
+  border:1px solid var(--fg);border-radius:0;transition:background .3s var(--ease),color .3s var(--ease);white-space:nowrap}
+.btn:hover{background:#2c2c2c}
+.btn.o{background:transparent;color:var(--fg)}
+.btn.o:hover{background:var(--hover)}
+.btn.sm{padding:11px 18px;min-height:40px;font-size:10px}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;border-bottom:1px solid currentColor;padding-bottom:3px;transition:opacity .3s}
+.link:hover{opacity:.55}
+.textbtn{font-size:13px;color:var(--muted);transition:color .2s}
+.textbtn:hover{color:var(--fg)}
+.danger-t{color:var(--danger)}
+
+/* Forms */
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field>label,.lbl{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.in{font:inherit;font-weight:300;font-size:17px;color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--line);
+  padding:10px 0 11px;border-radius:0;width:100%;transition:border-color .3s;outline:none}
+.in:focus{border-color:var(--fg)}
+.in::placeholder{color:#b5b5b5}
+textarea.in{border:1px solid var(--line);padding:12px 14px;font-size:15px;line-height:1.6;resize:vertical;min-height:110px}
+textarea.in:focus{border-color:var(--fg)}
+select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:22px}
+.hint{font-size:12.5px;color:var(--muted)}
+.err{font-size:12.5px;color:var(--danger)}
+.okt{font-size:12.5px;color:var(--ok)}
+.check{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer}
+.check input{appearance:none;width:15px;height:15px;border:1px solid #bdbdbd;margin:0;display:grid;place-content:center;cursor:pointer}
+.check input:checked{background:var(--fg);border-color:var(--fg)}
+.check input:checked::after{content:"";width:7px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.seg{display:inline-flex;border:1px solid var(--line)}
+.seg button{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;padding:9px 14px;color:var(--muted);font-weight:400}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--fg);color:#fff}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Header */
+.ph{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.ph .in-h{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:900px){.ph .in-h{padding-inline:calc(max(16px,env(safe-area-inset-left,0px)) + clamp(0px,3vw,40px))}}
+.pnav{display:flex;gap:36px;align-items:center}
+.pnav a{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:#555;transition:color .25s;position:relative}
+.pnav a:hover,.pnav a[aria-current="page"]{color:var(--fg)}
+.pnav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:.24em;bottom:-6px;height:1px;background:var(--fg)}
+.menu-btn{display:none;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400}
+.mmenu{position:fixed;inset:0;background:var(--bg);z-index:80;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top,0px) + 24px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 32px) max(20px,env(safe-area-inset-left,0px))}
+.mmenu .top{display:flex;justify-content:space-between;align-items:center}
+.mmenu nav{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.mmenu nav a{font-size:40px;font-weight:300;letter-spacing:-.01em;line-height:1.25}
+.mmenu .foot{margin-top:40px}
+@media (max-width:820px){.pnav{display:none}.menu-btn{display:block}}
+
+/* Landing */
+.hero{padding-block:clamp(72px,12vw,168px) clamp(72px,9vw,128px)}
+.hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end}
+.hero h1{grid-column:1/-1;font-size:clamp(44px,7.4vw,112px);line-height:.98;letter-spacing:-.025em;font-weight:300;max-width:12ch}
+.hero .sub{grid-column:1/7;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:#444;max-width:44ch;margin-top:clamp(32px,4vw,56px)}
+.hero-form{grid-column:1/8;margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:1fr 1fr;gap:28px 32px}
+.hero-form .actions{grid-column:1/-1;display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:6px}
+.wall{grid-column:9/13;align-self:end;border-left:1px solid var(--line);padding-left:28px;font-size:14px;line-height:1.7}
+.wall .u{font-size:15px;color:var(--fg);word-break:break-all}
+.wall .u b{font-weight:400}
+.wall .m{color:var(--muted)}
+.wall .eyebrow{display:block;margin-bottom:14px}
+@media (max-width:900px){
+  .hero .sub,.hero-form{grid-column:1/-1}
+  .wall{grid-column:1/-1;margin-top:8px}
+}
+@media (max-width:560px){.hero-form{grid-template-columns:1fr}.hero-form .btn{width:100%}}
+
+.sec{padding-block:clamp(72px,10vw,150px)}
+.sec-h{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-bottom:clamp(40px,6vw,80px)}
+.sec-h h2{grid-column:1/8;font-size:clamp(30px,3.6vw,52px);line-height:1.08;letter-spacing:-.015em}
+.sec-h p{grid-column:9/13;align-self:end;color:var(--muted);font-size:16px;max-width:34ch}
+@media (max-width:820px){.sec-h h2,.sec-h p{grid-column:1/-1}}
+
+.show{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,64px) clamp(20px,3vw,48px)}
+.show .item{display:flex;flex-direction:column;gap:18px;min-width:0}
+.show .item:nth-child(even){margin-top:clamp(0px,8vw,120px)}
+.frame{border:1px solid var(--line);background:var(--bg);overflow:hidden;position:relative}
+.frame .bar{height:30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
+.frame .vp{position:relative;overflow:hidden;aspect-ratio:4/3.1}
+.frame .vp .scaler{position:absolute;top:0;left:0;width:1280px;transform-origin:0 0;pointer-events:none}
+.show .item a.frame{display:block;transition:border-color .5s var(--ease)}
+.show .item a.frame:hover{border-color:#cfcfcf}
+.show .item a.frame .scaler{transition:transform 1.2s var(--ease)}
+.tomb{font-size:14px;line-height:1.55}
+.tomb .t{font-weight:400}
+.tomb .m{color:var(--muted)}
+@media (max-width:700px){.show{grid-template-columns:1fr}.show .item:nth-child(even){margin-top:0}}
+
+.ben{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px)}
+.ben>div{border-top:1px solid var(--fg);padding-top:24px}
+.ben h3{font-size:22px;letter-spacing:-.005em;margin-bottom:14px;font-weight:400}
+.ben p{color:#555;max-width:32ch}
+@media (max-width:820px){.ben{grid-template-columns:1fr}}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.steps>div{padding:36px 32px 8px 0;border-right:1px solid var(--line);min-width:0}
+.steps>div+div{padding-left:32px}
+.steps>div:last-child{border-right:0}
+.steps .n{font-size:clamp(56px,7vw,104px);font-weight:200;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.steps h3{font-size:20px;font-weight:400;margin:28px 0 10px}
+.steps p{color:#555;max-width:30ch}
+@media (max-width:820px){.steps{grid-template-columns:1fr}.steps>div,.steps>div+div{padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+.cta{padding-block:clamp(96px,14vw,200px);border-top:1px solid var(--line)}
+.cta h2{font-size:clamp(40px,6.5vw,96px);line-height:1;letter-spacing:-.025em;max-width:13ch;margin-bottom:48px}
+
+.pf{border-top:1px solid var(--line);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.pf .in-f{max-width:var(--max);margin:0 auto;padding-block:48px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap}
+@media (min-width:900px){.pf .in-f{padding-inline:calc(max(16px,env(safe-area-inset-left,0px)) + clamp(0px,3vw,40px))}}
+.pf nav{display:flex;gap:12px 28px;flex-wrap:wrap}
+.pf nav a{font-size:12.5px;color:#555}
+.pf nav a:hover{color:var(--fg)}
+.pf .c{font-size:12px;color:var(--muted);width:100%}
+
+/* Generic content pages */
+.page{padding-block:clamp(56px,9vw,128px)}
+.page h1{font-size:clamp(40px,6vw,84px);line-height:1;letter-spacing:-.02em;margin-bottom:32px;max-width:14ch}
+.prose{max-width:62ch;font-size:17px;color:#333}
+.prose p+p{margin-top:1.1em}
+.prose h2{font-size:22px;font-weight:400;margin:2em 0 .6em;color:var(--fg)}
+.draft-note{display:inline-block;border:1px solid var(--line);padding:8px 14px;font-size:12.5px;color:var(--muted);margin-bottom:40px}
+
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--fg);margin-top:56px}
+.plans>div{padding:32px 32px 40px 0;display:flex;flex-direction:column;gap:20px;min-width:0}
+.plans>div+div{padding-left:32px;border-left:1px solid var(--line)}
+.plans .price{font-size:52px;font-weight:200;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.plans .price small{font-size:13px;color:var(--muted);letter-spacing:0;margin-left:6px}
+.plans ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;color:#444}
+.plans li{padding-left:18px;position:relative}
+.plans li::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:1px;background:var(--fg)}
+.plans .btn{margin-top:auto;align-self:flex-start}
+@media (max-width:900px){.plans{grid-template-columns:1fr}.plans>div,.plans>div+div{padding:32px 0;border-left:0;border-bottom:1px solid var(--line)}}
+
+.notice{border:1px solid var(--line);background:var(--surface);padding:16px 20px;font-size:14px;color:#555;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.notice b{font-weight:400;color:var(--fg)}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);transform:translate(-50%,12px);background:var(--fg);color:#fff;
+  font-size:13px;padding:13px 20px;z-index:200;opacity:0;transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* Overlay / modal */
+.ov{position:fixed;inset:0;z-index:150;background:rgba(255,255,255,.96);display:flex;align-items:center;justify-content:center;
+  padding:calc(env(safe-area-inset-top,0px) + 24px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 24px) max(16px,env(safe-area-inset-left,0px));animation:fade .35s var(--ease)}
+.ov.dark{background:rgba(10,10,10,.97);color:#eee}
+.modal{background:var(--bg);border:1px solid var(--line);width:min(560px,100%);max-height:100%;overflow:auto;padding:clamp(24px,4vw,44px);position:relative}
+.modal h3{font-size:26px;margin-bottom:8px}
+.xbtn{position:absolute;top:16px;right:18px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.xbtn:hover{color:var(--fg)}
+.lb img{max-width:100%;max-height:calc(100vh - 140px);object-fit:contain}
+.lb .lb-cap{position:absolute;left:max(20px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 20px);font-size:13px;color:#aaa}
+.lb .lb-n{position:absolute;top:50%;transform:translateY(-50%);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#aaa;padding:20px}
+.lb .lb-n:hover{color:#fff}
+.lb .prev{left:max(4px,env(safe-area-inset-left,0px))}.lb .next{right:max(4px,env(safe-area-inset-right,0px))}
+.lb .xbtn{top:calc(env(safe-area-inset-top,0px) + 18px);right:max(20px,env(safe-area-inset-right,0px));color:#aaa}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rise{animation:rise .8s var(--ease) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+
+/* Onboarding */
+.ob-h{display:flex;justify-content:space-between;align-items:center;padding-block:24px;gap:16px;max-width:var(--max);margin:0 auto}
+.prog{height:1px;background:var(--line);position:relative;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--fg);transition:width .6s var(--ease)}
+.ob{max-width:760px;margin:0 auto;padding-block:clamp(48px,8vw,96px) 120px}
+.ob.wide{max-width:1120px}
+.ob h1{font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-.02em;margin:18px 0 16px}
+.ob .lead{color:#555;font-size:17px;max-width:52ch;margin-bottom:48px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 32px}
+.fgrid .full{grid-column:1/-1}
+@media (max-width:640px){.fgrid{grid-template-columns:1fr}}
+.ob-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:28px;border-top:1px solid var(--line);gap:16px;flex-wrap:wrap}
+.slugrow{display:flex;align-items:baseline;border-bottom:1px solid var(--line)}
+.slugrow:focus-within{border-color:var(--fg)}
+.slugrow span{font-size:17px;color:var(--muted)}
+.slugrow .in{border:0;padding-left:2px}
+.signed{display:flex;gap:14px;align-items:center;font-size:14px;color:#555;border:1px solid var(--line);padding:14px 16px;margin-bottom:36px}
+.signed img{width:28px;height:28px;border-radius:50%}
+
+.drop{border:1px solid var(--line);background:var(--surface);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;
+  padding:40px 24px;transition:background .3s,border-color .3s;cursor:pointer}
+.drop.over{background:var(--hover);border-color:var(--fg)}
+.drop .big{font-size:22px;font-weight:300}
+.uplist{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.uprow{display:flex;justify-content:space-between;gap:12px;font-size:13px;border-bottom:1px solid var(--line);padding:8px 0}
+.uprow .bar2{flex:0 0 120px;height:1px;background:var(--line);align-self:center;position:relative}
+.uprow .bar2 i{position:absolute;left:0;top:0;bottom:0;background:var(--fg);transition:width .4s}
+
+.awl{display:flex;flex-direction:column;margin-top:40px;border-top:1px solid var(--line)}
+.aw{display:grid;grid-template-columns:28px 120px minmax(0,1fr);gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+.aw.dragging{opacity:.4}
+.aw .handle{display:flex;flex-direction:column;gap:6px;align-items:center;color:var(--muted);font-size:12px;padding-top:4px}
+.aw .handle button{font-size:13px;color:var(--muted);width:24px;height:24px}
+.aw .handle button:hover{color:var(--fg)}
+.aw .handle .grip{cursor:grab;letter-spacing:-2px}
+.aw .th{background:var(--surface);aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.aw .th img{max-height:100%;object-fit:contain}
+.aw .f{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 20px}
+.aw .f .w2{grid-column:span 2}.aw .f .w4{grid-column:1/-1}
+.aw .in{font-size:15px;padding:6px 0 7px}
+.aw textarea.in{min-height:72px;font-size:14px}
+@media (max-width:760px){.aw{grid-template-columns:1fr;gap:14px}.aw .handle{flex-direction:row}.aw .th{max-width:160px}.aw .f{grid-template-columns:1fr 1fr}.aw .f .w2{grid-column:1/-1}}
+
+.tpls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.tpl{display:flex;flex-direction:column;gap:14px;text-align:left}
+.tpl .frame{transition:border-color .3s}
+.tpl[aria-pressed="true"] .frame{border-color:var(--fg);outline:1px solid var(--fg)}
+.tpl .frame .vp{aspect-ratio:3/4}
+.tpl .nm{display:flex;justify-content:space-between;align-items:baseline}
+.tpl .nm b{font-weight:400;font-size:17px}
+@media (max-width:820px){.tpls{grid-template-columns:1fr}.tpl .frame .vp{aspect-ratio:4/3}}
+
+/* Preview frame (onboarding step 5 + editor) */
+.pvbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:14px}
+.pvstage{background:var(--surface);border:1px solid var(--line);padding:clamp(12px,2vw,28px);display:flex;justify-content:center;min-width:0}
+.pvdev{background:var(--bg);width:100%;max-width:100%;transition:max-width .5s var(--ease);height:72vh;overflow:auto;position:relative;border:1px solid var(--line)}
+.pvdev.mobile{max-width:390px}
+.pvtag{position:sticky;top:0;z-index:5;background:var(--fg);color:#fff;font-size:10px;letter-spacing:.24em;text-transform:uppercase;text-align:center;padding:6px}
+
+/* Studio (dashboard) */
+.st{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.side{border-right:1px solid var(--line);padding:28px 24px;position:sticky;top:env(safe-area-inset-top,0px);height:100vh;display:flex;flex-direction:column;gap:40px;
+  padding-left:max(24px,env(safe-area-inset-left,0px))}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;justify-content:space-between;font-size:14px;padding:8px 10px;margin-inline:-10px;color:#555;transition:background .2s,color .2s}
+.side nav a:hover{background:var(--hover);color:var(--fg)}
+.side nav a[aria-current="page"]{color:var(--fg);background:var(--surface)}
+.side nav a .c{font-size:11px;color:var(--fg);background:var(--line);padding:0 7px;line-height:20px;font-variant-numeric:tabular-nums}
+.side .bot{margin-top:auto;display:flex;flex-direction:column;gap:14px}
+.main{padding:40px clamp(20px,4vw,56px) 96px;min-width:0;padding-right:max(clamp(20px,4vw,56px),env(safe-area-inset-right,0px))}
+.main h1{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.015em;line-height:1.08}
+.mh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.mh .eyebrow{display:block;margin-bottom:12px}
+.stab{display:none}
+@media (max-width:900px){
+  .st{grid-template-columns:1fr}
+  .side{display:none}
+  .stab{display:flex;position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line);
+    overflow-x:auto;gap:22px;padding:16px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));align-items:center}
+  .stab a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:var(--muted);font-weight:400}
+  .stab a[aria-current="page"]{color:var(--fg)}
+  .main{padding:28px max(16px,env(safe-area-inset-right,0px)) 80px max(16px,env(safe-area-inset-left,0px))}
+}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kpis>div{padding:24px 24px 26px 0;min-width:0}
+.kpis>div+div{padding-left:24px;border-left:1px solid var(--line)}
+.kpis .v{font-size:clamp(30px,3.4vw,46px);font-weight:200;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:10px;overflow-wrap:anywhere}
+.kpis .v.s{font-size:20px;font-weight:300;letter-spacing:0;line-height:1.4}
+@media (max-width:820px){.kpis{grid-template-columns:1fr 1fr}.kpis>div:nth-child(3){padding-left:0;border-left:0}.kpis>div:nth-child(n+3){border-top:1px solid var(--line)}}
+.cols2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);margin-top:48px}
+@media (max-width:900px){.cols2{grid-template-columns:1fr}}
+.blk h2{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:18px}
+.list{border-top:1px solid var(--line)}
+.list>a,.list>div{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);font-size:14.5px;align-items:baseline}
+.list>a:hover{background:var(--surface)}
+.list .sm{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line);padding:4px 10px;font-weight:400;white-space:nowrap}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--muted)}
+.pill.live i{background:var(--ok)}
+.pill.draft i{background:#c2a14a}
+.urlbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:15px}
+.urlbox code{font-family:var(--mono);font-size:13px;background:var(--surface);padding:7px 10px;border:1px solid var(--line);overflow-wrap:anywhere}
+.empty{border:1px solid var(--line);padding:clamp(32px,6vw,72px) 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;color:#555}
+.empty h3{font-size:24px;color:var(--fg)}
+
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:28px 22px}
+.wcard{display:flex;flex-direction:column;gap:10px;min-width:0;position:relative}
+.wcard .th{background:var(--surface);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;position:relative}
+.wcard .th img{max-height:100%;object-fit:contain;transition:transform .8s var(--ease)}
+.wcard .th:hover img{transform:scale(1.02)}
+.wcard .th .badge{position:absolute;top:8px;left:8px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;background:var(--bg);padding:3px 7px}
+.wcard .meta{font-size:13.5px;line-height:1.45;display:flex;justify-content:space-between;gap:8px}
+.wcard .meta .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wcard .acts{display:flex;gap:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.wcard .acts button:hover{color:var(--fg)}
+.wcard.dragging{opacity:.35}
+.wcard.dropt .th{outline:1px solid var(--fg)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sold);vertical-align:middle}
+
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);border-left:1px solid var(--line);z-index:120;overflow:auto;
+  padding:calc(env(safe-area-inset-top,0px) + 28px) max(28px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 40px) 28px;animation:slide .45s var(--ease)}
+.scrim{position:fixed;inset:0;background:rgba(255,255,255,.6);z-index:110}
+@keyframes slide{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+
+.ed{display:grid;grid-template-columns:340px minmax(0,1fr);gap:28px;align-items:start}
+.edp{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.edp details{border-bottom:1px solid var(--line)}
+.edp summary{list-style:none;cursor:pointer;padding:16px 0;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+.edp summary::-webkit-details-marker{display:none}
+.edp summary::after{content:"+";color:var(--muted);letter-spacing:0;font-size:15px;line-height:1}
+.edp details[open] summary::after{content:"–"}
+.edp .bd{padding:2px 0 24px;display:flex;flex-direction:column;gap:20px}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.opt{border:1px solid var(--line);padding:12px 10px;font-size:12.5px;text-align:left;display:flex;flex-direction:column;gap:8px;transition:border-color .2s}
+.opt:hover{border-color:#bbb}
+.opt[aria-pressed="true"]{border-color:var(--fg)}
+.opt .sw{height:26px;border:1px solid var(--line)}
+.opt .ty{font-size:20px;line-height:1}
+.order{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.order>div{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.order button{font-size:13px;color:var(--muted);width:26px;height:26px}
+.order button:hover{color:var(--fg)}
+.order button[disabled]{opacity:.25}
+.ent{display:grid;grid-template-columns:70px minmax(0,1fr) 22px;gap:10px;align-items:end;padding:6px 0}
+.ent .in{font-size:14px;padding:5px 0}
+.ent button{color:var(--muted);font-size:14px;padding-bottom:6px}
+.edbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.save-state{font-size:12.5px;color:var(--muted)}
+@media (max-width:1100px){.ed{grid-template-columns:1fr}.ed .pvdev{height:80vh}}
+
+.bars{display:flex;flex-direction:column;gap:14px}
+.bars .r{display:grid;grid-template-columns:110px minmax(0,1fr) 60px;gap:14px;align-items:center;font-size:13.5px}
+.bars .t{height:6px;background:var(--surface);position:relative}
+.bars .t i{position:absolute;left:0;top:0;bottom:0;background:var(--fg)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:10px 12px 10px 0;border-bottom:1px solid var(--fg)}
+.tbl td{padding:13px 12px 13px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl select.in{font-size:13.5px;padding:4px 22px 4px 0;width:auto}
+.scrollx{overflow-x:auto}
+.ib{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);border-top:1px solid var(--line);min-height:420px}
+.ib .ls{border-right:1px solid var(--line)}
+.ib .ls button{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;width:100%;text-align:left;padding:16px 16px 16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.ib .ls button:hover{background:var(--surface)}
+.ib .ls button[aria-current="true"]{background:var(--surface)}
+.ib .ls .u{width:6px;height:6px;border-radius:50%;background:var(--fg);align-self:center}
+.ib .ls .u.r{background:transparent}
+.ib .ls .nm{font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib .ls .nm.unread{font-weight:400}
+.ib .ls .sub{display:block;font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib .dt{padding:28px 0 28px 32px;min-width:0}
+.ib .dt .msg{white-space:pre-wrap;font-size:16px;line-height:1.7;margin-top:24px;max-width:60ch;overflow-wrap:anywhere}
+@media (max-width:760px){.ib{grid-template-columns:1fr}.ib .ls{border-right:0}.ib .dt{padding:28px 0}}
+.gate{max-width:560px;margin:0 auto;padding-block:clamp(72px,12vw,160px);text-align:left}
+.gate h1{font-size:clamp(34px,4.6vw,56px);line-height:1.05;letter-spacing:-.02em;margin:18px 0 20px}
+.gate p{color:#555;font-size:17px}
+.skel{background:linear-gradient(90deg,var(--surface),var(--hover),var(--surface));background-size:200% 100%;animation:sk 1.4s linear infinite;min-height:16px}
+@keyframes sk{to{background-position:-200% 0}}
+.demo-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:70;background:var(--fg);color:#fff;
+  display:flex;gap:18px;align-items:center;padding:10px 12px 10px 18px;font-size:12.5px;max-width:calc(100vw - 32px);white-space:nowrap}
+.demo-bar a.btn{background:#fff;color:var(--fg);border-color:#fff;min-height:34px;padding:8px 14px}
+@media (max-width:520px){.demo-bar span{display:none}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+body.pub{padding-left:0;padding-right:0}
+body.pub .ss{padding-left:max(clamp(18px,4.5cqi,72px),env(safe-area-inset-left,0px));padding-right:max(clamp(18px,4.5cqi,72px),env(safe-area-inset-right,0px))}
+/* ===== SORARY marketplace: gallery calm + analytics precision. Numbers in DM Mono, everything else Jost. ===== */
+:root{--up:#3F5A45;--dn:#A3352A;--chart-fill:rgba(17,17,17,.045)}
+.mono{font-family:var(--mono);font-weight:300;letter-spacing:-.01em}
+i{font-style:italic}
+.pnav{gap:30px}
+.pnav .sep{width:1px;height:14px;background:var(--line)}
+@media (max-width:1000px){.pnav{display:none}.menu-btn{display:block}}
+.demo-t{display:inline-block;font-family:var(--sans);font-size:9px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:1px 6px 0;margin-left:8px;vertical-align:2px;font-weight:400;font-style:normal;line-height:1.6}
+.dl{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.dl.up{color:var(--up)}.dl.dn{color:var(--dn)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sold);vertical-align:1px}
+.sold{color:var(--dn);font-size:13px}
+
+/* hero */
+.mh-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-block:clamp(48px,8vw,112px) clamp(48px,6vw,88px);align-items:end}
+.mh-hero .hx{grid-column:1/7;align-self:center}
+.mh-hero h1{font-size:clamp(44px,6.6vw,104px);line-height:.98;letter-spacing:-.03em;margin-top:22px;max-width:9ch}
+.mh-hero .sub{font-size:clamp(16px,1.4vw,19px);color:#444;max-width:44ch;margin-top:32px}
+.hf{grid-column:8/13;margin:0}
+.hf .im{display:flex;justify-content:center;background:var(--surface);padding:clamp(20px,3vw,44px)}
+.hf img{max-height:min(66vh,640px);width:auto;height:auto;max-width:100%;object-fit:contain}
+.hf figcaption{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:14px;font-size:13.5px;line-height:1.5}
+.hf figcaption a{font-weight:400}
+.mchip{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
+.mchip b{font-size:22px;font-weight:300}
+@media (max-width:900px){.mh-hero .hx,.hf{grid-column:1/-1}}
+
+/* ticker */
+.ticker{display:flex;border-top:1px solid var(--fg);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.ticker::-webkit-scrollbar{display:none}
+.ticker a{flex:1 0 auto;display:grid;grid-template-columns:auto auto auto;gap:2px 10px;align-items:baseline;padding:16px 22px 16px 0;margin-right:22px;border-right:1px solid var(--line);font-size:13.5px}
+.ticker a .r{grid-row:1/3;color:var(--muted);font-size:12px}
+.ticker a .n{grid-column:2/4;white-space:nowrap}
+.ticker a .v{grid-column:2;grid-row:2;font-size:13px}
+.ticker a .dl{grid-column:3;grid-row:2}
+.ticker a.all{border-right:0;display:flex;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.ticker a:hover .n{text-decoration:underline;text-underline-offset:3px}
+
+/* sections */
+.sec2{padding-top:clamp(64px,8vw,120px)}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,40px)}
+.sh h2,.chead h2{font-size:clamp(24px,2.4vw,34px);letter-spacing:-.015em;line-height:1.15}
+.sh p{margin-top:6px;font-size:14.5px}
+.chead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.chead h2{font-size:18px;font-weight:400;letter-spacing:0}
+.ph2{padding-block:clamp(48px,6vw,96px) clamp(24px,3vw,40px)}
+.ph2 h1{font-size:clamp(36px,5vw,72px);line-height:1.02;letter-spacing:-.025em;margin-top:16px;max-width:16ch}
+.split2{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.dtog{border:1px solid var(--line);padding:12px 14px}
+
+/* artwork cards (masonry) */
+.masonry{columns:4;column-gap:clamp(18px,2.4vw,36px)}
+.masonry.c3{columns:3}
+@media (max-width:1100px){.masonry{columns:3}}
+@media (max-width:760px){.masonry,.masonry.c3{columns:2;column-gap:14px}}
+.ac{break-inside:avoid;margin-bottom:clamp(32px,4vw,56px);position:relative}
+.ac .im{display:flex;justify-content:center;align-items:center;background:var(--surface);padding:clamp(14px,1.8vw,26px)}
+.ac .im img{width:100%;height:auto;transition:transform 1s var(--ease)}
+.ac:hover .im img{transform:scale(1.015)}
+.ac .cap{display:flex;flex-direction:column;gap:1px;margin-top:12px;font-size:13.5px;line-height:1.45}
+.ac .an{font-weight:400}
+.ac .ti{color:#333}
+.ac .md{color:var(--muted);font-size:12.5px}
+.ac .num{font-size:13px;margin-top:4px}
+.ac .cap>span:last-child{margin-top:4px}
+.savebtn{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+.savebtn.ov{position:absolute;top:10px;right:10px;background:var(--bg);padding:7px 9px;opacity:0;transition:opacity .3s}
+.savebtn.ov .l{display:none}
+.ac:hover .savebtn.ov,.savebtn.ov:focus-visible,.savebtn.ov[aria-pressed="true"]{opacity:1}
+.savebtn[aria-pressed="true"] svg path{fill:currentColor}
+@media (hover:none){.savebtn.ov{opacity:1}}
+
+/* artist cards */
+.arcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.6vw,40px)}
+@media (max-width:1000px){.arcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.arcs{grid-template-columns:1fr}}
+.arc{display:flex;flex-direction:column;gap:6px;min-width:0}
+.arc .im{aspect-ratio:4/5;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:14%;overflow:hidden;margin-bottom:10px}
+.arc .im img{max-height:100%;width:auto;height:auto;object-fit:contain;transition:transform 1s var(--ease)}
+.arc:hover .im img{transform:scale(1.02)}
+.arc .im .ini{font-size:56px;font-weight:200;color:var(--muted)}
+.arc .row1{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.arc .nm{font-size:17px;font-weight:400}
+.arc .row2{font-size:13px}
+.arc .row3{display:flex;align-items:center;gap:12px;font-size:14px;border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+.arc .spw{margin-left:auto;color:var(--fg)}
+.textbtn.fol{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;color:var(--fg);white-space:nowrap}
+.textbtn.fol[aria-pressed="true"]{color:var(--muted)}
+.btn.fol[aria-pressed="true"]{background:transparent;color:var(--fg)}
+.btn.o.fol[aria-pressed="true"]{background:var(--surface)}
+
+.split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+.elist{border-top:1px solid var(--line)}
+.elist a{display:grid;grid-template-columns:52px minmax(0,1fr) auto 64px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.elist a:hover{background:var(--surface)}
+.elist .th{width:52px;height:52px;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:6px}
+.elist .th img{max-height:100%;width:auto;height:auto;object-fit:contain}
+.elist .nm{display:flex;flex-direction:column;font-size:15px;min-width:0}
+.elist .nm .muted{font-size:12.5px}
+.elist .dl{text-align:right}
+@media (max-width:480px){.elist a{grid-template-columns:44px minmax(0,1fr) 60px}.elist .spw{display:none}}
+.forart{background:var(--surface);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+.forart h2{font-size:clamp(26px,2.6vw,36px);line-height:1.1;letter-spacing:-.015em}
+.forart p{color:#555;max-width:40ch}
+
+/* filters */
+.fbar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font-size:12.5px;padding:7px 14px;border:1px solid var(--line);color:#555;transition:border-color .2s,color .2s}
+.chips button:hover{border-color:#bbb;color:var(--fg)}
+.chips button[aria-pressed="true"]{border-color:var(--fg);color:var(--fg);background:var(--fg);color:#fff}
+.fr{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.fr select.in{font-size:13.5px;padding:6px 22px 6px 0;width:auto}
+
+/* work detail */
+.crumb{display:flex;gap:10px;font-size:12.5px;color:var(--muted);padding-top:28px}
+.crumb a:hover{color:var(--fg)}
+.wd{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,88px);padding-top:28px;align-items:start}
+.wd .stage{background:var(--surface);display:flex;justify-content:center;align-items:center;padding:clamp(24px,5vw,80px);cursor:zoom-in;min-height:300px}
+.wd .stage img{max-height:min(76vh,860px);width:auto;height:auto;max-width:100%;object-fit:contain}
+.wd .info{position:sticky;top:96px;display:flex;flex-direction:column;gap:22px}
+.wd .ah{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.wd .ah .an{font-size:16px;font-weight:400;border-bottom:1px solid var(--line)}
+.wd .ah .fol{margin-left:auto}
+.wd h1{font-size:clamp(28px,2.8vw,40px);line-height:1.12;letter-spacing:-.015em}
+.dl2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 22px;font-size:14px;margin:0}
+.dl2 dt{color:var(--muted);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;padding-top:3px;font-weight:400}
+.dl2 dd{margin:0}
+.wd .price{font-size:28px;letter-spacing:-.01em;border-top:1px solid var(--line);padding-top:20px}
+.wd .acts{display:flex;gap:12px;flex-wrap:wrap}
+.wd .acts .savebtn{min-height:52px;padding:0 22px}
+.wd .desc{color:#444;font-size:15px;line-height:1.7;max-width:52ch}
+.eng{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.eng>div{padding:14px 12px 14px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.eng>div+div{padding-left:12px;border-left:1px solid var(--line)}
+.eng .lbl{font-size:9.5px}
+.eng b{font-size:20px;font-weight:300}
+.pn{display:flex;justify-content:space-between;gap:16px;margin-top:clamp(40px,6vw,80px);padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);flex-wrap:wrap}
+.pn a:hover{color:var(--fg)}
+@media (max-width:900px){.wd{grid-template-columns:1fr}.wd .info{position:static}.wd .stage{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:24px}}
+
+/* artist page */
+.aph{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,80px);padding-block:clamp(48px,7vw,104px) 40px;align-items:start}
+.aph h1{font-size:clamp(44px,6.4vw,96px);line-height:.98;letter-spacing:-.03em;margin-top:18px}
+.aph .meta{color:var(--muted);margin-top:20px;font-size:14.5px}
+.aph .stmt{font-size:clamp(18px,1.7vw,22px);line-height:1.5;max-width:42ch;margin-top:28px;color:#333}
+.mpanel{border-top:1px solid var(--fg);padding-top:16px}
+.mpanel .top{display:flex;justify-content:space-between;align-items:center}
+.mpanel .big,.big2{display:flex;align-items:baseline;gap:14px;margin:12px 0 4px;flex-wrap:wrap}
+.mpanel .big .mono,.big2 .mono{font-size:56px;line-height:1;letter-spacing:-.04em}
+.mpanel .chart{margin-top:18px}
+.kline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kline>div{padding:16px 16px 16px 0;display:flex;flex-direction:column;gap:6px}
+.kline>div+div{padding-left:16px;border-left:1px solid var(--line)}
+.kline b{font-size:24px;font-weight:300}
+.about2 p{white-space:pre-line;font-size:clamp(17px,1.5vw,19px);line-height:1.75;max-width:62ch;margin-top:18px}
+@media (max-width:900px){.aph{grid-template-columns:1fr}.kline{grid-template-columns:1fr 1fr}.kline>div:nth-child(3){padding-left:0;border-left:0}.kline>div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* charts */
+.chart{width:100%;min-height:120px}
+.chw{position:relative}
+.chw svg{display:block;max-width:100%;height:auto;overflow:visible}
+.chw .gl{stroke:var(--line);stroke-width:1}
+.chw .tk{font-family:var(--mono);font-size:10.5px;fill:var(--muted)}
+.chw .ln{fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.chw .ar{fill:var(--chart-fill)}
+.chw .ed{fill:var(--fg);stroke:var(--bg);stroke-width:2}
+.chw .hl{stroke:var(--fg);stroke-width:1;stroke-dasharray:2 3}
+.chw .hd{fill:var(--bg);stroke:var(--fg);stroke-width:1.6}
+.chw .hit{cursor:crosshair;touch-action:pan-y}
+.tip{position:absolute;top:0;background:var(--fg);color:#fff;font-size:12px;padding:6px 10px;pointer-events:none;white-space:nowrap;display:flex;gap:8px;align-items:baseline}
+.tip b{font-family:var(--mono);font-weight:400}
+.tip span{opacity:.7}
+.spk{display:block;color:var(--fg)}
+
+/* momentum table */
+.kpis .dl{display:inline-block;margin-top:6px}
+.kpis.k5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.kpis.k5>div{padding-right:16px}.kpis.k5>div+div{padding-left:16px}
+@media (max-width:1100px){.kpis.k5{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis.k5>div:nth-child(4){padding-left:0;border-left:0}.kpis.k5>div:nth-child(n+4){border-top:1px solid var(--line)}}
+@media (max-width:600px){.kpis.k5{grid-template-columns:1fr 1fr}.kpis.k5>div:nth-child(n){padding-left:0;border-left:0;border-top:1px solid var(--line)}.kpis.k5>div:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}}
+.mt{width:100%;border-collapse:collapse;font-size:14.5px}
+.mt th{text-align:left;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:10px 14px 10px 0;border-bottom:1px solid var(--fg);white-space:nowrap}
+.mt td{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+.mt tr:hover td{background:var(--surface)}
+.mt .r{text-align:right}
+.mt .an{display:flex;align-items:center;gap:14px;min-width:0}
+.mt .an>span:last-child{display:flex;flex-direction:column;line-height:1.35}
+.mt .an .muted{font-size:12.5px}
+.mt .th{width:44px;height:44px;flex:0 0 44px;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:5px}
+.mt .th img{max-height:100%;width:auto;height:auto;object-fit:contain}
+.mt .th .ini{font-size:14px;color:var(--muted)}
+.ib2{display:inline-block;width:80px;height:5px;background:var(--surface);position:relative;margin-right:10px;vertical-align:middle}
+.ib2 i{position:absolute;left:0;top:0;bottom:0;background:var(--fg)}
+@media (max-width:760px){.mt .hm{display:none}.mt{font-size:13.5px}}
+@media (max-width:480px){.mt .hs{display:none}}
+.method{border-top:1px solid var(--line);margin-top:clamp(64px,8vw,120px)}
+.method h2{font-size:clamp(24px,2.4vw,34px);margin:14px 0 28px}
+.mgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(28px,5vw,80px);color:#444}
+.mgrid p+p{margin-top:1em}
+.wt{border-collapse:collapse;margin-top:18px;width:100%;max-width:320px}
+.wt td{padding:9px 0;border-bottom:1px solid var(--line)}
+.wt td:last-child{text-align:right}
+@media (max-width:760px){.mgrid{grid-template-columns:1fr}}
+.notice.ex{border-color:var(--fg)}
+.notice{margin-bottom:28px}
+.main .sec2:first-of-type{padding-top:0}
+.ob{max-width:760px;margin:0 auto;padding-block:clamp(48px,8vw,96px) 120px}
+.ob h1{font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-.02em;margin:18px 0 16px}
+.ob .lead{color:#555;font-size:17px;max-width:52ch;margin-bottom:48px}
+.ifm{display:flex;flex-direction:column;gap:24px}
+.tip[hidden]{display:none}
+.blk .chead h2{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:400}
+
+.fbar2{display:flex;justify-content:space-between;align-items:center;gap:16px 28px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-block:12px}
+.fbar2 .lbl{font-size:10px}
+.sws{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.swc{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;transition:border-color .2s}
+.swc i{width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);display:block}
+.swc:hover{border-color:#bbb}
+.swc[aria-pressed="true"]{border-color:var(--fg)}
+.sws.sm .swc{width:20px;height:20px}.sws.sm .swc i{width:14px;height:14px}
+.tlink{border-bottom:1px solid var(--line)}.tlink:hover{border-color:var(--fg)}
+
+.spons{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:2px}
+.prot{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#555;line-height:1.5}
+.prot svg{flex:0 0 auto;margin-top:2px;color:var(--fg)}
+.modal.co{width:min(600px,100%)}
+.coi{display:flex;gap:18px;align-items:center;margin:16px 0 24px}
+.coi .th{width:84px;height:84px;flex:0 0 84px;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:8px}
+.coi .th img{max-height:100%;width:auto;height:auto;object-fit:contain}
+.coi h3{font-size:22px}
+.cot{width:100%;border-collapse:collapse;font-size:14.5px;margin-bottom:18px}
+.cot td{padding:10px 0;border-bottom:1px solid var(--line)}
+.cot td:last-child{text-align:right}
+.cot .tot td{border-bottom:1px solid var(--fg);border-top:1px solid var(--fg);font-size:17px;padding:13px 0}
+
+.sel{user-select:all;color:var(--fg)}
+.cpm{font-size:11px;margin-left:6px}
+.pf .mail{display:inline-flex;gap:6px;align-items:baseline;margin-bottom:6px;color:#555}
+
+.annc{display:flex;justify-content:center;align-items:baseline;gap:16px;flex-wrap:wrap;background:var(--fg);color:#fff;font-size:12.5px;padding-block:9px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:16px;text-align:center}
+.annc .link{color:#fff;font-size:10px}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.roles button{border:1px solid var(--line);padding:16px;text-align:left;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.roles button span{font-size:12.5px;color:var(--muted)}
+.roles button[aria-pressed="true"]{border-color:var(--fg);outline:1px solid var(--fg)}
+@media (max-width:480px){.roles{grid-template-columns:1fr}}
+</style>
+</head><body>
+<div id="app"></div>
+<script>window.SORARY_STATIC = true;</script>
+<script>"use strict";
+/* ============ utilities ============ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nl = s => esc(s);
+const uid8 = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+function slugify(s) {
+  return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/ø/gi, "o").replace(/æ/gi, "ae").replace(/ß/g, "ss").replace(/đ/gi, "d").replace(/ł/gi, "l")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "").slice(0, 40).replace(/-$/, "");
+}
+const RESERVED = new Set("home about pricing examples login signup logout start onboarding studio dashboard admin preview legal privacy terms cookies api auth app www help support blog settings sorary static assets sidebar customize upgrade downloads contact works".split(" "));
+function slugProblem(s) {
+  if (!s) return "Choose an address.";
+  if (s.length < 3) return "Use at least 3 characters.";
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(s)) return "Use lowercase letters, numbers and single hyphens.";
+  if (RESERVED.has(s) || /^(example|studio|comment)/.test(s)) return "This address is reserved.";
+  return "";
+}
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+let toastT;
+function toast(msg) {
+  let t = $("#toast"); if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2600);
+}
+const clone = o => JSON.parse(JSON.stringify(o));
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); toast("Copied"); }
+  catch { toast("Select the address and copy it manually"); }
+}
+function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+const LOGO = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 939 118"><path fill-rule="evenodd" d="M37.0 110.8C32.2 110.0 30.4 109.6 26.2 108.4C23.7 107.6 20.3 106.1 18.6 105.0C18.2 104.7 17.5 104.3 17.2 104.1C16.3 103.6 13.1 101.3 12.2 100.5C11.9 100.1 10.6 99.0 9.4 98.0C6.5 95.5 6.5 95.6 7.9 93.8C10.2 91.0 11.3 89.8 11.5 89.8C11.7 89.8 13.2 91.2 15.0 92.9C18.9 96.9 20.8 98.4 24.6 100.2C32.1 103.9 40.2 105.2 49.6 104.2C53.6 103.8 56.4 103.0 60.1 101.2C61.6 100.5 62.0 100.3 63.9 99.0C66.1 97.4 68.6 94.4 69.9 91.7C71.9 87.3 72.0 80.2 70.2 76.2C67.3 69.5 60.9 66.0 42.8 61.0C26.9 56.6 20.1 53.5 15.7 48.8C12.9 45.7 11.6 43.1 10.6 38.4C9.6 33.3 9.8 29.7 11.6 24.9C16.2 11.8 31.8 4.4 49.9 6.7C54.7 7.4 59.0 8.4 61.6 9.6C62.0 9.8 63.1 10.3 64.0 10.6C68.5 12.6 76.2 18.3 76.2 19.8C76.2 20.2 74.7 22.3 72.5 25.0C72.0 25.5 71.4 25.2 70.0 23.6C67.1 20.4 63.1 17.7 57.9 15.5C50.5 12.3 38.5 12.0 31.5 14.7C26.3 16.7 21.6 20.5 19.5 24.4C17.0 29.3 16.8 35.6 19.2 40.4C21.8 45.7 28.3 49.3 42.4 53.0C54.9 56.3 63.1 59.4 68.4 62.9C70.2 64.0 74.1 67.9 75.1 69.5C77.8 73.6 78.8 77.5 78.8 83.0C78.7 90.3 77.5 94.0 73.1 99.6C69.0 104.9 62.8 108.4 54.0 110.2C51.2 110.7 50.2 110.8 44.6 110.9C41.2 110.9 37.8 110.9 37.0 110.8ZM222.1 110.7C221.9 110.5 221.9 109.2 222.0 107.4L222.1 104.4L225.6 104.1C231.5 103.6 238.0 101.6 242.2 99.0C242.8 98.6 243.9 98.0 244.5 97.6C248.3 95.3 253.1 90.5 256.1 86.0C260.0 80.2 262.3 74.6 263.6 67.8C264.4 63.3 264.3 54.1 263.4 49.8C262.7 46.4 262.1 44.0 261.8 43.0C259.6 37.3 259.5 37.1 257.9 34.4C254.7 28.8 250.0 23.8 244.9 20.2C243.0 18.9 242.1 18.4 239.1 17.1C235.1 15.4 234.8 15.3 233.2 15.0C231.4 14.7 231.2 14.4 231.2 11.0C231.2 8.9 231.3 8.0 231.6 7.8C232.5 7.0 244.7 11.6 247.0 13.7C247.2 13.8 247.5 14.0 247.6 14.0C248.3 14.0 252.7 17.5 255.9 20.6C260.8 25.3 265.2 32.0 267.7 38.9C268.1 39.7 268.5 40.7 268.7 41.2C268.8 41.6 269.0 42.2 269.0 42.4C269.0 42.6 269.2 43.4 269.5 44.2C269.7 45.0 270.0 46.1 270.1 46.8C270.2 47.4 270.4 48.5 270.6 49.4C271.6 53.6 271.6 62.7 270.7 68.1C270.0 72.6 267.9 79.5 266.5 82.2C266.4 82.4 266.0 83.3 265.6 84.1C265.2 85.0 264.7 85.9 264.5 86.2C264.3 86.6 263.4 87.9 262.6 89.1C259.9 93.2 256.3 97.2 252.4 100.3C246.6 104.9 241.8 107.3 234.4 109.4C231.0 110.3 222.5 111.2 222.1 110.7ZM885.8 109.2L885.2 109.0L885.2 87.6L885.2 66.1L882.2 61.5C880.5 59.0 878.5 56.0 877.9 54.9C877.2 53.8 875.7 51.4 874.4 49.5C870.1 43.1 866.2 37.1 863.8 33.2C862.8 31.7 862.4 31.1 860.4 28.1C859.9 27.4 858.5 25.2 857.2 23.1C856.0 21.1 854.7 19.1 854.5 18.9C854.2 18.6 854.0 18.3 854.0 18.2C854.0 18.1 853.7 17.5 853.2 16.9C852.0 15.2 848.2 9.5 847.8 8.9C847.6 8.5 847.4 8.2 847.5 8.2C847.6 8.1 853.8 7.9 855.3 8.0C855.7 8.0 857.1 9.9 859.9 14.4C861.1 16.3 861.4 16.7 864.9 22.2C867.6 26.3 870.2 30.4 870.9 31.4C871.2 32.0 873.6 35.8 874.4 37.0C874.7 37.5 875.4 38.6 875.9 39.4C878.3 43.3 879.5 45.2 882.1 49.1C883.7 51.5 885.3 54.1 885.9 54.9C886.4 55.8 887.8 57.9 888.9 59.6C890.0 61.3 891.2 63.4 891.7 64.3L892.5 65.9L892.5 87.2C892.5 104.7 892.5 108.6 892.2 108.9C891.8 109.3 886.6 109.5 885.8 109.2ZM360.6 109.0C360.3 108.9 360.3 98.6 360.3 58.5L360.4 8.1L380.4 8.0C402.0 7.8 404.5 7.9 407.8 8.8C415.2 11.0 419.9 14.1 423.9 19.5C430.9 28.7 431.3 43.8 425.0 53.5C421.6 58.7 417.5 61.9 411.4 64.2C410.3 64.6 405.9 65.7 404.5 65.9C402.9 66.1 402.5 66.6 403.2 67.4C403.5 67.8 405.6 71.0 407.9 74.5C410.2 78.0 412.6 81.6 413.2 82.5C413.8 83.4 417.6 89.1 421.6 95.1C425.6 101.2 429.3 106.7 429.9 107.3C430.4 108.0 430.7 108.7 430.7 108.9C430.5 109.4 422.8 109.4 422.2 108.9C422.0 108.8 421.2 107.6 420.4 106.4C419.7 105.1 416.7 100.5 413.7 96.1C410.8 91.6 407.4 86.5 406.3 84.7C405.1 82.9 403.4 80.3 402.5 79.0C401.6 77.7 399.5 74.5 397.9 71.9C396.3 69.3 394.9 67.0 394.7 66.9C394.6 66.7 391.1 66.6 385.8 66.5L377.1 66.4L377.1 63.5C377.0 61.7 377.1 60.6 377.3 60.4C377.5 60.1 380.1 60.0 390.2 59.9C404.7 59.8 405.3 59.7 409.6 57.7C415.8 54.7 419.7 50.0 421.4 43.3C422.2 40.2 422.3 34.8 421.6 31.6C420.3 25.3 415.7 19.3 410.5 16.8C405.1 14.2 404.7 14.2 384.8 14.2C375.4 14.2 367.6 14.3 367.5 14.4C367.3 14.5 367.2 32.7 367.2 61.6C367.2 97.9 367.2 108.7 366.9 109.0C366.6 109.3 361.1 109.4 360.6 109.0ZM515.5 108.9C515.3 108.6 515.3 108.4 515.7 107.7C516.2 106.8 517.2 104.7 519.2 99.8C519.9 98.2 521.1 95.4 521.8 93.6C522.6 91.8 524.0 88.5 524.9 86.2C525.8 84.0 527.1 80.9 527.7 79.4C528.4 77.9 529.5 75.2 530.3 73.4C531.0 71.6 532.5 67.9 533.7 65.2C534.8 62.4 535.8 60.2 535.8 60.1C535.8 60.0 536.6 58.1 537.5 55.8C538.5 53.5 540.1 49.6 541.1 47.1C542.1 44.6 543.1 42.2 543.3 41.8C543.6 41.3 544.6 38.7 545.8 36.0C546.9 33.3 548.0 30.6 548.3 30.0C548.6 29.4 549.1 28.2 549.4 27.4C549.7 26.6 550.3 25.1 550.7 24.1C551.2 23.2 552.2 20.8 552.9 18.9C553.7 17.0 554.7 14.6 555.2 13.4C555.6 12.3 556.3 10.9 556.5 10.2C557.6 7.7 557.2 7.9 560.9 7.8C563.3 7.8 564.2 7.8 564.6 8.1C565.2 8.5 566.1 10.5 568.2 16.1C568.6 17.4 569.1 18.6 569.2 18.9C569.4 19.1 569.9 20.3 570.3 21.5C571.4 24.1 572.0 25.5 572.2 26.1C572.4 26.4 572.8 27.5 573.3 28.5C573.7 29.5 574.2 30.7 574.4 31.1C574.6 31.5 575.4 33.6 576.2 35.8C577.1 37.9 578.0 40.1 578.3 40.8C578.5 41.4 579.1 42.7 579.5 43.8C580.0 44.8 581.0 47.4 581.9 49.5C582.8 51.6 584.5 56.0 585.9 59.2C587.2 62.5 589.3 67.7 590.6 70.9C593.0 76.6 594.7 80.8 595.7 83.1C596.1 83.8 596.7 85.3 597.2 86.5C597.6 87.7 598.1 88.8 598.3 89.1C598.4 89.3 598.7 89.9 598.8 90.4C599.2 91.5 600.9 95.5 601.4 96.6C601.5 97.0 602.0 98.2 602.4 99.1C603.9 103.0 604.1 103.6 604.3 103.9C604.4 104.0 604.6 104.6 604.8 105.1C605.0 105.7 605.4 106.7 605.7 107.3C606.6 109.2 606.5 109.2 602.5 109.2C599.6 109.2 599.0 109.2 598.7 108.8C598.3 108.4 597.3 106.0 596.7 104.0C596.3 103.0 594.9 99.4 592.2 93.1C591.7 91.8 591.0 90.1 590.7 89.5C590.5 88.9 589.3 86.0 588.1 83.1C586.1 78.2 582.4 69.0 581.1 65.6C580.8 64.8 580.0 63.0 579.4 61.5C578.7 60.1 577.6 57.2 576.8 55.1C575.3 51.4 573.4 46.9 571.1 41.4C570.5 39.9 569.6 37.7 569.1 36.6C568.7 35.5 568.1 34.2 567.9 33.6C567.7 33.1 567.3 32.3 567.1 31.9C567.0 31.5 566.1 29.2 565.1 26.9C564.2 24.5 563.1 21.8 562.8 20.9C562.4 19.9 562.0 18.8 561.9 18.4C561.7 17.7 561.1 17.3 560.7 17.7C560.5 17.9 559.9 19.3 558.1 24.1C557.7 25.4 556.6 28.0 555.8 30.0C554.9 32.0 553.8 34.6 553.4 35.8C552.9 36.9 552.0 39.1 551.4 40.6C550.7 42.1 550.1 43.8 549.9 44.2C549.7 44.7 549.2 45.9 548.8 46.9C548.3 47.8 547.2 50.6 546.2 53.0C545.3 55.4 544.4 57.6 544.3 57.9C543.0 60.5 541.0 65.5 538.8 70.9C534.3 82.2 531.6 88.8 530.4 91.6C528.6 95.9 526.3 101.3 525.0 104.8C523.0 109.7 523.7 109.1 519.5 109.2C516.5 109.3 515.8 109.2 515.5 108.9ZM695.1 108.9C694.8 108.5 694.7 8.8 695.0 8.3C695.2 7.9 698.2 7.9 716.7 7.9C728.5 8.0 738.7 8.0 739.4 8.1C741.9 8.5 747.8 10.4 749.5 11.5C749.7 11.6 750.0 11.8 750.2 11.9C751.7 12.5 755.0 15.1 756.8 17.0C761.0 21.4 763.0 25.9 764.0 32.8C765.8 45.1 761.1 56.0 751.4 61.8C748.4 63.6 743.6 65.2 740.1 65.6C739.3 65.7 738.4 65.8 738.2 65.9C737.7 66.0 737.6 67.1 738.0 67.4C738.1 67.5 739.8 69.9 741.8 72.8C743.7 75.7 745.7 78.7 746.2 79.3C746.6 80.0 747.0 80.5 747.0 80.6C747.0 80.7 747.4 81.4 748.0 82.2C748.5 83.0 750.5 85.9 752.3 88.8C754.2 91.6 756.2 94.5 756.8 95.4C757.4 96.2 758.6 97.9 759.4 99.2C760.3 100.6 761.4 102.2 761.9 103.0C762.5 103.7 763.3 105.0 763.7 105.7C764.2 106.5 764.8 107.4 765.2 107.8C766.4 109.1 766.0 109.2 761.5 109.2C756.9 109.2 757.1 109.3 755.6 106.8C755.2 106.2 754.4 104.8 753.6 103.8C752.9 102.7 752.0 101.3 751.5 100.5C750.4 98.5 749.7 97.5 746.6 92.9C742.8 87.2 742.0 86.0 742.0 85.9C742.0 85.8 741.1 84.5 740.1 82.9C737.5 79.1 735.3 75.9 734.1 73.9C731.8 70.0 729.7 67.0 729.3 66.8C729.0 66.6 725.8 66.5 720.4 66.5C712.7 66.5 712.0 66.5 711.8 66.1C711.7 65.8 711.6 64.4 711.7 62.9L711.9 60.1L724.8 60.0C739.0 59.8 740.1 59.7 743.9 58.1C749.7 55.6 754.6 50.1 756.3 44.1C757.1 41.3 757.2 34.3 756.5 31.4C755.6 27.8 754.4 25.4 752.2 22.6C748.8 18.3 744.4 15.7 738.6 14.7C735.9 14.2 702.6 13.8 702.1 14.3C701.8 14.5 701.7 24.0 701.8 61.7C701.8 99.3 701.7 108.9 701.4 109.0C700.9 109.4 695.3 109.3 695.1 108.9ZM197.6 108.3C194.2 107.1 193.7 106.8 191.6 105.8C183.1 101.5 174.0 92.5 170.2 84.5C168.6 81.2 168.0 79.8 168.0 79.5C168.0 79.3 167.8 78.9 167.6 78.5C166.8 77.0 165.4 71.9 164.7 67.8C163.6 61.6 164.1 50.2 165.7 44.8C166.5 41.9 168.1 37.3 168.6 36.3C168.8 35.9 169.1 35.3 169.3 34.9C172.8 27.6 177.3 21.9 182.6 17.7C185.3 15.6 192.3 11.3 193.0 11.2C193.1 11.2 193.5 11.1 193.9 10.8C197.1 9.1 204.4 7.1 207.6 7.1L209.6 7.1L209.8 10.1C210.1 13.0 210.1 13.1 209.5 13.5C209.1 13.8 208.5 14.0 207.8 14.0C206.1 14.0 200.3 15.4 197.9 16.5C196.5 17.1 193.5 18.6 192.9 19.0C192.5 19.3 191.8 19.7 191.4 19.9C189.5 20.9 184.2 25.6 182.2 28.0C177.5 33.4 174.6 39.3 172.7 46.9C170.9 54.1 170.9 64.4 172.7 71.2C175.7 82.4 182.0 91.7 190.6 97.3C192.9 98.8 195.9 100.3 199.1 101.5C201.4 102.4 201.3 102.2 201.2 105.7L201.1 108.9L200.4 108.9C200.0 109.0 198.7 108.7 197.6 108.3ZM897.8 57.6C897.6 57.4 897.0 56.4 896.5 55.3C895.9 54.3 895.3 53.0 895.0 52.6C894.4 51.6 894.2 51.8 897.9 46.6C899.5 44.4 901.5 41.6 902.3 40.3C904.3 37.4 908.7 30.9 913.1 24.4C915.0 21.6 918.0 17.1 919.9 14.4C921.7 11.6 923.5 9.1 923.8 8.7L924.4 8.0L928.2 7.8C931.6 7.7 932.0 7.8 932.2 8.2C932.3 8.4 932.2 8.7 932.1 8.9C932.0 9.1 931.1 10.3 930.2 11.7C929.2 13.0 928.0 14.7 927.5 15.5C926.4 17.0 925.6 18.2 921.4 24.4C919.9 26.6 918.4 28.8 918.0 29.2C917.6 29.7 916.4 31.5 915.2 33.2C914.0 35.0 911.9 38.1 910.5 40.1C907.9 43.8 899.4 56.4 898.8 57.5C898.4 58.1 898.2 58.1 897.8 57.6Z"/></svg>`;
+const logoHTML = (cls = "") => `<span class="logo ${cls}" aria-label="SORARY">${LOGO}</span>`;
+
+/* ============ generative demo artwork (canvas) ============
+   Demo sites use generated images so the examples need no external photos. */
+let NOISE;
+function noiseTile() {
+  if (NOISE) return NOISE;
+  const c = document.createElement("canvas"); c.width = c.height = 220;
+  const x = c.getContext("2d"), d = x.createImageData(220, 220), r = mulberry(7);
+  for (let i = 0; i < d.data.length; i += 4) { const v = r() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+  x.putImageData(d, 0, 0); NOISE = c; return c;
+}
+function grain(x, w, h, a, mode = "overlay") {
+  x.save(); x.globalAlpha = a; x.globalCompositeOperation = mode;
+  x.fillStyle = x.createPattern(noiseTile(), "repeat"); x.fillRect(0, 0, w, h); x.restore();
+}
+function hexMix(a, b, t) {
+  const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const A = p(a), B = p(b); return "#" + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, "0")).join("");
+}
+const GEN = {
+  field(x, w, h, r, o) {
+    const P = o.pal;
+    x.fillStyle = P[0]; x.fillRect(0, 0, w, h);
+    const bands = o.bands || 2;
+    const m = w * .08;
+    let y = h * .07; const avail = h * .86;
+    for (let i = 0; i < bands; i++) {
+      const bh = avail * (o.split ? o.split[i] : 1 / bands) - h * .03;
+      const col = P[1 + i % (P.length - 1)];
+      for (let k = 0; k < 14; k++) {
+        x.globalAlpha = .085; x.fillStyle = k % 3 ? col : hexMix(col, P[0], .3);
+        const j = (r() - .5) * w * .018;
+        x.filter = `blur(${4 + r() * 10}px)`;
+        x.fillRect(m + j, y + j, w - 2 * m - j * 2, bh - j * 2);
+      }
+      x.filter = "none"; x.globalAlpha = .9; x.fillStyle = col;
+      x.filter = "blur(6px)"; x.fillRect(m + w * .012, y + h * .012, w - 2 * m - w * .024, bh - h * .024); x.filter = "none";
+      y += bh + h * .03;
+    }
+    x.globalAlpha = 1; grain(x, w, h, .16);
+  },
+  minimal(x, w, h, r, o) {
+    x.fillStyle = o.ground || "#efebe3"; x.fillRect(0, 0, w, h);
+    grain(x, w, h, .07, "multiply");
+    x.strokeStyle = x.fillStyle = o.ink || "#1d1c1a";
+    const k = o.kind;
+    if (k === "line") { x.lineWidth = Math.max(2, w * .004); x.beginPath(); x.moveTo(w * o.at, h * .12); x.lineTo(w * o.at, h * .88); x.stroke(); }
+    if (k === "circle") { x.lineWidth = Math.max(2, w * .005); x.beginPath(); x.arc(w * .5, h * .46, w * .27, Math.PI * .1, Math.PI * 1.95); x.stroke(); }
+    if (k === "square") { const s = w * .16; x.fillRect(w * .62, h * .66, s, s); }
+    if (k === "band") { x.globalAlpha = .92; x.fillStyle = o.ink2 || "#b7533a"; x.fillRect(0, h * .58, w, h * .07); x.globalAlpha = 1; }
+    if (k === "grid") { x.lineWidth = 1.2; x.globalAlpha = .55; for (let i = 1; i < 9; i++) { x.beginPath(); x.moveTo(w * .14, h * (.12 + i * .085)); x.lineTo(w * .86, h * (.12 + i * .085)); x.stroke(); } x.globalAlpha = 1; }
+    if (k === "arc") { x.lineWidth = w * .05; x.lineCap = "butt"; x.beginPath(); x.arc(w * .5, h * .9, w * .34, Math.PI, Math.PI * 2); x.stroke(); }
+    grain(x, w, h, .08);
+  },
+  photo(x, w, h, r, o) {
+    const hz = h * (o.hz || .58);
+    const g = x.createLinearGradient(0, 0, 0, hz); o.sky.forEach((c, i) => g.addColorStop(i / (o.sky.length - 1), c));
+    x.fillStyle = g; x.fillRect(0, 0, w, hz + 2);
+    if (o.sun) { const sg = x.createRadialGradient(w * o.sun, hz * .82, 0, w * o.sun, hz * .82, w * .32); sg.addColorStop(0, "rgba(255,240,215,.55)"); sg.addColorStop(1, "rgba(255,240,215,0)"); x.fillStyle = sg; x.fillRect(0, 0, w, hz); }
+    if (o.hills) {
+      o.hills.forEach((c, li) => {
+        x.fillStyle = c; x.beginPath(); x.moveTo(0, hz);
+        const base = hz - h * (.05 + li * .06) * (o.hillH || 1);
+        for (let i = 0; i <= 40; i++) { const px = w * i / 40; const py = base + Math.sin(i * .35 + li * 2 + o.seed) * h * .03 + Math.sin(i * .9 + li) * h * .012 + li * h * .045; x.lineTo(px, py); }
+        x.lineTo(w, hz + 2); x.lineTo(0, hz + 2); x.fill();
+        x.fillStyle = "rgba(255,255,255,.12)"; x.fillRect(0, base - h * .04, w, h * .08);
+      });
+    }
+    const s = x.createLinearGradient(0, hz, 0, h); o.sea.forEach((c, i) => s.addColorStop(i / (o.sea.length - 1), c));
+    x.fillStyle = s; x.fillRect(0, hz, w, h - hz);
+    for (let i = 0; i < 110; i++) { const yy = hz + Math.pow(r(), 1.6) * (h - hz); x.globalAlpha = .05 + r() * .07; x.fillStyle = r() > .5 ? "#fff" : "#000"; x.fillRect(r() * w * .9 - w * .1, yy, w * (.15 + r() * .6), 1 + r() * 2); }
+    x.globalAlpha = 1;
+    if (o.mono) { const d = x.getImageData(0, 0, w, h); for (let i = 0; i < d.data.length; i += 4) { const v = d.data[i] * .3 + d.data[i + 1] * .59 + d.data[i + 2] * .11; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; } x.putImageData(d, 0, 0); }
+    grain(x, w, h, .22);
+    const v = x.createRadialGradient(w / 2, h / 2, w * .3, w / 2, h / 2, w * .8); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,.28)"); x.fillStyle = v; x.fillRect(0, 0, w, h);
+  },
+  sculpt(x, w, h, r, o) {
+    const fy = h * .78;
+    let g = x.createLinearGradient(0, 0, 0, fy); g.addColorStop(0, o.wall[0]); g.addColorStop(1, o.wall[1]); x.fillStyle = g; x.fillRect(0, 0, w, fy);
+    g = x.createLinearGradient(0, fy, 0, h); g.addColorStop(0, o.floor[0]); g.addColorStop(1, o.floor[1]); x.fillStyle = g; x.fillRect(0, fy, w, h - fy);
+    const pw = w * .34, ph = h * .27, px = (w - pw) / 2, py = fy - ph + h * .02;
+    x.fillStyle = "rgba(0,0,0,.18)"; x.filter = "blur(18px)"; x.fillRect(px + pw * .1, fy + h * .015, pw * .95, h * .03); x.filter = "none";
+    g = x.createLinearGradient(px, 0, px + pw, 0); g.addColorStop(0, "#f4f2ee"); g.addColorStop(.7, "#e7e4de"); g.addColorStop(1, "#d3cfc8"); x.fillStyle = g; x.fillRect(px, py, pw, ph);
+    x.fillStyle = "#fbfaf8"; x.fillRect(px, py, pw, h * .006);
+    const cx = w / 2, top = py;
+    const mat = o.mat;
+    const shade = (x0, y0, rx, ry) => { const gg = x.createRadialGradient(x0 - rx * .35, y0 - ry * .4, rx * .05, x0, y0, Math.max(rx, ry) * 1.15); mat.forEach((c, i) => gg.addColorStop(i / (mat.length - 1), c)); return gg; };
+    x.fillStyle = "rgba(0,0,0,.22)"; x.filter = "blur(10px)"; x.beginPath(); x.ellipse(cx + w * .02, top + h * .004, w * .11, h * .012, 0, 0, Math.PI * 2); x.fill(); x.filter = "none";
+    if (o.form === "stack") {
+      [[.13, .055], [.1, .05], [.075, .045], [.05, .035]].reduce((y, [rx, ry], i) => { const yy = y - ry * h; x.fillStyle = shade(cx + (i % 2 ? 1 : -1) * w * .01, yy, rx * w, ry * h); x.beginPath(); x.ellipse(cx + (i % 2 ? 1 : -1) * w * .01, yy, rx * w, ry * h, (i - 1.5) * .04, 0, Math.PI * 2); x.fill(); return yy - ry * h * .78; }, top);
+    } else if (o.form === "ring") {
+      const cy = top - h * .17; x.lineWidth = w * .07; x.strokeStyle = shade(cx, cy, w * .15, h * .15); x.beginPath(); x.ellipse(cx, cy, w * .14, h * .15, .1, 0, Math.PI * 2); x.stroke();
+      x.lineWidth = w * .015; x.strokeStyle = "rgba(255,255,255,.18)"; x.beginPath(); x.ellipse(cx - w * .01, cy - h * .01, w * .15, h * .16, .1, Math.PI * 1.05, Math.PI * 1.55); x.stroke();
+    } else {
+      const cy = top - h * .2, R = w * .15; x.fillStyle = shade(cx, cy, R, h * .2);
+      x.beginPath();
+      for (let i = 0; i <= 64; i++) { const a = i / 64 * Math.PI * 2; const k = 1 + Math.sin(a * 3 + o.seed) * .1 + Math.cos(a * 2 - o.seed) * .07; const yy = cy + Math.sin(a) * h * .2 * k; const xx = cx + Math.cos(a) * R * k * (Math.sin(a) > .6 ? .7 : 1); i ? x.lineTo(xx, Math.min(yy, top)) : x.moveTo(xx, Math.min(yy, top)); }
+      x.closePath(); x.fill();
+    }
+    grain(x, w, h, .1);
+  }
+};
+const GCACHE = new Map();
+function genImage(spec) {
+  if (GCACHE.has(spec.key)) return GCACHE.get(spec.key);
+  const c = document.createElement("canvas"); const L = 1000; const k = L / Math.max(spec.w, spec.h);
+  c.width = Math.round(spec.w * k); c.height = Math.round(spec.h * k);
+  const x = c.getContext("2d");
+  try { GEN[spec.g](x, c.width, c.height, mulberry(spec.seed || 1), spec.o || {}); } catch (e) { x.fillStyle = "#ddd"; x.fillRect(0, 0, c.width, c.height); }
+  const url = c.toDataURL("image/jpeg", .86); GCACHE.set(spec.key, url); return url;
+}
+let genQ = [], genBusy = false;
+function hydrateGen(root = document) {
+  $$("img[data-gen]", root).forEach(img => {
+    const k = img.dataset.gen; const spec = DEMO_SPECS[k]; if (!spec) return;
+    if (GCACHE.has(k)) { img.src = GCACHE.get(k); img.removeAttribute("data-gen"); } else genQ.push(img);
+  });
+  if (!genBusy) pumpGen();
+}
+function pumpGen() {
+  const img = genQ.shift(); if (!img) { genBusy = false; return; }
+  genBusy = true;
+  const k = img.dataset.gen; if (k && DEMO_SPECS[k]) { const u = genImage(DEMO_SPECS[k]); $$(`img[data-gen="${k}"]`).forEach(i => { i.src = u; i.removeAttribute("data-gen"); }); }
+  setTimeout(pumpGen, 16);
+}
+
+const DEMO_SPECS = {};
+function dw(prefix, i, spec, meta) {
+  const key = prefix + "-" + i; DEMO_SPECS[key] = Object.assign({ key }, spec);
+  return Object.assign({ id: key, gen: key, w: spec.w, h: spec.h, alt: "" }, meta);
+}
+
+/* ============ SORARY marketplace: state, demo roster, activity + momentum ============ */
+const CATS = ["Painting", "Sculpture", "Photography", "Works on paper"];
+const AVAIL = { available: "Available", sold: "Sold", reserved: "Reserved" };
+/* Business model: free for artists to sell; buyers pay buyer protection; optional paid Lift and Pro for artists. */
+const FEES = { buyerPct: 0.05, buyerFixed: 99, liftPrice: 49, liftDays: 7, proPrice: 79 };
+const buyerFee = p => Math.round((+p || 0) * FEES.buyerPct + FEES.buyerFixed);
+const STATIC = !!window.SORARY_STATIC;
+const hasMom = a => a.demo || (a._now || 0) > .05;
+const isLifted = w => (w.liftUntil || 0) > Date.now();
+const STYLES = ["Abstract", "Figurative", "Expressive", "Minimalist"];
+const SUBJECTS = ["Landscape & sea", "Figures & faces", "Nature", "Architecture", "Form & object", "Non-figurative"];
+const COLORS = [["red", "Red", "#B3322A"], ["orange", "Orange", "#D9792E"], ["yellow", "Yellow", "#E2B93B"], ["green", "Green", "#4F7A3F"], ["blue", "Blue", "#3E6A9E"], ["purple", "Purple", "#6E4A8E"], ["pink", "Pink", "#D9668F"], ["brown", "Brown", "#7A4E2D"], ["black", "Black", "#161616"], ["grey", "Grey", "#9A9A9A"], ["white", "White", "#F3F1EC"]];
+function colorName(r, g, b) {
+  r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn;
+  const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+  let h = 0; if (d) { h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h = (h * 60 + 360) % 360; }
+  if (l < .2) return "black";
+  if (l > .8 && s < .45) return "white";
+  if (s < .14) return l > .78 ? "white" : "grey";
+  if (h >= 8 && h < 50 && (l < .4 || s < .3)) return "brown";
+  if (h < 12 || h >= 345) return "red"; if (h < 42) return "orange"; if (h < 68) return "yellow"; if (h < 180) return "green"; if (h < 250) return "blue"; if (h < 290) return "purple"; return "pink";
+}
+const hexRGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+function topColors(weights) { const tot = Object.values(weights).reduce((a, b) => a + b, 0) || 1; return Object.entries(weights).filter(([, v]) => v / tot >= .12).sort((a, b) => b[1] - a[1]).slice(0, 3).map(x => x[0]); }
+function specColors(sp) {
+  const o = sp.o || {}, W = {}; const add = (hex, w) => { const n = colorName(...hexRGB(hex)); W[n] = (W[n] || 0) + w; };
+  if (sp.g === "field") { add(o.pal[0], .06); add(o.pal[1], .5); add(o.pal[2], .44); }
+  if (sp.g === "photo") { if (o.mono) { W.grey = 1; W.black = .3; } else { o.sky.forEach((c, i) => add(c, i === o.sky.length - 1 ? .07 : .13)); o.sea.forEach(c => add(c, .22)); } }
+  if (sp.g === "sculpt") { add(o.mat[0], .3); add(o.mat[1], .5); add(o.wall[0], .05); }
+  if (sp.g === "minimal") { add(o.ground, .8); add(o.kind === "band" ? o.ink2 : o.ink, .2); }
+  return topColors(W);
+}
+const COLCACHE = {};
+async function analyzeColors(w) {
+  const id = w.thumb || w.img; if (!id) return [];
+  if (COLCACHE[id]) return COLCACHE[id];
+  try { const c = localStorage.getItem("sorary-col:" + id); if (c) return (COLCACHE[id] = JSON.parse(c)); } catch (e) {}
+  try {
+    const bmp = await createImageBitmap(await (await fetch("/_blob/" + id)).blob());
+    const cv = document.createElement("canvas"); cv.width = cv.height = 40; const x = cv.getContext("2d"); x.drawImage(bmp, 0, 0, 40, 40);
+    const d = x.getImageData(0, 0, 40, 40).data, W = {};
+    for (let i = 0; i < d.length; i += 4) { const n = colorName(d[i], d[i + 1], d[i + 2]); W[n] = (W[n] || 0) + (n === "white" || n === "grey" ? .7 : 1); }
+    const out = topColors(W); COLCACHE[id] = out; try { localStorage.setItem("sorary-col:" + id, JSON.stringify(out)); } catch (e) {}
+    return out;
+  } catch (e) { return []; }
+}
+const workColors = w => w.colors || (w.gen ? (w._col || (w._col = specColors(DEMO_SPECS[w.gen]))) : COLCACHE[w.thumb || w.img] || null);
+const workStyles = (a, w) => [].concat(w.style || a.style || []);
+const workSubject = (a, w) => w.subject || a.subject || "";
+const S = {
+  ready: false, db: null, user: null, assets: null, uid: null, me: null, isOwner: false,
+  artists: [], stats: {}, follows: {}, saves: {}, myArtist: null, privKey: null,
+  inbox: [], inboxState: { read: {}, archived: {} }, showDemo: true, mk: null, filters: { cat: "All", price: "any", avail: false, sort: "curated", style: "all", subject: "all", color: null },
+  momTab: "leaders", studioDemo: false, saveState: ""
+};
+const use = n => (window.claude && typeof window.claude.use === "function") ? window.claude.use(n).catch(() => null) : Promise.resolve(null);
+const dref = p => S.db.doc(p);
+async function getData(path) { try { const s = await dref(path).get(); return s.exists ? s.data() : null; } catch (e) { return null; } }
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const DAY = 864e5;
+const dayKey = t => { const d = new Date(t); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const NDAYS = 120;
+function dayList() { const now = new Date(); now.setHours(12, 0, 0, 0); return Array.from({ length: NDAYS }, (_, i) => now.getTime() - (NDAYS - 1 - i) * DAY); }
+
+/* ---------- demo roster (clearly labelled "Demo" everywhere it appears) ---------- */
+const PAL = [["#e9e2d4", "#b4572e", "#d9a646"], ["#ded9cf", "#2f4a5c", "#8aa5b0"], ["#e7e1d3", "#4b5634", "#a9a37a"], ["#e4dacb", "#6d2433", "#c6704f"], ["#dcd6cc", "#2a2826", "#8a7a66"], ["#e8e3da", "#8f3b2a", "#2b2b30"], ["#e2ddd2", "#365f5a", "#d7b98a"], ["#e6e0d6", "#5b4a7a", "#c9b38a"], ["#ebe6dc", "#1f2f3f", "#c75b39"]];
+const SKY = [["#c9d4dc", "#e9dccd", "#f3d9b8"], ["#8fa3b3", "#c7cbc8", "#e6d8c3"], ["#d7d3cd", "#e9e5df", "#f1ede6"], ["#6f7f93", "#b5aea6", "#e2b48c"], ["#a8b6bf", "#d7d9d5", "#ebe6dc"]];
+const SEA = [["#7f8d96", "#46525a", "#2a3237"], ["#5f6f78", "#39444b", "#1d2428"], ["#9aa3a5", "#6d777b", "#4a5256"], ["#4e5c69", "#2c353d", "#14191d"]];
+function demoWorks(prefix, n, cat, gen, titles, priceBase, seed) {
+  const r = mulberry(seed);
+  return Array.from({ length: n }, (_, i) => {
+    const ori = [[4, 5], [3, 2], [1, 1], [5, 7], [3, 4]][Math.floor(r() * 5)];
+    let spec;
+    if (gen === "field") spec = { g: "field", w: ori[0], h: ori[1], seed: seed + i, o: { pal: PAL[(seed + i) % PAL.length], bands: 2 + (i % 3 === 2 ? 1 : 0), split: i % 3 === 2 ? [.4, .3, .3] : [.55 - r() * .15, .45 + r() * .15] } };
+    if (gen === "photo") spec = { g: "photo", w: ori[0] > ori[1] ? 3 : 4, h: ori[0] > ori[1] ? 2 : 5, seed: seed + i, o: { sky: SKY[(i + seed) % 5], sea: SEA[(i + seed) % 4], hz: .46 + r() * .16, sun: r() > .5 ? .25 + r() * .5 : 0, hills: r() > .6 ? ["#8b95a0", "#6d7883"] : null, mono: prefix === "ar" || r() > .8, seed: i } };
+    if (gen === "sculpt") { const mats = [["#8a6a45", "#4b3520", "#1c140c"], ["#ffffff", "#e9e6e1", "#b9b3a9"], ["#6f7a76", "#3e4744", "#1b201e"], ["#d9b56a", "#8f6a2c", "#3a2a10"], ["#5a5650", "#2f2c28", "#121110"]];
+      spec = { g: "sculpt", w: 4, h: 5, seed: seed + i, o: { form: ["blob", "stack", "ring"][(i + seed) % 3], wall: ["#e6e1d8", "#cdc6ba"], floor: ["#bfb7aa", "#a79f92"], mat: mats[(i + seed) % mats.length], seed: i * 1.7 + seed } }; }
+    if (gen === "minimal") { const kinds = ["line", "circle", "band", "square", "grid", "arc"]; spec = { g: "minimal", w: ori[0], h: ori[1], seed: seed + i, o: { kind: kinds[(i + seed) % 6], at: .3 + r() * .4, ground: ["#efebe3", "#ece6da", "#f1eee8"][i % 3], ink: prefix === "ya" ? "#2a2724" : "#1d1c1a", ink2: ["#a8432e", "#2f4a5c", "#b4572e"][i % 3] } }; }
+    const sizes = { Painting: ["120 × 100 cm", "90 × 70 cm", "160 × 130 cm", "60 × 50 cm"], Sculpture: ["64 × 40 × 38 cm", "42 × 30 × 28 cm", "80 × 72 × 20 cm"], Photography: ["60 × 90 cm, ed. of 7", "80 × 100 cm, ed. of 5"], "Works on paper": ["42 × 30 cm", "56 × 76 cm", "29.7 × 21 cm"] }[cat];
+    const media = { Painting: ["Oil on linen", "Oil and cold wax on linen", "Acrylic on canvas", "Egg tempera on panel"], Sculpture: ["Bronze, dark patina", "Carrara marble", "Patinated steel", "Basalt"], Photography: ["Archival pigment print", "Gelatin silver print"], "Works on paper": ["Ink on Japanese paper", "Graphite on paper", "Gouache on paper"] }[cat];
+    const avail = r() < .22 ? "sold" : r() < .08 ? "reserved" : "available";
+    return dw(prefix, i, spec, { title: titles[i % titles.length], slug: slugify(titles[i % titles.length]) + "-" + (i + 1), year: String(2026 - Math.floor(r() * 4)), category: cat, medium: media[i % media.length], dimensions: sizes[i % sizes.length],
+      price: Math.round((priceBase * (.6 + r() * 1.2)) / 500) * 500, currency: "SEK", availability: avail, listedAt: Date.now() - Math.floor(r() * 200) * DAY,
+      description: { Painting: "Built in thin layers over several months. The surface records each change of direction.", Sculpture: "Worked by hand from a single block, then finished with a patina applied over several days.", Photography: "Photographed on medium-format film in the first minutes of daylight and printed in the artist's studio.", "Works on paper": "Made in one sitting on handmade paper, after weeks of studies." }[cat] });
+  });
+}
+const DEMO_ARTISTS = [
+  { id: "demo-elin", style: ["Abstract","Expressive"], subject: "Non-figurative", name: "Elin Norrby", city: "Gothenburg", country: "Sweden", cat: "Painting", gen: "field", born: 1988, joined: 600, base: 70, growth: .35, followers0: 820, n: 7, price: 38000,
+    titles: ["Field I (Ochre)", "Low Tide, Blue", "Moss Light", "Ember", "Dusk Register", "Two Reds", "Harbour, Morning"], bio: "Elin Norrby works in oil and cold wax on large linen. Her colour fields begin as observations from the Swedish west coast and are built over months in thin, translucent layers." },
+  { id: "demo-tomas", style: ["Abstract"], subject: "Form & object", name: "Tomas Wahl", city: "Copenhagen", country: "Denmark", cat: "Sculpture", gen: "sculpt", born: 1979, joined: 520, base: 48, growth: .1, followers0: 640, n: 6, price: 85000,
+    titles: ["Weight of Rain", "Held", "Orbit", "Cairn III", "Resting Hand", "Breath"], bio: "Tomas Wahl is a sculptor working between Copenhagen and Pietrasanta. His forms begin with river stones and casts of everyday weight." },
+  { id: "demo-ines", style: ["Minimalist"], subject: "Landscape & sea", name: "Ines Okafor", city: "Lisbon", country: "Portugal", cat: "Photography", gen: "photo", born: 1990, joined: 410, base: 55, growth: .9, followers0: 390, n: 8, price: 16000,
+    titles: ["Praia da Ursa, 06:12", "Cabo Espichel", "Nazaré, Fog", "Carrapateira", "Peniche, 06:40", "Odeceixe, Low Tide", "Sines, Before Rain", "Sagres, 05:51"], bio: "Ines Okafor follows the Atlantic coast from Galicia to the Algarve with medium-format film, photographing only in the first twenty minutes of daylight." },
+  { id: "demo-sofi", style: ["Minimalist","Abstract"], subject: "Non-figurative", name: "Sofi Lund", city: "Milan", country: "Italy", cat: "Painting", gen: "minimal", born: 1985, joined: 700, base: 40, growth: -.25, followers0: 910, n: 6, price: 19000,
+    titles: ["Vertical, Morning", "Almost a Circle", "Red Horizon", "Small Black Square", "Ruled Field", "Bridge"], bio: "Sofi Lund is a Swedish painter in Milan. Her small, exact paintings in egg tempera take weeks to finish and hold a single mark as long as possible." },
+  { id: "demo-mira", style: ["Abstract"], subject: "Non-figurative", name: "Mira Castell", city: "Barcelona", country: "Spain", cat: "Painting", gen: "field", born: 1996, joined: 140, base: 22, growth: 1.9, followers0: 40, n: 6, price: 14000, spike: 18,
+    titles: ["Siesta Blue", "Terracotta Hours", "Patio", "Late Orange", "Salt Wall", "Agosto"], bio: "Mira Castell paints the colour of Mediterranean afternoons: walls, shutters and shade, reduced to a few fields of colour." },
+  { id: "demo-aleksi", style: ["Minimalist"], subject: "Landscape & sea", name: "Aleksi Rautio", city: "Helsinki", country: "Finland", cat: "Photography", gen: "photo", born: 1983, joined: 480, base: 30, growth: .2, followers0: 300, n: 6, price: 12000, mono: true,
+    titles: ["Archipelago I", "Archipelago II", "White Sea", "Hanko, Winter", "Ice Line", "Kallbådan"], bio: "Aleksi Rautio photographs the Finnish archipelago in winter, in black and white, from a small wooden boat." },
+  { id: "demo-noor", style: ["Minimalist"], subject: "Architecture", name: "Noor Haddad", city: "Berlin", country: "Germany", cat: "Works on paper", gen: "minimal", born: 1993, joined: 210, base: 26, growth: 1.3, followers0: 110, n: 7, price: 9000,
+    titles: ["Study for a Door", "Threshold", "One Red Line", "Courtyard", "Noon", "Square, Resting", "Hinge"], bio: "Noor Haddad makes precise works on paper about architecture and memory, drawing on the courtyards of her grandparents' house in Beirut." },
+  { id: "demo-leo", style: ["Abstract","Figurative"], subject: "Form & object", name: "Leo Varga", city: "Budapest", country: "Hungary", cat: "Sculpture", gen: "sculpt", born: 1987, joined: 330, base: 20, growth: .6, followers0: 150, n: 5, price: 42000,
+    titles: ["Danube Stone", "Pair", "Ring for Two", "Counterweight", "Small Monument"], bio: "Leo Varga casts bronze and carves limestone in a former tram depot in Budapest. His sculptures are about balance and companionship." },
+  { id: "demo-yuki", style: ["Minimalist"], subject: "Nature", name: "Yuki Arai", city: "Kyoto", country: "Japan", cat: "Works on paper", gen: "minimal", born: 1999, joined: 75, base: 10, growth: 2.6, followers0: 8, n: 6, price: 7500, spike: 40,
+    titles: ["Ink Horizon", "Circle, Unfinished", "Bridge at Dusk", "Ruled Silence", "Stone Garden", "One Stroke"], bio: "Yuki Arai makes ink works on handmade washi paper. Each piece is made in a single sitting after weeks of practice." },
+  { id: "demo-clara", style: ["Abstract","Expressive"], subject: "Landscape & sea", name: "Clara Holm", city: "Oslo", country: "Norway", cat: "Painting", gen: "field", born: 1975, joined: 900, base: 60, growth: -.05, followers0: 1340, n: 6, price: 64000,
+    titles: ["Fjord, Grey", "Midsummer Night", "Ice Blue", "Polar Field", "Red Cabin", "Snow Light"], bio: "Clara Holm is an established Norwegian painter whose large abstract canvases translate northern light into colour." }
+];
+DEMO_ARTISTS.forEach((a, k) => {
+  a.demo = true; a.slug = slugify(a.name); a.joinedAt = Date.now() - a.joined * DAY;
+  a.works = demoWorks(a.id.slice(5, 7), a.n, a.cat, a.gen, a.titles, a.price, 11 + k * 17);
+  a.works.forEach(w => { w.alt = `${w.title}, ${w.year}, ${w.medium}`; w.artistId = a.id; });
+  a.bio = a.bio + `\n\nBorn ${a.born}. Lives and works in ${a.city}.`;
+  a.statement = a.bio.split(".")[0] + ".";
+});
+
+/* ---------- activity series ---------- */
+function demoSeries(a) {
+  const r = mulberry(a.id.length * 7919 + a.base), days = dayList();
+  const out = { days, pv: [], wv: [], fol: [], sav: [], inq: [], demo: true };
+  days.forEach((t, i) => {
+    const age = (Date.now() - t) / DAY; if (age > a.joined) { ["pv", "wv", "fol", "sav", "inq"].forEach(k => out[k].push(0)); return; }
+    const x = i / (NDAYS - 1);
+    let lvl = a.base * Math.exp(a.growth * x) * (1 + .12 * Math.sin(i / 4.3));
+    if (a.spike && i > NDAYS - 30 && i < NDAYS - 18) lvl += a.spike * Math.exp(-Math.pow(i - (NDAYS - 24), 2) / 8);
+    const wk = new Date(t).getDay(); if (wk === 0 || wk === 6) lvl *= 1.22;
+    const n = v => Math.max(0, Math.round(v * (.7 + r() * .6)));
+    const pv = n(lvl); out.pv.push(pv); out.wv.push(n(lvl * 2.1)); out.sav.push(n(lvl * .07)); out.fol.push(n(lvl * .05)); out.inq.push(r() < lvl * .012 ? 1 + (r() < .2 ? 1 : 0) : 0);
+  });
+  return out;
+}
+function realSeries(a) {
+  const days = dayList(), st = (S.stats[a.id] && S.stats[a.id].days) || {};
+  const out = { days, pv: [], wv: [], fol: [], sav: [], inq: [], demo: false };
+  const folBy = {}, savBy = {};
+  Object.values(S.follows).forEach(f => { const t = f.since && f.since[a.id]; if ((f.artists || []).includes(a.id) && t) folBy[dayKey(t)] = (folBy[dayKey(t)] || 0) + 1; });
+  Object.values(S.saves).forEach(sv => (sv.works || []).forEach(k => { if (k.startsWith(a.id + ":")) { const t = sv.since && sv.since[k]; if (t) savBy[dayKey(t)] = (savBy[dayKey(t)] || 0) + 1; } }));
+  days.forEach(t => { const k = dayKey(t), d = st[k] || {};
+    out.pv.push(d.pv || 0); out.wv.push(Object.values(d.wv || {}).reduce((s, v) => s + v, 0)); out.inq.push(d.inq || 0); out.fol.push(folBy[k] || 0); out.sav.push(savBy[k] || 0); });
+  return out;
+}
+const W = { pv: 1, wv: .5, sav: 3, fol: 5, inq: 8 };
+function momentumOf(s) {
+  const alpha = 1 - Math.pow(.5, 1 / 10); let m = 0;
+  return s.days.map((_, i) => { const act = s.pv[i] * W.pv + s.wv[i] * W.wv + s.sav[i] * W.sav + s.fol[i] * W.fol + s.inq[i] * W.inq; m = m + alpha * (act - m); return m; });
+}
+const sum = (arr, from) => arr.slice(from).reduce((s, v) => s + v, 0);
+function followerCount(a) {
+  const real = Object.values(S.follows).filter(f => (f.artists || []).includes(a.id)).length;
+  return a.demo ? a.followers0 + sum(a._series.fol, 0) + real : real;
+}
+function saveCount(a, w) {
+  const key = a.id + ":" + w.id; const real = Object.values(S.saves).filter(s => (s.works || []).includes(key)).length;
+  if (!a.demo) return real;
+  const r = mulberry(w.id.length * 131 + w.title.length * 7); return Math.round(sum(a._series.sav, 0) / a.works.length * (.4 + r() * 1.2)) + real;
+}
+function workViews(a, w, days = 30) {
+  if (a.demo) { const r = mulberry(w.title.length * 37 + days); return Math.round(sum(a._series.wv, NDAYS - days) / a.works.length * (.5 + r())); }
+  const st = (S.stats[a.id] && S.stats[a.id].days) || {}; const keys = new Set(dayList().slice(NDAYS - days).map(dayKey));
+  return Object.entries(st).reduce((n, [k, d]) => n + (keys.has(k) ? ((d.wv || {})[w.id] || 0) : 0), 0);
+}
+function workInq(a, w, days = 30) {
+  if (a.demo) { const r = mulberry(w.title.length * 53); return r() < .5 ? Math.round(sum(a._series.inq, NDAYS - days) / a.works.length * (r() * 2)) : 0; }
+  const st = (S.stats[a.id] && S.stats[a.id].days) || {}; const keys = new Set(dayList().slice(NDAYS - days).map(dayKey));
+  return Object.entries(st).reduce((n, [k, d]) => n + (keys.has(k) ? ((d.inqw || {})[w.id] || 0) : 0), 0);
+}
+function buildMarket() {
+  const list = allArtists().filter(a => S.showDemo || !a.demo);
+  list.forEach(a => { a._series = a.demo ? (a._seriesC || (a._seriesC = demoSeries(a))) : realSeries(a); a._m = momentumOf(a._series); });
+  const maxNow = Math.max(1, ...list.map(a => a._m[NDAYS - 1]));
+  list.forEach(a => {
+    a._idx = a._m.map(v => v / maxNow * 100); const now = a._idx[NDAYS - 1], then = a._idx[NDAYS - 31];
+    a._now = now; a._chg = then > .5 ? (now - then) / then * 100 : (now > .5 ? 100 : 0);
+    a._followers = followerCount(a); a._fol30 = sum(a._series.fol, NDAYS - 30);
+    a._pv30 = sum(a._series.pv, NDAYS - 30); a._pvPrev = sum(a._series.pv.slice(NDAYS - 60, NDAYS - 30), 0);
+    a._emerging = (Date.now() - a.joinedAt) < 365 * DAY && a._followers < 600;
+  });
+  const ranked = [...list].sort((x, y) => y._now - x._now); ranked.forEach((a, i) => a._rank = i + 1);
+  const platform = { days: dayList(), act: dayList().map((_, i) => list.reduce((s, a) => s + a._series.pv[i] + a._series.wv[i] * .5 + a._series.sav[i] * 3 + a._series.fol[i] * 5 + a._series.inq[i] * 8, 0)) };
+  S.mk = { list: ranked, platform, maxNow };
+  return S.mk;
+}
+const mk = () => S.mk || buildMarket();
+function allArtists() {
+  const real = S.artists.filter(a => a.listed !== false && a.name && a.slug);
+  return [...real, ...(S.showDemo ? DEMO_ARTISTS : [])];
+}
+const artistBySlug = slug => allArtists().find(a => a.slug === slug) || DEMO_ARTISTS.find(a => a.slug === slug);
+const artistById = id => allArtists().find(a => a.id === id) || DEMO_ARTISTS.find(a => a.id === id);
+function allWorks() { const out = []; allArtists().forEach(a => (a.works || []).forEach(w => out.push({ a, w }))); return out; }
+
+/* ---------- boot + live data ---------- */
+async function boot() {
+  route();
+  const [db, user, assets] = await Promise.all([use("db"), use("user"), use("assets")]);
+  S.db = db; S.user = user; S.assets = assets;
+  if (user) { try { S.uid = await user.id(); S.me = await user.me(); S.isOwner = await user.isOwner(); } catch (e) {} }
+  if (db) {
+    const live = (col, cb) => { try { db.collection(col).onSnapshot(snap => { cb(snap); S.mk = null; liveRefresh(); }, () => {}); } catch (e) {} };
+    await Promise.all([
+      new Promise(res => { let first = true; live("artists", snap => { S.artists = snap.docs.map(d => Object.assign({}, d.data(), { id: d.id })); S.myArtist = S.uid ? (S.artists.find(a => a.id === S.uid) || null) : null; if (first) { first = false; res(); } }); setTimeout(res, 4000); }),
+      new Promise(res => { let first = true; live("follows", snap => { S.follows = {}; snap.docs.forEach(d => S.follows[d.id] = d.data()); if (first) { first = false; res(); } }); setTimeout(res, 4000); }),
+      new Promise(res => { let first = true; live("saves", snap => { S.saves = {}; snap.docs.forEach(d => S.saves[d.id] = d.data()); if (first) { first = false; res(); } }); setTimeout(res, 4000); }),
+      loadStats()
+    ]);
+    if (S.uid) {
+      const [keys, ib] = await Promise.all([getData(`data/users/${S.uid}/keys`), getData(`data/users/${S.uid}/inbox`)]);
+      if (ib) S.inboxState = Object.assign({ read: {}, archived: {} }, ib);
+      if (keys && keys.priv) { try { S.privKey = await crypto.subtle.importKey("jwk", keys.priv, { name: "ECDH", namedCurve: "P-256" }, false, ["deriveKey"]); } catch (e) {} }
+      await claimPrepared();
+      if (S.myArtist) subscribeInbox();
+    }
+  }
+  S.ready = true; S.mk = null; route();
+}
+async function loadStats() { if (!S.db) return; try { const q = await S.db.collection("stats").get(); S.stats = {}; q.docs.forEach(d => S.stats[d.id] = d.data()); S.mk = null; } catch (e) {} }
+let liveT;
+function liveRefresh() { if (!S.ready) return; clearTimeout(liveT); liveT = setTimeout(() => { const h = curHash(); if (/^(momentum|following|artists)$/.test(h) || h.startsWith("a--")) route(true); else refreshFollowButtons(); }, 400); }
+
+/* ---------- tracking genuine activity (aggregate counters, no browsing history stored) ---------- */
+const pending = {}; let flushT = null; const seenMem = new Set();
+function seenOnce(key) {
+  const k = "sorary-seen:" + key + ":" + dayKey(Date.now());
+  if (seenMem.has(k)) return true; seenMem.add(k);
+  try { if (localStorage.getItem(k)) return true; localStorage.setItem(k, "1"); } catch (e) {}
+  return false;
+}
+function track(a, kind, workId) {
+  if (!a || a.demo || !S.db || !S.uid || a.id === S.uid) return;
+  if (kind !== "inq" && seenOnce(a.id + ":" + kind + ":" + (workId || ""))) return;
+  const p = pending[a.id] || (pending[a.id] = { pv: 0, wv: {}, inq: 0, inqw: {} });
+  if (kind === "pv") p.pv++;
+  if (kind === "wv") p.wv[workId] = (p.wv[workId] || 0) + 1;
+  if (kind === "inq") { p.inq++; if (workId) p.inqw[workId] = (p.inqw[workId] || 0) + 1; }
+  clearTimeout(flushT); flushT = setTimeout(flushStats, 1200);
+}
+let flushing = Promise.resolve();
+function flushStats() {
+  flushing = flushing.then(async () => {
+    for (const id of Object.keys(pending)) {
+      const p = pending[id]; delete pending[id];
+      try {
+        const cur = (await getData("stats/" + id)) || { days: {} }; const days = cur.days || {};
+        const k = dayKey(Date.now()); const d = days[k] || (days[k] = { pv: 0, wv: {}, inq: 0, inqw: {} });
+        d.pv = (d.pv || 0) + p.pv; d.inq = (d.inq || 0) + p.inq; d.wv = d.wv || {}; d.inqw = d.inqw || {};
+        for (const w in p.wv) d.wv[w] = (d.wv[w] || 0) + p.wv[w]; for (const w in p.inqw) d.inqw[w] = (d.inqw[w] || 0) + p.inqw[w];
+        const cutoff = dayKey(Date.now() - 200 * DAY); for (const kk of Object.keys(days)) if (kk < cutoff) delete days[kk];
+        await dref("stats/" + id).set({ days, updatedAt: Date.now() }); S.stats[id] = { days }; S.mk = null;
+      } catch (e) {}
+    }
+  });
+}
+
+/* ---------- follow + save ---------- */
+const myFollows = () => (S.uid && S.follows[S.uid]) || { artists: [], since: {} };
+const mySaves = () => (S.uid && S.saves[S.uid]) || { works: [], since: {} };
+const isFollowing = id => myFollows().artists.includes(id);
+const isSaved = key => mySaves().works.includes(key);
+let folQ = Promise.resolve(), savQ = Promise.resolve();
+function needUser() { if (!S.db || !S.uid) { toast("Sign in to claude.ai to follow artists and save works"); return true; } return false; }
+function toggleFollow(id) {
+  if (needUser()) return; if (id === S.uid) { toast("This is your own profile"); return; }
+  const f = clone(myFollows()); f.since = f.since || {};
+  if (f.artists.includes(id)) { f.artists = f.artists.filter(x => x !== id); delete f.since[id]; } else { f.artists.push(id); f.since[id] = Date.now(); }
+  S.follows[S.uid] = f; S.mk = null; refreshFollowButtons();
+  toast(f.artists.includes(id) ? "Following " + ((artistById(id) || {}).name || "artist") : "Unfollowed");
+  folQ = folQ.then(() => dref("follows/" + S.uid).set(f)).catch(e => toast(e && e.code === "invalid_argument" ? "Your access to this page is view-only" : "Could not save. Try again."));
+}
+function toggleSave(key) {
+  if (needUser()) return;
+  const s = clone(mySaves()); s.since = s.since || {};
+  if (s.works.includes(key)) { s.works = s.works.filter(x => x !== key); delete s.since[key]; } else { s.works.push(key); s.since[key] = Date.now(); }
+  S.saves[S.uid] = s; S.mk = null; refreshFollowButtons();
+  toast(s.works.includes(key) ? "Saved to your collection" : "Removed from saved");
+  savQ = savQ.then(() => dref("saves/" + S.uid).set(s)).catch(e => toast(e && e.code === "invalid_argument" ? "Your access to this page is view-only" : "Could not save. Try again."));
+}
+function refreshFollowButtons() {
+  $$("[data-follow]").forEach(b => { const on = isFollowing(b.dataset.follow); b.setAttribute("aria-pressed", on); b.textContent = on ? "Following" : "Follow"; });
+  $$("[data-save]").forEach(b => { const on = isSaved(b.dataset.save); b.setAttribute("aria-pressed", on); const l = $(".l", b); if (l) l.textContent = on ? "Saved" : "Save"; });
+}
+
+/* ---------- encrypted inquiries ---------- */
+const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function makeKeys() { const kp = await crypto.subtle.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]); return { pub: await crypto.subtle.exportKey("jwk", kp.publicKey), priv: await crypto.subtle.exportKey("jwk", kp.privateKey), privKey: kp.privateKey }; }
+async function encryptFor(pubJwk, obj) {
+  const pub = await crypto.subtle.importKey("jwk", pubJwk, { name: "ECDH", namedCurve: "P-256" }, false, []);
+  const eph = await crypto.subtle.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({ name: "ECDH", public: pub }, eph.privateKey, { name: "AES-GCM", length: 256 }, false, ["encrypt"]);
+  const iv = crypto.getRandomValues(new Uint8Array(12)); const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(obj)));
+  return { eph: await crypto.subtle.exportKey("jwk", eph.publicKey), iv: b64(iv), ct: b64(ct) };
+}
+async function decryptMsg(m) {
+  const ephPub = await crypto.subtle.importKey("jwk", m.eph, { name: "ECDH", namedCurve: "P-256" }, false, []);
+  const key = await crypto.subtle.deriveKey({ name: "ECDH", public: ephPub }, S.privKey, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: unb64(m.iv) }, key, unb64(m.ct))));
+}
+let inboxUnsub = null;
+function subscribeInbox() {
+  if (inboxUnsub || !S.db || !S.uid) return;
+  inboxUnsub = S.db.collection("inquiries").where("to", "array-contains", S.uid).onSnapshot(async snap => {
+    const out = [];
+    for (const d of snap.docs) for (const m of (d.data().msgs || [])) {
+      if (m.to !== S.uid) continue; let body = null; if (S.privKey) { try { body = await decryptMsg(m); } catch (e) {} }
+      out.push({ id: m.id, at: m.at, workId: m.workId, workTitle: m.workTitle, body });
+    }
+    out.sort((a, b) => b.at - a.at); S.inbox = out;
+    if (curHash().startsWith("studio")) route(true);
+  }, () => {});
+}
+async function sendInquiry(a, w, form, start) {
+  const msgEl = $(".msg", form); const say = t => { msgEl.textContent = t; msgEl.style.color = "var(--danger)"; };
+  const fd = Object.fromEntries(new FormData(form).entries());
+  const name = (fd.name || "").trim(), email = (fd.email || "").trim(), message = (fd.message || "").trim();
+  if (a.demo) return say("This is a demo artist, so the message was not sent.");
+  if (!name) return say("Enter your name.");
+  if (!EMAIL_RE.test(email)) return say("Enter a valid email address so the artist can reply.");
+  if (message.length < 10) return say("Write a little more, at least 10 characters.");
+  if (fd.website) { form.innerHTML = "<p>Thank you. Your message has been sent.</p>"; return; }
+  if (Date.now() - start < 2500) return say("Take a moment to review your message, then send it again.");
+  if (!S.db || !S.uid) return say("Sign in to claude.ai to contact artists on this preview.");
+  if (!a.publicKey) return say("This artist has not finished setting up their inbox.");
+  const btn = $("button[type=submit]", form); btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const mine = (await getData("inquiries/" + S.uid)) || { msgs: [] };
+    if ((mine.msgs || []).filter(m => m.at > Date.now() - 3600e3).length >= 5) { say("You have sent several messages in the last hour. Try again later."); btn.disabled = false; btn.textContent = "Send inquiry"; return; }
+    const enc = await encryptFor(a.publicKey, { name, email, message });
+    const msg = Object.assign({ id: uid8(), to: a.id, at: Date.now(), workId: w ? w.id : null, workTitle: w ? w.title : null }, enc);
+    const msgs = [...(mine.msgs || []), msg].slice(-60);
+    await dref("inquiries/" + S.uid).set({ to: [...new Set(msgs.map(m => m.to))], msgs });
+    track(a, "inq", w && w.id);
+    form.innerHTML = `<div style="display:flex;flex-direction:column;gap:12px"><p style="font-size:20px">Thank you, ${esc(name.split(" ")[0])}.</p><p class="muted">Your inquiry has been sent to ${esc(a.name)}. They will reply to ${esc(email)}.</p></div>`;
+  } catch (e) { say("The inquiry could not be sent. Check your connection and try again."); btn.disabled = false; btn.textContent = "Send inquiry"; }
+}
+
+/* ---------- images ---------- */
+const OK_TYPES = ["image/jpeg", "image/png", "image/webp"];
+async function prepareImage(file, maxFull = 2400, maxThumb = 900) {
+  if (!OK_TYPES.includes(file.type)) throw new Error(`${file.name}: use JPG, PNG or WebP.`);
+  if (file.size > 25e6) throw new Error(`${file.name}: larger than 25 MB.`);
+  let bmp; try { bmp = window.createImageBitmap ? await createImageBitmap(file) : await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(file); }); } catch { throw new Error(`${file.name}: the image could not be read.`); }
+  const w = bmp.width, h = bmp.height;
+  const make = (max, q) => new Promise(res => { const k = Math.min(1, max / Math.max(w, h)); const c = document.createElement("canvas"); c.width = Math.round(w * k); c.height = Math.round(h * k);
+    const x = c.getContext("2d"); x.imageSmoothingQuality = "high"; x.drawImage(bmp, 0, 0, c.width, c.height);
+    c.toBlob(b => { if (b && b.type === "image/webp") res(b); else c.toBlob(j => res(j), "image/jpeg", q); }, "image/webp", q); });
+  return { full: await make(maxFull, .86), thumb: maxThumb ? await make(maxThumb, .82) : null, w, h };
+}
+async function uploadBlob(b) { try { return await S.assets.upload(b, { type: b.type }); } catch (e) { if (e && e.code === "store_unavailable") { await new Promise(z => setTimeout(z, 900)); return await S.assets.upload(b, { type: b.type }); } throw e; } }
+
+/* ---------- my artist profile ---------- */
+let artistWriteQ = Promise.resolve();
+function saveArtist(now) {
+  if (!S.myArtist) return Promise.resolve();
+  S.myArtist.updatedAt = Date.now(); S.saveState = "Saving…"; $$("[data-savestate]").forEach(e => e.textContent = S.saveState);
+  const data = clone(S.myArtist); delete data.id; Object.keys(data).forEach(k => k.startsWith("_") && delete data[k]);
+  data.works = (data.works || []).map(w => { const c = Object.assign({}, w); Object.keys(c).forEach(k => k.startsWith("_") && delete c[k]); return c; });
+  artistWriteQ = artistWriteQ.then(() => dref("artists/" + S.uid).set(data)).then(() => { S.saveState = "All changes saved"; }, e => { S.saveState = e && e.code === "quota_exceeded" ? "Storage is full" : "Not saved. Check your connection."; })
+    .then(() => $$("[data-savestate]").forEach(e => e.textContent = S.saveState));
+  S.mk = null; return artistWriteQ;
+}
+const saveArtistSoon = debounce(saveArtist, 700);
+
+/* A profile prepared by the owner (claimForOwner) moves to the owner's own studio the first time they open the page. */
+async function claimPrepared() {
+  if (!S.isOwner || S.myArtist) return;
+  const prep = S.artists.find(a => a.claimForOwner); if (!prep) return;
+  try {
+    let pub = null;
+    if (!S.privKey) { const k = await makeKeys(); await dref(`data/users/${S.uid}/keys`).set({ priv: k.priv, createdAt: Date.now() }); S.privKey = k.privKey; pub = k.pub; }
+    else { const kd = await getData(`data/users/${S.uid}/keys`); pub = kd && kd.pub ? kd.pub : null; }
+    if (!pub) { const k = await makeKeys(); await dref(`data/users/${S.uid}/keys`).set({ priv: k.priv, pub: k.pub, createdAt: Date.now() }); S.privKey = k.privKey; pub = k.pub; }
+    const data = Object.assign({}, prep, { publicKey: pub }); delete data.id; delete data.claimForOwner;
+    await dref("artists/" + S.uid).set(data);
+    await dref("slugs/" + data.slug).set({ owner: S.uid, at: Date.now() });
+    await dref("artists/" + prep.id).delete();
+    S.myArtist = Object.assign({ id: S.uid }, data); S.artists = S.artists.filter(a => a.id !== prep.id).concat([S.myArtist]); S.mk = null;
+  } catch (e) {}
+}
+
+/* ============ SORARY marketplace: components ============ */
+const app = () => $("#app");
+const curHash = () => decodeURIComponent(location.hash.slice(1)) || "home";
+const aHref = a => "#a--" + a.slug, wHref = (a, w) => "#w--" + a.slug + "--" + w.slug;
+const fmtN = n => new Intl.NumberFormat("sv-SE").format(Math.round(n || 0));
+const fmtDate = ts => ts ? new Date(ts).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
+const fmtMonth = ts => new Date(ts).toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+const fmtPrice = (p, c) => p ? (c || "SEK") + " " + fmtN(p) : "";
+const demoTag = a => a && a.demo ? `<span class="demo-t" title="Demo artist with generated activity for development">Demo</span>` : "";
+function delta(v, digits = 0) {
+  if (!isFinite(v)) return `<span class="dl">—</span>`;
+  const up = v > .05, down = v < -.05;
+  return `<span class="dl ${up ? "up" : down ? "dn" : ""}" aria-label="${up ? "up" : down ? "down" : "unchanged"} ${Math.abs(v).toFixed(digits)} percent">${up ? "▲" : down ? "▼" : "■"} ${Math.abs(v) >= 999 ? "999+" : Math.abs(v).toFixed(digits)}%</span>`;
+}
+function intrinsic(w) { const a = +w.w || 4, b = +w.h || 5; const k = 1000 / Math.max(a, b); return [Math.round(a * k), Math.round(b * k)]; }
+function artImg(w, size = "thumb", eager) {
+  const alt = esc(w.alt || [w.title, w.year, w.medium].filter(Boolean).join(", ")); const [iw, ih] = intrinsic(w);
+  if (w.gen) return `<img data-gen="${esc(w.gen)}" alt="${alt}" width="${iw}" height="${ih}">`;
+  if (w.src) return `<img src="${esc(w.src)}" alt="${alt}" width="${iw}" height="${ih}" ${eager ? "" : 'loading="lazy"'} decoding="async">`;
+  const id = size === "thumb" ? (w.thumb || w.img) : (w.img || w.thumb);
+  return id ? `<img src="/_blob/${esc(id)}" alt="${alt}" width="${iw}" height="${ih}" ${eager ? "" : 'loading="lazy"'} decoding="async">` : `<img alt="${alt}" width="${iw}" height="${ih}">`;
+}
+const SHIELD = `<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M8 1.5 2.5 3.5v4c0 3.3 2.3 5.9 5.5 7 3.2-1.1 5.5-3.7 5.5-7v-4z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="m5.6 8 1.7 1.7 3.2-3.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>`;
+const SAVE_SVG = `<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3.5 1.5h9v13L8 11l-4.5 3.5z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+function saveBtn(a, w, cls = "") { const k = a.id + ":" + w.id; return `<button class="savebtn ${cls}" data-save="${esc(k)}" aria-pressed="${isSaved(k)}" aria-label="Save ${esc(w.title)}">${SAVE_SVG}<span class="l">${isSaved(k) ? "Saved" : "Save"}</span></button>`; }
+const followBtn = (a, cls = "btn sm o") => a.id === S.uid ? `<a class="${cls}" href="#studio">Your studio</a>` : `<button class="${cls} fol" data-follow="${esc(a.id)}" aria-pressed="${isFollowing(a.id)}">${isFollowing(a.id) ? "Following" : "Follow"}</button>`;
+function workCard(a, w, opts = {}) {
+  const price = w.availability === "sold" ? `<span class="sold">Sold</span>` : w.availability === "reserved" ? `<span class="muted">Reserved</span>` : `<span class="num">${fmtPrice(w.price, w.currency)}</span>`;
+  return `<div class="ac"><a href="${wHref(a, w)}" class="im" aria-label="${esc(w.title)} by ${esc(a.name)}">${artImg(w)}</a>${saveBtn(a, w, "ov")}
+    <div class="cap">${isLifted(w) ? `<span class="spons">Sponsored</span>` : ""}<a class="an" href="${aHref(a)}">${esc(a.name)}${demoTag(a)}</a><a href="${wHref(a, w)}" class="ti"><i>${esc(w.title)}</i>, ${esc(w.year)}</a>
+    <span class="md">${esc(w.medium)}${opts.dims !== false && w.dimensions ? " · " + esc(w.dimensions) : ""}</span>${price}</div></div>`;
+}
+function spark(vals, w = 96, h = 26) {
+  const v = vals.slice(-90); const max = Math.max(...v, 1e-6), min = Math.min(...v);
+  const pts = v.map((y, i) => [i / (v.length - 1) * (w - 4) + 2, h - 3 - (y - min) / ((max - min) || 1) * (h - 6)]);
+  const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join("");
+  const e = pts[pts.length - 1];
+  return `<svg class="spk" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/><circle cx="${e[0]}" cy="${e[1]}" r="2.2" fill="currentColor"/></svg>`;
+}
+function artistCover(a) { const w = (a.works || []).find(x => x.availability !== "sold") || (a.works || [])[0]; return w ? artImg(w) : `<span class="ini">${esc(a.name.split(" ").map(s => s[0]).join("").slice(0, 2))}</span>`; }
+function artistCard(a) {
+  return `<div class="arc"><a class="im" href="${aHref(a)}" aria-label="${esc(a.name)}">${artistCover(a)}</a>
+    <div class="row1"><a class="nm" href="${aHref(a)}">${esc(a.name)}${demoTag(a)}</a>${followBtn(a, "textbtn fol")}</div>
+    <div class="row2"><span class="muted">${esc(a.city)} · ${esc(a.cat)}</span></div>
+    <div class="row3">${hasMom(a) ? `<span class="mono num">${a._now.toFixed(1)}</span>${delta(a._chg)}<span class="spw">${spark(a._idx)}</span>` : `<span class="hint">New on SORARY</span>`}</div></div>`;
+}
+
+/* ---------- line chart with hover ---------- */
+const CHARTS = new Map();
+function lineChart(host, o) {
+  CHARTS.set(host, o);
+  const draw = () => {
+    const W = Math.max(260, host.clientWidth), H = o.height || 220, m = { l: 44, r: 14, t: 14, b: 26 };
+    const vals = o.values, n = vals.length, days = o.days;
+    let max = Math.max(...vals, 1); const mag = Math.pow(10, Math.floor(Math.log10(max))); max = Math.ceil(max / (mag / 2)) * (mag / 2);
+    const x = i => m.l + i / (n - 1) * (W - m.l - m.r), y = v => m.t + (1 - v / max) * (H - m.t - m.b);
+    const fmt = o.fmt || (v => fmtN(v));
+    const line = vals.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join("");
+    const area = line + `L${x(n - 1).toFixed(1)} ${y(0)}L${x(0).toFixed(1)} ${y(0)}Z`;
+    const grid = [0, .5, 1].map(f => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(max * f)}" y2="${y(max * f)}" class="gl"/><text x="${m.l - 8}" y="${y(max * f) + 4}" text-anchor="end" class="tk">${fmt(max * f)}</text>`).join("");
+    const ticks = []; days.forEach((t, i) => { const d = new Date(t); if (d.getDate() === 1 && i > 3 && i < n - 4) ticks.push(`<line x1="${x(i)}" x2="${x(i)}" y1="${y(0)}" y2="${y(0) + 4}" class="gl"/><text x="${x(i)}" y="${H - 6}" text-anchor="middle" class="tk">${d.toLocaleDateString("en-GB", { month: "short" })}</text>`); });
+    const ex = x(n - 1), ey = y(vals[n - 1]);
+    host.innerHTML = `<div class="chw"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(o.label || "Chart")}: latest ${fmt(vals[n - 1])}">${grid}${ticks.join("")}
+      <path d="${area}" class="ar"/><path d="${line}" class="ln"/><circle cx="${ex}" cy="${ey}" r="3.5" class="ed"/>
+      <g class="hv" style="opacity:0"><line class="hl" y1="${m.t}" y2="${y(0)}"/><circle r="4" class="hd"/></g><rect class="hit" x="${m.l}" y="0" width="${W - m.l - m.r}" height="${H}" fill="transparent"/></svg><div class="tip" hidden></div></div>`;
+    const svg = $("svg", host), hv = $(".hv", host), tip = $(".tip", host);
+    const at = ev => { const r = svg.getBoundingClientRect(); const px = (ev.clientX - r.left) * W / r.width; const i = Math.max(0, Math.min(n - 1, Math.round((px - m.l) / (W - m.l - m.r) * (n - 1))));
+      $("line", hv).setAttribute("x1", x(i)); $("line", hv).setAttribute("x2", x(i)); $("circle", hv).setAttribute("cx", x(i)); $("circle", hv).setAttribute("cy", y(vals[i])); hv.style.opacity = 1;
+      tip.hidden = false; tip.innerHTML = `<span>${fmtDate(days[i])}</span><b>${fmt(vals[i])}</b>${o.unit ? ` <span>${esc(o.unit)}</span>` : ""}`;
+      const tx = x(i) * r.width / W; tip.style.left = Math.min(r.width - tip.offsetWidth - 4, Math.max(4, tx - tip.offsetWidth / 2)) + "px"; };
+    const hitR = $(".hit", host); hitR.onpointermove = at; hitR.onpointerdown = at; hitR.onpointerleave = () => { hv.style.opacity = 0; tip.hidden = true; };
+  };
+  draw();
+  if (!host._ro && window.ResizeObserver) { let lw = host.clientWidth; host._ro = new ResizeObserver(() => { if (Math.abs(host.clientWidth - lw) > 4) { lw = host.clientWidth; draw(); } }); host._ro.observe(host); }
+}
+
+/* ---------- chrome ---------- */
+function pHeader(active) {
+  const items = [["home", "Discover"], ["art", "Artworks"], ["artists", "Artists"], ["momentum", "Momentum"]];
+  const right = STATIC ? [["sell", "For artists"]] : [["following", "Following"], ["studio", S.myArtist ? "Studio" : "For artists"]];
+  return (STATIC ? `<div class="annc"><span>SORARY opens soon in Stockholm.</span><button class="link" data-wait="buyer">Join the waitlist</button></div>` : "") + `<header class="ph"><div class="in-h"><a href="#home" aria-label="SORARY home">${logoHTML()}</a>
+    <nav class="pnav" aria-label="Main">${items.map(([h, l]) => `<a href="#${h}" ${active === h ? 'aria-current="page"' : ""}>${l}</a>`).join("")}<span class="sep" aria-hidden="true"></span>${right.map(([h, l]) => `<a href="#${h}" ${active === h ? 'aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
+    <button class="menu-btn" data-mmenu aria-haspopup="dialog">Menu</button></div></header>`;
+}
+function pFooter() {
+  return `<footer class="pf"><div class="in-f"><a href="#home" aria-label="SORARY home">${logoHTML()}</a>
+    <nav aria-label="Footer"><a href="#art">Artworks</a><a href="#artists">Artists</a><a href="#momentum">Artist Momentum</a><a href="#sell">Sell on SORARY</a><a href="#protection">Buyer protection</a><a href="#about">About</a><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Service</a></nav>
+    <p class="c"><span class="mail">Contact <span class="sel">sorary.support@gmail.com</span><button class="textbtn cpm" data-copymail>Copy</button></span><br>© ${new Date().getFullYear()} SORARY · Original contemporary art. ${S.showDemo ? `Artists marked <span class="demo-t">Demo</span>, their works and their activity are generated examples.` : "Showing genuine platform activity only."}</p></div></footer>`;
+}
+function openMobileMenu() {
+  const m = document.createElement("div"); m.className = "mmenu"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", "Menu");
+  m.innerHTML = `<div class="top">${logoHTML()}<button class="menu-btn" style="display:block" data-close>Close</button></div>
+    <nav><a href="#home">Discover</a><a href="#art">Artworks</a><a href="#artists">Artists</a><a href="#momentum">Momentum</a>${STATIC ? `<a href="#sell">For artists</a>` : `<a href="#following">Following</a><a href="#studio">${S.myArtist ? "Studio" : "For artists"}</a>`}</nav>`;
+  m.onclick = e => { if (e.target.closest("a") || e.target.dataset.close !== undefined) m.remove(); };
+  document.body.appendChild(m); $("[data-close]", m).focus();
+}
+const shell = (active, inner) => pHeader(active) + `<main class="wrap">${inner}</main>` + pFooter();
+function after() { hydrateGen(app()); }
+
+/* ============ pages ============ */
+function pageHome() {
+  const M = mk(); const L = M.list;
+  const lead = (STATIC && L.find(a => !a.demo && (a.works || []).length)) || L.find(a => (a.works || []).some(w => w.availability === "available")) || L[0];
+  const hw = lead && ((lead.works || []).find(w => w.availability === "available" && (+w.w) <= (+w.h)) || (lead.works || [])[0]);
+  const trending = [...L].filter(a => a._now > 3).sort((x, y) => y._chg - x._chg).slice(0, 4);
+  const emerging = L.filter(a => a._emerging && hasMom(a)).slice(0, 5);
+  const newest = allWorks().filter(x => x.w.availability !== "sold").sort((p, q) => (q.w.listedAt || 0) - (p.w.listedAt || 0)).slice(0, 8);
+  const fol = myFollows().artists.map(artistById).filter(Boolean);
+  app().innerHTML = shell("home", `
+  <section class="mh-hero"><div class="hx">
+    <span class="eyebrow rise">Original contemporary art</span>
+    <h1 class="rise d1">Collect the artists of now.</h1>
+    <p class="sub rise d2">Original works directly from studios across Europe and beyond. Follow the artists you believe in, and see whose work is gathering attention through Artist Momentum.</p>
+    <div class="rise d3" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px">${STATIC ? `<button class="btn" data-wait="buyer">Join the waitlist</button><a class="btn o" href="#art">Explore artworks</a>` : `<a class="btn" href="#art">Explore artworks</a><a class="btn o" href="#momentum">Artist Momentum</a>`}</div></div>
+    ${hw ? `<figure class="hf rise d2"><a href="${wHref(lead, hw)}" class="im">${artImg(hw, "full", true)}</a>
+      <figcaption><span><a href="${aHref(lead)}">${esc(lead.name)}</a>${demoTag(lead)}<br><i>${esc(hw.title)}</i>, ${esc(hw.year)} · ${esc(hw.medium)}</span>
+      ${hasMom(lead) ? `<span class="mchip"><span class="lbl">Momentum</span><b class="mono num">${lead._now.toFixed(1)}</b>${delta(lead._chg)}</span>` : `<span class="mchip"><span class="lbl">Featured artist</span><a class="link" href="${aHref(lead)}">View works</a></span>`}</figcaption></figure>` : ""}
+  </section>
+  ${L.length ? `<section class="ticker" aria-label="Artist Momentum leaders">${L.filter(hasMom).slice(0, 6).map(a => `<a href="${aHref(a)}"><span class="r mono">${String(a._rank).padStart(2, "0")}</span><span class="n">${esc(a.name)}</span><span class="v mono num">${a._now.toFixed(1)}</span>${delta(a._chg)}</a>`).join("")}<a class="all" href="#momentum">Full index →</a></section>` : ""}
+  ${fol.length ? `<section class="sec2"><div class="sh"><h2>From artists you follow</h2><a class="link" href="#following">Following</a></div>
+    <div class="masonry c4">${fol.flatMap(a => (a.works || []).slice(0, 2).map(w => workCard(a, w))).slice(0, 8).join("")}</div></section>` : ""}
+  <section class="sec2"><div class="sh"><div><h2>Trending this month</h2><p class="muted">Artists whose momentum grew most over the last 30 days.</p></div><a class="link" href="#momentum">Momentum</a></div>
+    <div class="arcs">${trending.map(artistCard).join("") || `<p class="muted">Trending artists appear once there is activity on the platform.</p>`}</div></section>
+  ${(() => { const sp = allWorks().filter(x => isLifted(x.w) && x.w.availability !== "sold").slice(0, 4); return sp.length ? `<section class="sec2"><div class="sh"><div><h2>Featured by artists</h2><p class="muted">Sponsored placements. They never affect Artist Momentum.</p></div></div><div class="masonry c4">${sp.map(x => workCard(x.a, x.w)).join("")}</div></section>` : ""; })()}
+  <section class="sec2"><div class="sh"><div><h2>New to SORARY</h2><p class="muted">Recently listed works, available now.</p></div><a class="link" href="#art">All artworks</a></div>
+    <div class="masonry c4">${newest.map(x => workCard(x.a, x.w)).join("")}</div></section>
+  <section class="sec2 split"><div><div class="sh" style="margin-bottom:24px"><div><h2>Emerging</h2><p class="muted">Joined in the last twelve months, with a growing following.</p></div></div>
+    <div class="elist">${emerging.map(a => `<a href="${aHref(a)}"><span class="th">${artistCover(a)}</span><span class="nm">${esc(a.name)}${demoTag(a)}<span class="muted">${esc(a.city)} · since ${fmtMonth(a.joinedAt)}</span></span><span class="spw">${spark(a._idx, 72, 22)}</span>${delta(a._chg)}</a>`).join("") || `<p class="muted">No emerging artists yet.</p>`}</div></div>
+    <div class="forart"><span class="eyebrow">For artists</span><h2>Sell for free. See who is looking.</h2><p>No listing fee and no commission: you receive the full price of every work you sell. Every artist gets a studio with real analytics, day by day.</p><div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${STATIC ? `<button class="btn" data-wait="artist">Join as an artist</button>` : `<a class="btn" href="#studio">${S.myArtist ? "Open your studio" : "Join as an artist"}</a>`}<a class="link" href="#sell">How it works</a></div></div></section>`);
+  after();
+}
+
+function filteredWorks() {
+  const f = S.filters; let L = allWorks();
+  if (f.cat !== "All") L = L.filter(x => x.w.category === f.cat);
+  if (f.avail) L = L.filter(x => x.w.availability === "available");
+  if (f.style !== "all") L = L.filter(x => workStyles(x.a, x.w).includes(f.style));
+  if (f.subject !== "all") L = L.filter(x => workSubject(x.a, x.w) === f.subject);
+  if (f.color) L = L.filter(x => (workColors(x.w) || []).includes(f.color));
+  const pr = { any: [0, 1e12], u15: [0, 15000], m: [15000, 40000], o40: [40000, 1e12] }[f.price];
+  L = L.filter(x => !x.w.price || (x.w.price >= pr[0] && x.w.price < pr[1]));
+  const mom = a => a._now || 0;
+  if (f.sort === "new") L.sort((p, q) => (q.w.listedAt || 0) - (p.w.listedAt || 0));
+  if (f.sort === "pa") L.sort((p, q) => (p.w.price || 0) - (q.w.price || 0));
+  if (f.sort === "pd") L.sort((p, q) => (q.w.price || 0) - (p.w.price || 0));
+  if (f.sort === "curated") L.sort((p, q) => (mom(q.a) + (q.w.availability === "available" ? 20 : 0) + (isLifted(q.w) ? 1000 : 0)) - (mom(p.a) + (p.w.availability === "available" ? 20 : 0) + (isLifted(p.w) ? 1000 : 0)));
+  return L;
+}
+const swatch = (k, on, tag = "button") => { const c = COLORS.find(x => x[0] === k); return `<${tag} class="swc" ${tag === "button" ? `data-col="${k}" aria-pressed="${!!on}"` : ""} title="${c[1]}" aria-label="${c[1]}"><i style="background:${c[2]}"></i></${tag}>`; };
+function pageArt() {
+  mk(); const f = S.filters;
+  const opt = (list, v, all) => `<option value="all">${all}</option>` + list.map(x => `<option ${v === x ? "selected" : ""}>${esc(x)}</option>`).join("");
+  app().innerHTML = shell("art", `<div class="ph2"><span class="eyebrow">Artworks</span><h1>Original works</h1></div>
+    <div class="fbar" role="group" aria-label="Filters"><div class="chips">${["All", ...CATS].map(c => `<button data-cat="${c}" aria-pressed="${f.cat === c}">${c}</button>`).join("")}</div>
+    <div class="fr"><label class="check"><input type="checkbox" id="f-av" ${f.avail ? "checked" : ""}>Available only</label>
+    <select class="in" id="f-pr" aria-label="Price"><option value="any">Any price</option><option value="u15">Under SEK 15 000</option><option value="m">SEK 15 000–40 000</option><option value="o40">Over SEK 40 000</option></select>
+    <select class="in" id="f-so" aria-label="Sort"><option value="curated">Curated</option><option value="new">Newest</option><option value="pa">Price, low to high</option><option value="pd">Price, high to low</option></select></div></div>
+    <div class="fbar2"><div class="fr"><span class="lbl">Style</span><select class="in" id="f-st" aria-label="Style">${opt(STYLES, f.style, "All styles")}</select>
+      <span class="lbl">Subject</span><select class="in" id="f-su" aria-label="Subject">${opt(SUBJECTS, f.subject, "All subjects")}</select></div>
+      <div class="fr"><span class="lbl" id="f-cl">Colour</span><div class="sws" role="group" aria-labelledby="f-cl">${COLORS.map(c => swatch(c[0], f.color === c[0])).join("")}</div></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:22px 0 28px;flex-wrap:wrap"><p class="hint num" id="f-n"></p><button class="textbtn" id="f-x" hidden>Clear filters</button></div><div class="masonry c4" id="grid"></div>`);
+  $("#f-pr").value = f.price; $("#f-so").value = f.sort;
+  let token = 0;
+  const draw = async () => {
+    const my = ++token;
+    if (f.color) { const need = allWorks().filter(x => !x.w.gen && !x.w.colors && !COLCACHE[x.w.thumb || x.w.img]); if (need.length) { $("#f-n").textContent = "Reading colours…"; await Promise.all(need.map(x => analyzeColors(x.w))); if (my !== token) return; } }
+    const L = filteredWorks(); const active = f.cat !== "All" || f.avail || f.price !== "any" || f.style !== "all" || f.subject !== "all" || f.color;
+    const cn = f.color ? COLORS.find(c => c[0] === f.color)[1].toLowerCase() : "";
+    $("#f-n").textContent = `${L.length} ${L.length === 1 ? "work" : "works"}${cn ? " with " + cn : ""}`; $("#f-x").hidden = !active;
+    $("#grid").innerHTML = L.map(x => workCard(x.a, x.w)).join("") || `<div class="empty" style="column-span:all"><h3>No works match</h3><p>Try another style, subject or colour.</p></div>`; hydrateGen($("#grid"));
+  };
+  $$("[data-cat]").forEach(b => b.onclick = () => { f.cat = b.dataset.cat; $$("[data-cat]").forEach(x => x.setAttribute("aria-pressed", x === b)); draw(); });
+  $$("[data-col]").forEach(b => b.onclick = () => { f.color = f.color === b.dataset.col ? null : b.dataset.col; $$("[data-col]").forEach(x => x.setAttribute("aria-pressed", x.dataset.col === f.color)); draw(); });
+  $("#f-av").onchange = e => { f.avail = e.target.checked; draw(); }; $("#f-pr").onchange = e => { f.price = e.target.value; draw(); }; $("#f-so").onchange = e => { f.sort = e.target.value; draw(); };
+  $("#f-st").onchange = e => { f.style = e.target.value; draw(); }; $("#f-su").onchange = e => { f.subject = e.target.value; draw(); };
+  $("#f-x").onclick = () => { Object.assign(f, { cat: "All", price: "any", avail: false, style: "all", subject: "all", color: null }); pageArt(); };
+  draw();
+}
+function pageWork(slug, wslug) {
+  mk(); const a = artistBySlug(slug); const w = a && (a.works || []).find(x => x.slug === wslug);
+  if (!a || !w) return pageMissing();
+  if (!a._series) { a._series = a.demo ? demoSeries(a) : realSeries(a); }
+  track(a, "wv", w.id);
+  const i = a.works.indexOf(w); const more = a.works.filter(x => x !== w).slice(0, 4);
+  const similar = allWorks().filter(x => x.w.category === w.category && x.a.id !== a.id).slice(0, 4);
+  const views = workViews(a, w, 30), saves = saveCount(a, w);
+  document.title = `${w.title} by ${a.name} · SORARY`;
+  app().innerHTML = shell("art", `<nav class="crumb"><a href="#art">Artworks</a><span>/</span><a href="${aHref(a)}">${esc(a.name)}</a></nav>
+    <article class="wd"><div class="stage" data-zoom role="button" tabindex="0" aria-label="View larger">${artImg(w, "full", true)}</div>
+    <div class="info"><div class="ah"><a class="an" href="${aHref(a)}">${esc(a.name)}</a>${demoTag(a)}${followBtn(a, "textbtn fol")}</div>
+      <h1><i>${esc(w.title)}</i>, ${esc(w.year)}</h1>
+      <dl class="dl2"><dt>Medium</dt><dd>${esc(w.medium)}</dd><dt>Size</dt><dd>${esc(w.dimensions)}</dd><dt>Category</dt><dd>${esc(w.category)}</dd>${workStyles(a, w).length ? `<dt>Style</dt><dd>${workStyles(a, w).map(x => `<a class="tlink" href="#art" data-fstyle="${esc(x)}">${esc(x)}</a>`).join(", ")}</dd>` : ""}${workSubject(a, w) ? `<dt>Subject</dt><dd><a class="tlink" href="#art" data-fsubject="${esc(workSubject(a, w))}">${esc(workSubject(a, w))}</a></dd>` : ""}<dt>Colours</dt><dd class="sws sm" id="wcols">${(workColors(w) || []).map(k => `<a href="#art" data-fcolor="${k}" class="swc" title="${COLORS.find(c => c[0] === k)[1]}" aria-label="Find more ${COLORS.find(c => c[0] === k)[1].toLowerCase()} works"><i style="background:${COLORS.find(c => c[0] === k)[2]}"></i></a>`).join("")}</dd><dt>Status</dt><dd>${AVAIL[w.availability] || ""}${w.availability === "sold" ? ` <span class="dot"></span>` : ""}</dd></dl>
+      ${w.availability === "sold" ? `<p class="price muted">Sold</p>` : `<p class="price mono num">${fmtPrice(w.price, w.currency)}</p>`}
+      <div class="acts">${w.availability === "available" && w.price ? `<button class="btn" data-buy>Buy now</button><button class="btn o" data-inq>Ask a question</button>` : w.availability === "sold" ? `<button class="btn o" data-inq>Ask about similar works</button>` : `<button class="btn o" data-inq>Contact the artist</button>`}${saveBtn(a, w, "btn o")}</div>
+      ${w.availability === "available" && w.price ? `<p class="prot">${SHIELD}<span>Covered by <a class="tlink" href="#protection">SORARY Buyer Protection</a>: refund if the work does not arrive or is not as described.</span></p>` : ""}
+      ${w.description ? `<p class="desc">${esc(w.description)}</p>` : ""}
+      <div class="eng"><div><span class="lbl">Views, 30 days</span><b class="mono num">${fmtN(views)}</b></div><div><span class="lbl">Saved by</span><b class="mono num">${fmtN(saves)}</b></div><div><span class="lbl">Artist momentum</span>${hasMom(a) ? `<b class="mono num">${(a._now || 0).toFixed(1)}</b>${a._chg !== undefined ? delta(a._chg) : ""}` : `<b style="font-size:15px">New</b>`}</div></div>
+      ${a.demo ? `<p class="hint">Engagement figures for demo artists are generated.</p>` : ""}</div></article>
+    <nav class="pn"><a href="${wHref(a, a.works[(i - 1 + a.works.length) % a.works.length])}">← Previous work</a><a href="${aHref(a)}">All works by ${esc(a.name)}</a><a href="${wHref(a, a.works[(i + 1) % a.works.length])}">Next work →</a></nav>
+    ${more.length ? `<section class="sec2"><div class="sh"><h2>More by ${esc(a.name)}</h2><a class="link" href="${aHref(a)}">Artist profile</a></div><div class="masonry c4">${more.map(x => workCard(a, x)).join("")}</div></section>` : ""}
+    ${similar.length ? `<section class="sec2"><div class="sh"><h2>Similar works</h2><a class="link" href="#art">Browse ${esc(w.category.toLowerCase())}</a></div><div class="masonry c4">${similar.map(x => workCard(x.a, x.w)).join("")}</div></section>` : ""}`);
+  $("[data-inq]").onclick = () => openInquiry(a, w);
+  const bb = $("[data-buy]"); if (bb) bb.onclick = () => openCheckout(a, w);
+  if (!workColors(w)) analyzeColors(w).then(cs => { const el = $("#wcols"); if (el) el.innerHTML = cs.map(k => { const c = COLORS.find(x => x[0] === k); return `<a href="#art" data-fcolor="${k}" class="swc" title="${c[1]}" aria-label="Find more ${c[1].toLowerCase()} works"><i style="background:${c[2]}"></i></a>`; }).join(""); });
+  const z = $("[data-zoom]"); const zoom = () => openLightbox(a, i); z.onclick = zoom; z.onkeydown = e => { if (e.key === "Enter") zoom(); };
+  after(); window.scrollTo(0, 0);
+}
+function openLightbox(a, i) {
+  const list = a.works; const ov = document.createElement("div"); ov.className = "ov dark lb"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-label", "Artwork viewer");
+  const draw = () => { const w = list[i]; ov.innerHTML = `<button class="xbtn" data-x>Close</button>${list.length > 1 ? `<button class="lb-n prev" data-p>Prev</button><button class="lb-n next" data-n>Next</button>` : ""}${artImg(w, "full", true)}<div class="lb-cap">${esc(a.name)} · <i>${esc(w.title)}</i>, ${esc(w.year)}</div>`; hydrateGen(ov); };
+  const close = () => { ov.remove(); document.removeEventListener("keydown", key); };
+  const key = e => { if (e.key === "Escape") close(); if (e.key === "ArrowRight") { i = (i + 1) % list.length; draw(); } if (e.key === "ArrowLeft") { i = (i - 1 + list.length) % list.length; draw(); } };
+  ov.onclick = e => { const t = e.target; if (t.dataset.x !== undefined || t === ov) close(); else if (t.dataset.n !== undefined) { i = (i + 1) % list.length; draw(); } else if (t.dataset.p !== undefined) { i = (i - 1 + list.length) % list.length; draw(); } };
+  document.addEventListener("keydown", key); draw(); document.body.appendChild(ov); $("[data-x]", ov).focus();
+}
+function openInquiry(a, w, prefill) {
+  const ov = document.createElement("div"); ov.className = "ov"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-labelledby", "iq-h");
+  ov.innerHTML = `<div class="modal"><button class="xbtn" data-x>Close</button><span class="eyebrow">${esc(a.name)}</span><h3 id="iq-h" style="margin-top:12px">${w ? "Inquire about <i>" + esc(w.title) + "</i>" : "Contact " + esc(a.name)}</h3>
+    <p class="hint" style="margin-bottom:28px">${w ? [w.year, w.medium, w.availability !== "sold" ? fmtPrice(w.price, w.currency) : "Sold"].filter(Boolean).map(esc).join(" · ") : ""}</p>
+    <form class="ifm" novalidate><div class="field"><label for="iq-n">Name</label><input class="in" id="iq-n" name="name" maxlength="100" autocomplete="name"></div>
+    <div class="field"><label for="iq-e">Email</label><input class="in" id="iq-e" name="email" type="email" maxlength="160" autocomplete="email"></div>
+    <div class="field"><label for="iq-m">Message</label><textarea class="in" id="iq-m" name="message" maxlength="3000">${esc(prefill || (w ? `I'm interested in ${w.title}, ${w.year}. ` : ""))}</textarea></div>
+    <div class="hp" aria-hidden="true"><label for="iq-w">Website</label><input id="iq-w" name="website" tabindex="-1" autocomplete="off"></div>
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><button class="btn" type="submit">Send inquiry</button><span class="msg" role="status" style="font-size:13.5px"></span></div>
+    <p class="hint">Your message is encrypted and goes only to the artist.</p></form></div>`;
+  const start = Date.now(); const close = () => { ov.remove(); document.removeEventListener("keydown", key); }; const key = e => { if (e.key === "Escape") close(); };
+  ov.onclick = e => { if (e.target === ov || e.target.dataset.x !== undefined) close(); };
+  const f = $("form", ov); f.onsubmit = e => { e.preventDefault(); sendInquiry(a, w, f, start); };
+  document.addEventListener("keydown", key); document.body.appendChild(ov); $("#iq-n", ov).focus();
+}
+
+function pageArtist(slug) {
+  const M = mk(); const a = artistBySlug(slug); if (!a) return pageMissing();
+  if (!a._series) { a._series = a.demo ? demoSeries(a) : realSeries(a); a._m = momentumOf(a._series); a._idx = a._m.map(v => v / M.maxNow * 100); a._now = a._idx[NDAYS - 1]; a._chg = 0; a._followers = followerCount(a); }
+  track(a, "pv");
+  document.title = `${a.name} · SORARY`;
+  const avail = (a.works || []).filter(w => w.availability === "available").length;
+  app().innerHTML = shell("artists", `<section class="aph"><div class="l"><span class="eyebrow">Artist · ${esc(a.cat)}</span><h1>${esc(a.name)}</h1>
+    <p class="meta">${esc([a.city, a.country].filter(Boolean).join(", "))}${a.born ? ` · b. ${esc(a.born)}` : ""} · On SORARY since ${fmtMonth(a.joinedAt)} ${demoTag(a)}</p>
+    ${a.statement || a.bio ? `<p class="stmt">${esc(a.statement || a.bio.split("\n")[0])}</p>` : ""}
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:32px">${followBtn(a, "btn")}<button class="btn o" data-contact>Contact</button><span class="hint num"><span data-fc>${fmtN(a._followers)}</span> followers</span></div></div>
+    ${!hasMom(a) ? `<aside class="mpanel"><div class="top"><span class="lbl">Artist Momentum</span></div><p style="margin-top:14px;font-size:17px">New on SORARY</p><p class="hint" style="margin-top:8px">Momentum appears once collectors start visiting, saving and following. It is calculated only from genuine activity.</p></aside></section>` : `<aside class="mpanel"><div class="top"><span class="lbl">Artist Momentum</span>${a.demo ? `<span class="demo-t">Demo data</span>` : ""}</div>
+      <div class="big"><span class="mono num">${a._now.toFixed(1)}</span>${delta(a._chg)}<span class="hint">30 days</span></div>
+      <p class="hint">${a._rank ? `Rank ${a._rank} of ${M.list.filter(hasMom).length} artists` : "Not ranked"}</p><div id="ch-a" class="chart"></div></aside></section>`}
+    <div class="kline"><div><span class="lbl">Works</span><b class="num">${(a.works || []).length}</b></div><div><span class="lbl">Available</span><b class="num">${avail}</b></div><div><span class="lbl">Followers</span><b class="num">${fmtN(a._followers)}</b></div><div><span class="lbl">Profile visits, 30 days</span><b class="num">${fmtN(sum(a._series.pv, NDAYS - 30))}</b></div></div>
+    <section class="sec2"><div class="sh"><h2>Works</h2></div>${(a.works || []).length ? `<div class="masonry c3">${a.works.map(w => workCard(a, w)).join("")}</div>` : `<div class="empty"><h3>No works listed yet</h3></div>`}</section>
+    ${a.bio ? `<section class="sec2 about2"><span class="eyebrow">About</span><p>${esc(a.bio)}</p></section>` : ""}`);
+  if ($("#ch-a")) lineChart($("#ch-a"), { values: a._idx.slice(-90), days: a._series.days.slice(-90), height: 150, fmt: v => v.toFixed(0), label: "Momentum index, 90 days" });
+  $("[data-contact]").onclick = () => openInquiry(a, null);
+  after(); window.scrollTo(0, 0);
+}
+
+function pageArtists() {
+  const M = mk(); S.dirCat = S.dirCat || "All";
+  const L = [...M.list].filter(a => S.dirCat === "All" || a.cat === S.dirCat).sort((x, y) => x.name.localeCompare(y.name));
+  app().innerHTML = shell("artists", `<div class="ph2"><span class="eyebrow">Artists</span><h1>${M.list.length} artists</h1></div>
+    <div class="fbar"><div class="chips">${["All", ...CATS].map(c => `<button data-dc="${c}" aria-pressed="${S.dirCat === c}">${c}</button>`).join("")}</div></div>
+    <div class="arcs" style="margin-top:40px">${L.map(artistCard).join("") || `<p class="muted">No artists in this medium yet.</p>`}</div>`);
+  $$("[data-dc]").forEach(b => b.onclick = () => { S.dirCat = b.dataset.dc; pageArtists(); });
+  after();
+}
+
+function pageMomentum() {
+  const M = mk(); const L = M.list; const tab = S.momTab;
+  const view = (tab === "trending" ? [...L].filter(a => a._now > 3).sort((x, y) => y._chg - x._chg) : tab === "emerging" ? L.filter(a => a._emerging) : L).filter(hasMom);
+  const p = M.platform.act; const now30 = sum(p, NDAYS - 30), prev30 = sum(p.slice(NDAYS - 60, NDAYS - 30), 0);
+  const tot = k => L.reduce((s, a) => s + sum(a._series[k], NDAYS - 30), 0), totP = k => L.reduce((s, a) => s + sum(a._series[k].slice(NDAYS - 60, NDAYS - 30), 0), 0);
+  const pct = (c, q) => q ? (c - q) / q * 100 : 0;
+  const demoN = L.filter(a => a.demo).length;
+  app().innerHTML = shell("momentum", `<div class="ph2 split2"><div><span class="eyebrow">Artist Momentum</span><h1>Who the art world is looking at.</h1>
+    <p class="muted" style="max-width:56ch;margin-top:16px">Momentum measures attention on SORARY: profile visits, artwork views, saves, new followers and inquiries, weighted and smoothed over recent weeks. The leading artist today scores 100.</p></div>
+    <label class="check dtog"><input type="checkbox" id="m-demo" ${S.showDemo ? "checked" : ""}>Include demo data <span class="hint">(${demoN} demo artists)</span></label></div>
+    <div class="kpis"><div><span class="eyebrow">Platform activity, 30 days</span><div class="v mono">${fmtN(now30)}</div>${delta(pct(now30, prev30))}</div>
+      <div><span class="eyebrow">Profile visits</span><div class="v mono">${fmtN(tot("pv"))}</div>${delta(pct(tot("pv"), totP("pv")))}</div>
+      <div><span class="eyebrow">New followers</span><div class="v mono">${fmtN(tot("fol"))}</div>${delta(pct(tot("fol"), totP("fol")))}</div>
+      <div><span class="eyebrow">Inquiries</span><div class="v mono">${fmtN(tot("inq"))}</div>${delta(pct(tot("inq"), totP("inq")))}</div></div>
+    <section class="sec2"><div class="sh"><div><h2>Platform activity</h2><p class="muted">Weighted daily activity across all ${S.showDemo ? "listed" : "genuine"} artists, 90 days.</p></div>${S.showDemo && demoN ? `<span class="demo-t">Includes demo data</span>` : ""}</div>
+      <div id="ch-p" class="chart"></div></section>
+    <section class="sec2"><div class="sh"><div class="seg" role="tablist">${[["leaders", "Leaders"], ["trending", "Trending"], ["emerging", "Emerging"]].map(([k, l]) => `<button role="tab" data-mt="${k}" aria-pressed="${tab === k}" aria-selected="${tab === k}">${l}</button>`).join("")}</div>
+      <span class="hint">${{ leaders: "Highest momentum today", trending: "Largest 30-day change", emerging: "Joined in the last 12 months, under 600 followers" }[tab]}</span></div>
+      ${view.length ? `<div class="scrollx"><table class="mt"><thead><tr><th>#</th><th>Artist</th><th class="hm">Medium</th><th class="r">Index</th><th class="r">30 days</th><th class="hs">90 days</th><th class="r hm">Followers</th><th></th></tr></thead><tbody>
+      ${view.map((a, i) => `<tr><td class="mono num muted">${String(tab === "leaders" ? a._rank : i + 1).padStart(2, "0")}</td>
+        <td><a class="an" href="${aHref(a)}"><span class="th">${artistCover(a)}</span><span>${esc(a.name)}${demoTag(a)}<span class="muted">${esc(a.city)}</span></span></a></td>
+        <td class="hm muted">${esc(a.cat)}</td><td class="r mono num">${a._now.toFixed(1)}</td><td class="r">${delta(a._chg)}</td><td class="hs">${spark(a._idx)}</td><td class="r mono num hm">${fmtN(a._followers)}</td><td class="r">${followBtn(a, "textbtn fol")}</td></tr>`).join("")}</tbody></table></div>`
+        : `<div class="empty"><h3>No artists here yet</h3><p>${S.showDemo ? "" : "Genuine activity is still building up. Turn demo data on to preview the index."}</p></div>`}</section>
+    <section class="sec2 method"><span class="eyebrow">Methodology</span><h2>How Momentum is calculated</h2>
+      <div class="mgrid"><div><p>Each day, an artist's activity is the weighted sum of what collectors did:</p>
+        <table class="wt"><tbody><tr><td>Profile visit</td><td class="mono">× 1</td></tr><tr><td>Artwork view</td><td class="mono">× 0.5</td></tr><tr><td>Save</td><td class="mono">× 3</td></tr><tr><td>New follower</td><td class="mono">× 5</td></tr><tr><td>Inquiry</td><td class="mono">× 8</td></tr></tbody></table></div>
+      <div><p>Daily activity is smoothed with an exponential average with a 10-day half-life, so a burst of attention fades gradually instead of disappearing overnight.</p><p>The index divides every artist's score by today's leader, who scores 100. The 30-day change compares today's index with the index 30 days ago.</p>
+      <p>Visits and views count once per visitor per day, and an artist's own visits are never counted. Momentum describes attention on SORARY. It is not a valuation or investment advice.</p></div></div></section>`);
+  lineChart($("#ch-p"), { values: M.platform.act.slice(-90), days: M.platform.days.slice(-90), height: 240, label: "Platform activity" });
+  $("#m-demo").onchange = e => { S.showDemo = e.target.checked; S.mk = null; pageMomentum(); };
+  $$("[data-mt]").forEach(b => b.onclick = () => { S.momTab = b.dataset.mt; pageMomentum(); });
+  after();
+}
+
+function pageFollowing() {
+  if (!S.ready) return pageLoading();
+  mk();
+  const fol = myFollows().artists.map(artistById).filter(Boolean);
+  const sv = mySaves().works.map(k => { const [aid, wid] = [k.slice(0, k.lastIndexOf(":")), k.slice(k.lastIndexOf(":") + 1)]; const a = artistById(aid); const w = a && (a.works || []).find(x => x.id === wid); return a && w ? { a, w } : null; }).filter(Boolean);
+  app().innerHTML = shell("following", `<div class="ph2"><span class="eyebrow">Your collection</span><h1>Following</h1></div>
+    ${!S.uid ? `<div class="notice"><b>Sign in</b><span>Open this page while signed in to claude.ai to follow artists and save works.</span></div>` : ""}
+    <section class="sec2" style="margin-top:24px"><div class="sh"><h2>Artists · ${fol.length}</h2></div>${fol.length ? `<div class="arcs">${fol.map(artistCard).join("")}</div>` : `<div class="empty"><h3>You are not following anyone yet</h3><p>Follow artists to see their new works first.</p><a class="btn o" href="#momentum">Discover artists</a></div>`}</section>
+    <section class="sec2"><div class="sh"><h2>Saved works · ${sv.length}</h2></div>${sv.length ? `<div class="masonry c4">${sv.map(x => workCard(x.a, x.w)).join("")}</div>` : `<div class="empty"><h3>No saved works</h3><p>Use Save on any artwork to keep it here.</p><a class="btn o" href="#art">Explore artworks</a></div>`}</section>`);
+  after();
+}
+function pageAbout() {
+  app().innerHTML = shell("", `<div class="page"><span class="eyebrow">About</span><h1 style="margin-top:18px">A marketplace for original contemporary art.</h1>
+    <div class="prose"><p>SORARY brings collectors and artists together around original work. Every piece is listed by the artist, and every inquiry goes straight to their studio.</p>
+    <p>Artist Momentum shows where attention is moving on the platform, so collectors can find artists early and artists can see what their work is doing in the world.</p>
+    <h2>Contact</h2><p>Questions from collectors, artists or press: <span class="sel">sorary.support@gmail.com</span> <button class="textbtn cpm" data-copymail>Copy</button></p><h2>During development</h2><p>Ten demo artists with generated artworks and generated activity are included so the index and charts can be explored. They are marked Demo everywhere and can be hidden on the Momentum page.</p></div></div>`);
+}
+function pageLegal(k) { app().innerHTML = shell("", `<div class="page"><span class="draft-note">Draft · not legally reviewed</span><h1>${k === "privacy" ? "Privacy Policy" : "Terms of Service"}</h1><div class="prose"><p>This page is a placeholder and will be replaced before launch. Questions: <span class="sel">sorary.support@gmail.com</span></p>${k === "privacy" ? "<p>If you join the waitlist we store your name, email, role and optional link, only to contact you about the launch. Ask us to delete it at any time.</p><p>SORARY counts visits and views as daily totals per artist. It does not store which artists or works an individual visitor looked at. Inquiries are encrypted so that only the receiving artist can read them.</p>" : "<p>Artists keep all rights to the works they list.</p>"}</div></div>`); }
+function pageMissing() { app().innerHTML = shell("", `<div class="gate"><span class="eyebrow">SORARY</span><h1>Nothing here.</h1><p>This artist or work is no longer listed.</p><div style="margin-top:32px"><a class="btn o" href="#art">Explore artworks</a></div></div>`); }
+function pageLoading() { app().innerHTML = shell("", `<div class="page" aria-busy="true"><div class="skel" style="width:120px;height:12px"></div><div class="skel" style="width:min(520px,100%);height:56px;margin-top:24px"></div></div>`); }
+
+/* ---------- checkout (payments not connected: shows the real breakdown, then sends a purchase request) ---------- */
+function openCheckout(a, w) {
+  const fee = buyerFee(w.price), total = (+w.price) + fee;
+  const ov = document.createElement("div"); ov.className = "ov"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-labelledby", "co-h");
+  ov.innerHTML = `<div class="modal co"><button class="xbtn" data-x>Close</button><span class="eyebrow">Checkout</span>
+    <div class="coi"><div class="th">${artImg(w)}</div><div><h3 id="co-h"><i>${esc(w.title)}</i>, ${esc(w.year)}</h3><p class="hint">${esc(a.name)} · ${esc(w.medium)}${w.dimensions ? " · " + esc(w.dimensions) : ""}</p></div></div>
+    <table class="cot num"><tbody><tr><td>Artwork</td><td class="mono">${fmtPrice(w.price)}</td></tr>
+      <tr><td>Buyer protection <span class="hint">(5% + 99 kr)</span></td><td class="mono">${fmtPrice(fee)}</td></tr>
+      <tr><td>Shipping</td><td class="hint">Quoted by the artist</td></tr>
+      <tr class="tot"><td>Total</td><td class="mono">${fmtPrice(total)}</td></tr></tbody></table>
+    <p class="prot">${SHIELD}<span>Your payment is held by SORARY and released to the artist two days after delivery. Full refund if the work does not arrive or is not as described.</span></p>
+    <div class="notice" style="margin:22px 0 0"><b>Card payments open at launch</b><span>${STATIC ? "Join the waitlist and we will tell you the moment you can buy this work." : "In this preview you can send a purchase request. The artist confirms availability and shipping, and no money is taken."}</span></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><button class="btn" data-req>${STATIC ? "Join the waitlist" : "Send purchase request"}</button><a class="textbtn" href="#protection" style="align-self:center">About buyer protection</a></div></div>`;
+  const close = () => { ov.remove(); document.removeEventListener("keydown", key); }; const key = e => { if (e.key === "Escape") close(); };
+  ov.onclick = e => { if (e.target === ov || e.target.dataset.x !== undefined) close(); };
+  $("[data-req]", ov).onclick = () => { close(); openInquiry(a, w, `I would like to buy ${w.title} (${w.year}) at ${fmtPrice(w.price)}. Please confirm availability and the shipping cost to my address.`); };
+  document.addEventListener("keydown", key); document.body.appendChild(ov); hydrateGen(ov); $("[data-req]", ov).focus();
+}
+function pageSell() {
+  const ex = [3000, 8000, 20000];
+  app().innerHTML = shell("", `<div class="page"><span class="eyebrow">Sell on SORARY</span><h1 style="margin-top:18px">Free for artists. Always.</h1>
+    <div class="prose"><p>Listing is free and SORARY takes no commission. When a work sells, you receive the full price you set. Buyers pay a small buyer-protection fee on top, which covers secure payment, held funds and refunds if something goes wrong.</p></div>
+    <div class="plans" style="margin-top:56px">
+      <div><span class="eyebrow">Selling</span><div class="price num">0<small>kr</small></div><ul><li>Unlimited listings during the preview</li><li>You keep 100% of the price</li><li>Paid out two days after delivery</li><li>Studio with analytics</li></ul></div>
+      <div><span class="eyebrow">Lift · optional</span><div class="price num">${FEES.liftPrice}<small>kr / ${FEES.liftDays} days</small></div><ul><li>Shown first in Artworks</li><li>Featured on the front page</li><li>Always labelled Sponsored</li><li>Never affects Artist Momentum</li></ul></div>
+      <div><span class="eyebrow">Pro · coming soon</span><div class="price num">${FEES.proPrice}<small>kr / month</small></div><ul><li>Full analytics history</li><li>Audience by city and source</li><li>Price suggestions from similar works</li><li>Priority support</li></ul></div></div>
+    <h2 style="font-size:22px;font-weight:400;margin:72px 0 18px">What the buyer pays</h2>
+    <div class="scrollx"><table class="mt" style="max-width:640px"><thead><tr><th>Artwork price</th><th class="r">Buyer protection</th><th class="r">Buyer pays</th><th class="r">Artist receives</th></tr></thead><tbody>
+    ${ex.map(p => `<tr><td class="mono num">${fmtPrice(p)}</td><td class="r mono num">${fmtPrice(buyerFee(p))}</td><td class="r mono num">${fmtPrice(p + buyerFee(p))}</td><td class="r mono num">${fmtPrice(p)}</td></tr>`).join("")}</tbody></table></div>
+    <p class="hint" style="margin-top:14px">Buyer protection is 5% of the price plus 99 kr. Shipping is agreed with the artist.</p>
+    <div style="margin-top:48px;display:flex;gap:22px;align-items:center;flex-wrap:wrap">${STATIC ? `<button class="btn" data-wait="artist">Join as an artist</button>` : `<a class="btn" href="#studio">${S.myArtist ? "Open your studio" : "Start selling"}</a>`}<span class="hint">Questions? <span class="sel">sorary.support@gmail.com</span></span></div></div>`);
+}
+function pageProtection() {
+  app().innerHTML = shell("", `<div class="page"><span class="eyebrow">Buyer protection</span><h1 style="margin-top:18px">Buy original art with confidence.</h1>
+    <div class="prose"><p>Every purchase made through SORARY's checkout is covered. The fee is 5% of the artwork price plus 99 kr, shown before you pay.</p>
+    <h2>How it works</h2><p>You pay SORARY, not the artist directly. We hold the payment while the work is packed and shipped. Once it is delivered you have two days to report a problem. If you don't, the payment is released to the artist.</p>
+    <h2>What is covered</h2><p>A full refund if the work never arrives, arrives damaged, or is significantly different from its description and photos.</p>
+    <h2>What is not covered</h2><p>Purchases arranged outside SORARY, for example paid by direct bank transfer to the artist, and changes of mind about a work that matches its listing.</p>
+    <h2>Report a problem</h2><p>Write to <span class="sel">sorary.support@gmail.com</span> <button class="textbtn cpm" data-copymail>Copy</button> within two days of delivery, with your order details and photos of the work.</p><p class="hint">Card payments open at launch. These terms are a draft and will be reviewed before then.</p></div></div>`);
+}
+
+/* ============ artist studio ============ */
+const unread = () => S.inbox.filter(m => !S.inboxState.read[m.id] && !S.inboxState.archived[m.id]).length;
+function studioShell(active, inner) {
+  const items = [["studio", "Analytics"], ["studio-works", "Works"], ["studio-profile", "Profile"], ["studio-inbox", "Inquiries"]];
+  return `<div class="st"><aside class="side"><a href="#home" aria-label="SORARY home">${logoHTML()}</a>
+    <nav aria-label="Studio">${items.map(([h, l]) => `<a href="#${h}" ${active === h ? 'aria-current="page"' : ""}><span>${l}</span>${h === "studio-inbox" && unread() ? `<span class="c">${unread()}</span>` : ""}</a>`).join("")}</nav>
+    <div class="bot"><a class="btn sm o" href="${aHref(S.myArtist)}">View public profile</a><a class="textbtn" href="#home">Back to marketplace</a></div></aside>
+    <div style="min-width:0"><nav class="stab" aria-label="Studio">${logoHTML()}${items.map(([h, l]) => `<a href="#${h}" ${active === h ? 'aria-current="page"' : ""}>${l}${h === "studio-inbox" && unread() ? " · " + unread() : ""}</a>`).join("")}<a href="#home">Marketplace</a></nav>
+    <main class="main">${inner}</main></div></div>`;
+}
+function studioGate() {
+  if (!S.ready) { pageLoading(); return false; }
+  if (!S.db || !S.uid) { app().innerHTML = shell("studio", `<div class="gate"><span class="eyebrow">For artists</span><h1>Sign in to open your studio.</h1><p>This preview of SORARY uses your Claude account. Open the page while signed in to claude.ai to list works and see your analytics.</p></div>`); return false; }
+  if (!S.myArtist) { pageJoin(); return false; }
+  return true;
+}
+function pageJoin() {
+  app().innerHTML = shell("studio", `<div class="ob"><span class="eyebrow">For artists</span><h1>Join SORARY as an artist.</h1>
+    <p class="lead">List original work, build a following and see exactly how collectors engage with it. No listing fee during the preview.</p>
+    <form id="jf" class="fgrid" novalidate>
+      <div class="field"><label for="j-n">Artist name</label><input class="in" id="j-n" maxlength="80" value="${esc((S.me && S.me.name) || "")}"></div>
+      <div class="field"><label for="j-s">Profile address</label><div class="slugrow"><span>sorary.se/</span><input class="in" id="j-s" maxlength="40" autocapitalize="off" spellcheck="false"></div><span class="hint" id="j-sm">&nbsp;</span></div>
+      <div class="field"><label for="j-c">City</label><input class="in" id="j-c" maxlength="60"></div>
+      <div class="field"><label for="j-co">Country</label><input class="in" id="j-co" maxlength="60"></div>
+      <div class="field"><label for="j-cat">Primary medium</label><select class="in" id="j-cat">${CATS.map(c => `<option>${c}</option>`).join("")}</select></div>
+      <div class="field"><label for="j-b">Year of birth</label><input class="in num" id="j-b" maxlength="4" inputmode="numeric" placeholder="Optional"></div>
+      <div class="field full"><label for="j-st">One-line statement</label><input class="in" id="j-st" maxlength="180" placeholder="What your work is about, in one sentence"></div>
+      <p class="err full" id="j-err" role="status"></p></form>
+    <div class="ob-nav"><a class="textbtn" href="#home">Cancel</a><button class="btn" id="j-go">Create artist profile</button></div></div>`);
+  const n = $("#j-n"), s = $("#j-s"), sm = $("#j-sm"); let touched = false;
+  const check = debounce(async () => { const v = s.value; const r = await slugOk(v); if (s.value === v) { sm.textContent = r || `Available · sorary.se/${v}`; sm.className = r ? "err" : "okt"; } }, 350);
+  n.oninput = () => { if (!touched) { s.value = slugify(n.value); check(); } };
+  s.oninput = () => { touched = true; s.value = s.value.toLowerCase().replace(/[^a-z0-9-]/g, ""); check(); };
+  if (n.value) { s.value = slugify(n.value); check(); }
+  $("#j-go").onclick = async () => {
+    const name = n.value.trim(); if (!name) return $("#j-err").textContent = "Add the name you work under.";
+    const bad = await slugOk(s.value); if (bad) return $("#j-err").textContent = bad;
+    const b = $("#j-go"); b.disabled = true; b.textContent = "Creating…";
+    try {
+      const k = await makeKeys(); await dref(`data/users/${S.uid}/keys`).set({ priv: k.priv, pub: k.pub, createdAt: Date.now() }); S.privKey = k.privKey;
+      await dref("slugs/" + s.value).set({ owner: S.uid, at: Date.now() });
+      S.myArtist = { id: S.uid, name, slug: s.value, city: $("#j-c").value.trim(), country: $("#j-co").value.trim(), cat: $("#j-cat").value, born: $("#j-b").value.replace(/\D/g, ""), statement: $("#j-st").value.trim(), bio: "", joinedAt: Date.now(), publicKey: k.pub, works: [], listed: true };
+      await saveArtist(); subscribeInbox(); location.hash = "studio-works";
+    } catch (e) { b.disabled = false; b.textContent = "Create artist profile"; $("#j-err").textContent = e && e.code === "invalid_argument" ? "Your access to this page is view-only. Ask the owner for Contributor access." : "Could not create your profile. Try again."; }
+  };
+}
+const M_RESERVED = new Set("home art artists momentum following about privacy terms studio admin sorary www api help".split(" "));
+async function slugOk(v) {
+  if (!v || v.length < 3) return "Use at least 3 characters.";
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(v)) return "Use lowercase letters, numbers and single hyphens.";
+  if (M_RESERVED.has(v) || DEMO_ARTISTS.some(a => a.slug === v)) return "This address is taken.";
+  const d = await getData("slugs/" + v); if (d && d.owner && d.owner !== S.uid) return "This address is taken.";
+  return "";
+}
+
+/* --- analytics --- */
+function exampleArtist() { const me = S.myArtist; return { id: "example-" + me.id, demo: true, name: me.name, base: 34, growth: .9, joined: 400, followers0: 60, works: me.works, spike: 14 }; }
+function pageStudio() {
+  if (!studioGate()) return; document.title = "Studio · SORARY";
+  const M = mk(); const me = S.myArtist;
+  const real = realSeries(me); const genuine = ["pv", "wv", "fol", "sav", "inq"].some(k => sum(real[k], 0) > 0);
+  const ex = S.studioDemo; const ea = ex ? exampleArtist() : null;
+  const s = ex ? demoSeries(ea) : real; const idx = momentumOf(s).map(v => v / M.maxNow * 100);
+  const metric = S.metric || "pv", range = S.range || 90;
+  const MET = { pv: "Profile visits", wv: "Artwork views", fol: "New followers", sav: "Saves", inq: "Inquiries" };
+  const t30 = k => sum(s[k], NDAYS - 30), p30 = k => sum(s[k].slice(NDAYS - 60, NDAYS - 30), 0), pc = k => p30(k) ? (t30(k) - p30(k)) / p30(k) * 100 : (t30(k) ? 100 : 0);
+  const followers = ex ? 60 + sum(s.fol, 0) : followerCount(me);
+  const rankList = [...M.list.filter(a => a.id !== me.id), { id: me.id, _now: idx[NDAYS - 1] }].sort((x, y) => y._now - x._now);
+  const rank = rankList.findIndex(a => a.id === me.id) + 1;
+  const chg = idx[NDAYS - 31] > .5 ? (idx[NDAYS - 1] - idx[NDAYS - 31]) / idx[NDAYS - 31] * 100 : 0;
+  const rows = (me.works || []).map(w => {
+    let v, sv, iq; if (ex) { const r = mulberry(w.id.length * 97 + w.title.length); v = Math.round(t30("wv") / Math.max(1, me.works.length) * (.4 + r() * 1.2)); sv = Math.round(sum(s.sav, 0) / Math.max(1, me.works.length) * (.3 + r())); iq = r() < .5 ? Math.round(r() * 3) : 0; }
+    else { v = workViews(me, w, 30); sv = saveCount(me, w); iq = workInq(me, w, 30); }
+    return { w, v, sv, iq };
+  });
+  const maxV = Math.max(1, ...rows.map(r => r.v));
+  app().innerHTML = studioShell("studio", `<div class="mh"><div><span class="eyebrow">Studio · ${esc(me.name)}</span><h1>Analytics</h1></div>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">${genuine && !ex ? "" : `<label class="check"><input type="checkbox" id="s-ex" ${ex ? "checked" : ""}>Show example data</label>`}</div></div>
+    ${ex ? `<div class="notice ex"><b>Example data</b><span>These numbers are generated to show how your analytics will look. They are not your activity. Turn this off to see your genuine figures.</span></div>`
+      : genuine ? `<p class="hint" style="margin-bottom:28px">Every figure below comes from real activity on SORARY. Visits and views count once per visitor per day; your own visits are excluded.</p>`
+      : `<div class="notice"><b>No activity yet</b><span>Your figures start counting from the first visit to your profile. Share your profile, or turn on example data to preview the dashboard.</span></div>`}
+    <div class="kpis k5">${["pv", "wv", "fol", "sav", "inq"].map(k => `<div><span class="eyebrow">${MET[k]}${k === "fol" ? "" : ", 30d"}</span><div class="v mono">${k === "fol" ? fmtN(followers) : fmtN(t30(k))}</div>${k === "fol" ? `<span class="hint num">+${fmtN(t30("fol"))} in 30 days</span>` : delta(pc(k))}</div>`).join("")}</div>
+    <section class="sec2" style="margin-top:48px"><div class="sh"><div class="seg" role="group" aria-label="Metric">${Object.entries(MET).map(([k, l]) => `<button data-met="${k}" aria-pressed="${metric === k}">${l}</button>`).join("")}</div>
+      <div class="seg" role="group" aria-label="Range"><button data-rg="30" aria-pressed="${range === 30}">30 days</button><button data-rg="90" aria-pressed="${range === 90}">90 days</button></div></div>
+      <div class="chead"><h2>${MET[metric]}, daily</h2>${ex ? `<span class="demo-t">Example data</span>` : ""}</div><div id="ch-m" class="chart"></div></section>
+    <div class="cols2"><section class="blk"><div class="chead"><h2 style="margin:0">Momentum index</h2>${ex ? `<span class="demo-t">Example data</span>` : ""}</div>
+      <div class="big2"><span class="mono num">${idx[NDAYS - 1].toFixed(1)}</span>${delta(chg)}<span class="hint">Rank ${rank} of ${rankList.length}</span></div><div id="ch-i" class="chart"></div>
+      <p class="hint" style="margin-top:10px">Compared with every artist on SORARY${S.showDemo ? ", including demo artists" : ""}. <a class="link" style="font-size:10px" href="#momentum">How it works</a></p></section>
+    <section class="blk"><h2>Where attention goes</h2><div class="bars">${[["Profile visits", t30("pv") * W.pv], ["Artwork views", t30("wv") * W.wv], ["Saves", t30("sav") * W.sav], ["New followers", t30("fol") * W.fol], ["Inquiries", t30("inq") * W.inq]].map((r, _, all) => { const tot = all.reduce((q, x) => q + x[1], 0) || 1; return `<div class="r"><span>${r[0]}</span><span class="t"><i style="width:${r[1] / tot * 100}%"></i></span><span class="num hint">${Math.round(r[1] / tot * 100)}%</span></div>`; }).join("")}</div>
+      <p class="hint" style="margin-top:14px">Share of your momentum score over the last 30 days, by type of activity.</p></section></div>
+    <section class="sec2"><div class="sh"><h2>Engagement by work</h2><span class="hint">Last 30 days · saves all time</span></div>
+      ${rows.length ? `<div class="scrollx"><table class="mt"><thead><tr><th>Work</th><th class="hm">Status</th><th>Views</th><th class="r">Saves</th><th class="r">Inquiries</th><th class="r hm">Inquiry rate</th></tr></thead><tbody>
+      ${rows.sort((x, y) => y.v - x.v).map(r => `<tr><td><a class="an" href="${wHref(me, r.w)}"><span class="th">${artImg(r.w)}</span><span><i>${esc(r.w.title)}</i><span class="muted">${esc(r.w.year)}</span></span></a></td>
+        <td class="hm">${AVAIL[r.w.availability]}</td><td><span class="ib2" title="${r.v} views"><i style="width:${r.v / maxV * 100}%"></i></span><span class="mono num">${fmtN(r.v)}</span></td>
+        <td class="r mono num">${fmtN(r.sv)}</td><td class="r mono num">${fmtN(r.iq)}</td><td class="r mono num hm">${r.v ? (r.iq / r.v * 100).toFixed(1) + "%" : "—"}</td></tr>`).join("")}</tbody></table></div>`
+        : `<div class="empty"><h3>No works listed</h3><p>Add works to see how each one performs.</p><a class="btn o" href="#studio-works">Add works</a></div>`}</section>`);
+  const cut = NDAYS - range;
+  lineChart($("#ch-m"), { values: s[metric].slice(cut), days: s.days.slice(cut), height: 240, label: MET[metric] });
+  lineChart($("#ch-i"), { values: idx.slice(-90), days: s.days.slice(-90), height: 150, fmt: v => v.toFixed(0), label: "Momentum index" });
+  const x = $("#s-ex"); if (x) x.onchange = () => { S.studioDemo = x.checked; pageStudio(); };
+  $$("[data-met]").forEach(b => b.onclick = () => { S.metric = b.dataset.met; pageStudio(); });
+  $$("[data-rg]").forEach(b => b.onclick = () => { S.range = +b.dataset.rg; pageStudio(); });
+  after();
+}
+
+/* --- works --- */
+function uniqueWorkSlug(t, id) { const base = slugify(t) || "work"; let s = base, n = 2; while (S.myArtist.works.some(w => w.slug === s && w.id !== id)) s = base + "-" + n++; return s; }
+function pageSWorks() {
+  if (!studioGate()) return; document.title = "Works · Studio";
+  const me = S.myArtist;
+  app().innerHTML = studioShell("studio-works", `<div class="mh"><div><span class="eyebrow">Studio</span><h1>Works</h1></div><span class="hint" data-savestate>${esc(S.saveState)}</span></div>
+    ${S.assets ? `<label class="drop" id="up" style="min-height:150px"><input type="file" accept="image/jpeg,image/png,image/webp" multiple class="sr" id="up-in"><span class="big">Drop images to list new works</span><span class="hint">or <span style="border-bottom:1px solid">choose files</span> · JPG, PNG or WebP, up to 25 MB each</span></label><div class="uplist" id="upl"></div>`
+      : `<div class="notice"><b>Uploads unavailable</b><span>Your access to this page does not include uploading images. Ask the owner for Contributor access.</span></div>`}
+    <div id="wg" style="margin-top:40px"></div>`);
+  const render = () => {
+    const g = $("#wg");
+    if (!me.works.length) { g.innerHTML = `<div class="empty"><h3>No works listed</h3><p>Drop images above. Each becomes a listing you can price and describe.</p></div>`; return; }
+    g.innerHTML = `<div class="wgrid">${me.works.map(w => `<div class="wcard" data-id="${w.id}"><div class="th" data-edit role="button" tabindex="0" aria-label="Edit ${esc(w.title)}">${artImg(w)}</div>
+      <div class="meta"><span class="t">${esc(w.title)}</span><span class="muted num">${w.availability === "sold" ? "Sold" : fmtPrice(w.price, w.currency) || "No price"}</span></div>
+      ${isLifted(w) ? `<span class="spons">Lifted until ${new Date(w.liftUntil).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</span>` : ""}
+      <div class="acts"><button data-edit>Edit</button>${w.availability === "available" && !isLifted(w) ? `<button data-lift>Lift</button>` : ""}<button data-sold>${w.availability === "sold" ? "Mark available" : "Mark sold"}</button><button data-mv="-1" aria-label="Move earlier">←</button><button data-mv="1" aria-label="Move later">→</button></div></div>`).join("")}</div>`;
+    $$(".wcard", g).forEach(c => { const w = me.works.find(x => x.id === c.dataset.id);
+      $$("[data-edit]", c).forEach(b => { b.onclick = () => workDrawer(w, render); b.onkeydown = e => { if (e.key === "Enter") workDrawer(w, render); }; });
+      const lb = $("[data-lift]", c); if (lb) lb.onclick = () => liftDialog(w, render);
+      $("[data-sold]", c).onclick = () => { w.availability = w.availability === "sold" ? "available" : "sold"; saveArtist(); render(); };
+      $$("[data-mv]", c).forEach(b => b.onclick = () => { const L = me.works, i = L.indexOf(w), j = i + +b.dataset.mv; if (j < 0 || j >= L.length) return; [L[i], L[j]] = [L[j], L[i]]; saveArtist(); render(); }); });
+  };
+  render();
+  const inp = $("#up-in"), z = $("#up");
+  const run = async files => {
+    for (const f of Array.from(files)) {
+      if (me.works.length >= 150) { toast("Up to 150 works per artist during the preview"); break; }
+      const r = document.createElement("div"); r.className = "uprow"; r.innerHTML = `<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0">${esc(f.name)}</span><span class="bar2"><i style="width:10%"></i></span><span class="st muted">Preparing</span>`; $("#upl").appendChild(r);
+      try { const im = await prepareImage(f); $(".st", r).textContent = "Uploading"; $("i", r).style.width = "55%";
+        const full = await uploadBlob(im.full), th = await uploadBlob(im.thumb);
+        const title = f.name.replace(/\.[a-z0-9]+$/i, "").replace(/[_-]+/g, " ").trim() || "Untitled";
+        const w = { id: uid8(), title: title[0].toUpperCase() + title.slice(1), year: String(new Date().getFullYear()), category: me.cat || "Painting", medium: "", dimensions: "", price: "", currency: "SEK", availability: "available", description: "", alt: "", img: full.id, thumb: th.id, w: im.w, h: im.h, listedAt: Date.now() };
+        w.slug = uniqueWorkSlug(w.title, w.id); me.works.push(w); await saveArtist();
+        $(".st", r).textContent = "Listed"; $("i", r).style.width = "100%"; setTimeout(() => r.remove(), 1500); render();
+      } catch (e) { $(".st", r).textContent = (e && e.message && !e.code) ? e.message : e && e.code === "quota_or_state" ? "Storage is full." : "Upload failed."; $(".st", r).className = "st err"; }
+    }
+  };
+  if (inp) { inp.onchange = () => { run(inp.files); inp.value = ""; }; z.ondragover = e => { e.preventDefault(); z.classList.add("over"); }; z.ondragleave = () => z.classList.remove("over"); z.ondrop = e => { e.preventDefault(); z.classList.remove("over"); run(e.dataTransfer.files); }; }
+}
+function liftDialog(w, done) {
+  const ov = document.createElement("div"); ov.className = "ov"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-labelledby", "lf-h");
+  ov.innerHTML = `<div class="modal"><button class="xbtn" data-x>Close</button><span class="eyebrow">Lift</span><h3 id="lf-h" style="margin-top:12px">Lift <i>${esc(w.title)}</i></h3>
+    <p class="hint" style="margin:6px 0 22px">${FEES.liftPrice} kr for ${FEES.liftDays} days. The work is shown first in Artworks and featured on the front page, labelled Sponsored. It never changes your Momentum.</p>
+    <div class="notice"><b>Free during the preview</b><span>Payments are not connected yet, so lifting costs nothing for now.</span></div>
+    <div style="display:flex;gap:12px;margin-top:22px"><button class="btn" data-go>Lift for ${FEES.liftDays} days</button></div></div>`;
+  const close = () => ov.remove(); ov.onclick = e => { if (e.target === ov || e.target.dataset.x !== undefined) close(); };
+  $("[data-go]", ov).onclick = async () => { w.liftUntil = Date.now() + FEES.liftDays * DAY; await saveArtist(); close(); toast("Lifted for " + FEES.liftDays + " days"); done && done(); };
+  document.body.appendChild(ov); $("[data-go]", ov).focus();
+}
+function workDrawer(w, after2) {
+  const sc = document.createElement("div"); sc.className = "scrim"; const dr = document.createElement("div"); dr.className = "drawer"; dr.setAttribute("role", "dialog"); dr.setAttribute("aria-modal", "true"); dr.setAttribute("aria-label", "Edit work");
+  dr.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px"><span class="eyebrow">Edit listing</span><button class="xbtn" style="position:static" data-x>Done</button></div>
+    <div style="background:var(--surface);display:flex;justify-content:center;padding:20px;margin-bottom:28px;max-height:260px">${artImg(w)}</div>
+    <div class="fgrid">
+      <div class="field full"><label for="d-t">Title</label><input class="in" id="d-t" data-f="title" value="${esc(w.title)}" maxlength="120"></div>
+      <div class="field"><label for="d-y">Year</label><input class="in num" id="d-y" data-f="year" value="${esc(w.year)}" maxlength="12"></div>
+      <div class="field"><label for="d-c">Category</label><select class="in" id="d-c" data-f="category">${CATS.map(c => `<option ${w.category === c ? "selected" : ""}>${c}</option>`).join("")}</select></div>
+      <div class="field full"><label for="d-m">Medium</label><input class="in" id="d-m" data-f="medium" value="${esc(w.medium)}" placeholder="Oil on linen" maxlength="120"></div>
+      <div class="field"><label for="d-d">Dimensions</label><input class="in" id="d-d" data-f="dimensions" value="${esc(w.dimensions)}" placeholder="100 × 80 cm" maxlength="60"></div>
+      <div class="field"><label for="d-p">Price (SEK)</label><input class="in num" id="d-p" data-f="price" value="${esc(w.price)}" inputmode="numeric" maxlength="10"><span class="hint" id="d-pay">${w.price ? `You receive ${fmtPrice(w.price)}. Buyer pays ${fmtPrice(+w.price + buyerFee(w.price))}.` : "You keep the full price."}</span></div>
+      <div class="field"><label for="d-a">Availability</label><select class="in" id="d-a" data-f="availability">${Object.entries(AVAIL).map(([k, l]) => `<option value="${k}" ${w.availability === k ? "selected" : ""}>${l}</option>`).join("")}</select></div>
+      <div class="field full"><span class="lbl">Style</span><div class="chips" style="margin-top:6px">${STYLES.map(x => `<button type="button" data-sty="${esc(x)}" aria-pressed="${[].concat(w.style || []).includes(x)}">${esc(x)}</button>`).join("")}</div></div>
+      <div class="field full"><label for="d-su">Subject</label><select class="in" id="d-su" data-f="subject"><option value="">Not set</option>${SUBJECTS.map(x => `<option ${w.subject === x ? "selected" : ""}>${esc(x)}</option>`).join("")}</select></div>
+      <div class="field full"><label for="d-al">Image description (alt text)</label><input class="in" id="d-al" data-f="alt" value="${esc(w.alt)}" maxlength="200"></div>
+      <div class="field full"><label for="d-ds">Description</label><textarea class="in" id="d-ds" data-f="description" maxlength="800">${esc(w.description)}</textarea></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:20px;border-top:1px solid var(--line)"><span class="hint" data-savestate>${esc(S.saveState)}</span><button class="textbtn danger-t" data-del>Remove listing</button></div>`;
+  const close = () => { sc.remove(); dr.remove(); document.removeEventListener("keydown", key); after2 && after2(); }; const key = e => { if (e.key === "Escape") close(); };
+  sc.onclick = close; $("[data-x]", dr).onclick = close;
+  $$("[data-f]", dr).forEach(el => el.addEventListener(el.tagName === "SELECT" ? "change" : "input", () => { let v = el.value; if (el.dataset.f === "price") { v = v.replace(/\D/g, ""); el.value = v; v = v ? +v : ""; $("#d-pay", dr).textContent = v ? `You receive ${fmtPrice(v)}. Buyer pays ${fmtPrice(v + buyerFee(v))}.` : "You keep the full price."; } w[el.dataset.f] = v; if (el.dataset.f === "title") w.slug = uniqueWorkSlug(v, w.id); saveArtistSoon(); }));
+  $$("[data-sty]", dr).forEach(b => b.onclick = () => { const L = new Set([].concat(w.style || [])); L.has(b.dataset.sty) ? L.delete(b.dataset.sty) : L.add(b.dataset.sty); w.style = [...L]; b.setAttribute("aria-pressed", L.has(b.dataset.sty)); saveArtistSoon(); });
+  const del = $("[data-del]", dr); del.onclick = async () => { if (!del.dataset.c) { del.dataset.c = 1; del.textContent = "Click again to remove permanently"; return; }
+    S.myArtist.works = S.myArtist.works.filter(x => x !== w); await saveArtist(); for (const id of [w.img, w.thumb]) if (id && S.assets) { try { await S.assets.delete(id); } catch (e) {} } close(); toast("Listing removed"); };
+  document.addEventListener("keydown", key); document.body.append(sc, dr); $("input", dr).focus();
+}
+
+/* --- profile --- */
+function pageSProfile() {
+  if (!studioGate()) return; document.title = "Profile · Studio";
+  const me = S.myArtist;
+  app().innerHTML = studioShell("studio-profile", `<div class="mh"><div><span class="eyebrow">Studio</span><h1>Profile</h1></div><span class="hint" data-savestate>${esc(S.saveState || "Changes save automatically")}</span></div>
+    <div class="fgrid" style="max-width:820px">
+      <div class="field"><label for="p-n">Artist name</label><input class="in" id="p-n" data-k="name" value="${esc(me.name)}" maxlength="80"></div>
+      <div class="field"><label>Profile address</label><p style="padding:10px 0;font-size:17px">sorary.se/${esc(me.slug)}</p></div>
+      <div class="field"><label for="p-c">City</label><input class="in" id="p-c" data-k="city" value="${esc(me.city)}" maxlength="60"></div>
+      <div class="field"><label for="p-co">Country</label><input class="in" id="p-co" data-k="country" value="${esc(me.country)}" maxlength="60"></div>
+      <div class="field"><label for="p-cat">Primary medium</label><select class="in" id="p-cat" data-k="cat">${CATS.map(c => `<option ${me.cat === c ? "selected" : ""}>${c}</option>`).join("")}</select></div>
+      <div class="field"><label for="p-b">Year of birth</label><input class="in num" id="p-b" data-k="born" value="${esc(me.born)}" maxlength="4"></div>
+      <div class="field full"><label for="p-st">One-line statement</label><input class="in" id="p-st" data-k="statement" value="${esc(me.statement)}" maxlength="180"></div>
+      <div class="field full"><label for="p-bio">Biography</label><textarea class="in" id="p-bio" data-k="bio" maxlength="3000" style="min-height:200px">${esc(me.bio)}</textarea></div>
+      <label class="check full"><input type="checkbox" id="p-l" ${me.listed !== false ? "checked" : ""}>Listed on SORARY (turn off to hide your profile and works from the marketplace)</label></div>`);
+  $$("[data-k]").forEach(el => el.addEventListener(el.tagName === "SELECT" ? "change" : "input", () => { me[el.dataset.k] = el.value; saveArtistSoon(); }));
+  $("#p-l").onchange = e => { me.listed = e.target.checked; saveArtist(); };
+}
+
+/* --- inquiries --- */
+function pageSInbox() {
+  if (!studioGate()) return; document.title = "Inquiries · Studio";
+  const L = S.inbox.filter(m => !S.inboxState.archived[m.id]);
+  if (!S.sel || !L.find(m => m.id === S.sel)) S.sel = L[0] && L[0].id;
+  const m = L.find(x => x.id === S.sel);
+  if (m && !S.inboxState.read[m.id]) { S.inboxState.read[m.id] = Date.now(); dref(`data/users/${S.uid}/inbox`).set(clone(S.inboxState)).catch(() => {}); }
+  const w = m && m.workId ? S.myArtist.works.find(x => x.id === m.workId) : null;
+  app().innerHTML = studioShell("studio-inbox", `<div class="mh"><div><span class="eyebrow">Studio</span><h1>Inquiries</h1></div></div>
+    ${!L.length ? `<div class="empty"><h3>No inquiries yet</h3><p>When collectors ask about a work, the message arrives here. Messages are encrypted so only you can read them.</p></div>`
+    : `<div class="ib"><div class="ls">${L.map(x => `<button data-m="${x.id}" aria-current="${x.id === S.sel}"><span class="u ${S.inboxState.read[x.id] ? "r" : ""}"></span><span style="min-width:0"><span class="nm">${esc(x.body ? x.body.name : "Unreadable message")}</span><span class="sub">${esc(x.workTitle || "General message")}</span></span><span class="sm hint">${fmtDate(x.at)}</span></button>`).join("")}</div>
+      <div class="dt">${m && m.body ? `<span class="eyebrow">${new Date(m.at).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</span><h2 style="font-size:28px;margin-top:14px">${esc(m.body.name)}</h2>
+        <p style="margin-top:6px"><span style="user-select:all">${esc(m.body.email)}</span></p>
+        ${m.workTitle ? `<div style="display:flex;gap:16px;align-items:center;margin-top:24px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">${w ? `<div style="width:56px;height:56px;background:var(--surface);display:flex;align-items:center;justify-content:center">${artImg(w)}</div>` : ""}<div><span class="lbl">About</span><div><i>${esc(m.workTitle)}</i>${w && w.price ? ` · ${fmtPrice(w.price, w.currency)}` : ""}</div></div></div>` : ""}
+        <p class="msg">${esc(m.body.message)}</p><div style="display:flex;gap:22px;margin-top:36px;flex-wrap:wrap"><a class="btn sm" href="mailto:${esc(m.body.email)}?subject=${encodeURIComponent("Re: " + (m.workTitle || "your inquiry"))}">Reply by email</a><button class="textbtn" data-ar>Archive</button></div>
+        <p class="hint" style="margin-top:14px">If your email app does not open, copy the address above.</p>` : m ? `<p class="hint">This message could not be decrypted on this device.</p>` : ""}</div></div>`}`);
+  $$("[data-m]").forEach(b => b.onclick = () => { S.sel = b.dataset.m; pageSInbox(); });
+  const ar = $("[data-ar]"); if (ar) ar.onclick = () => { S.inboxState.archived[m.id] = Date.now(); dref(`data/users/${S.uid}/inbox`).set(clone(S.inboxState)).catch(() => {}); S.sel = null; pageSInbox(); };
+  after();
+}
+
+/* ============ router ============ */
+function route(soft) {
+  const h = curHash();
+  if (!soft) { $$(".ov,.drawer,.scrim,.mmenu").forEach(e => e.remove()); document.title = "SORARY — Original contemporary art"; }
+  const y = window.scrollY;
+  const P = { sell: pageSell, protection: pageProtection, home: pageHome, art: pageArt, artists: pageArtists, momentum: pageMomentum, following: pageFollowing, about: pageAbout, studio: pageStudio, "studio-works": pageSWorks, "studio-profile": pageSProfile, "studio-inbox": pageSInbox };
+  if (soft && /^studio-(works|profile)$/.test(h)) return;
+  if (P[h]) P[h]();
+  else if (h === "privacy" || h === "terms") pageLegal(h);
+  else if (h.startsWith("a--")) pageArtist(h.slice(3));
+  else if (h.startsWith("w--")) { const [s, w] = h.slice(3).split("--"); pageWork(s, w); }
+  else pageHome();
+  if (soft) window.scrollTo(0, y); else if (!h.startsWith("w--") && !h.startsWith("a--")) window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", () => route());
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-mmenu]")) return openMobileMenu();
+  if (e.target.closest("[data-copymail]")) { navigator.clipboard.writeText("sorary.support@gmail.com").then(() => toast("Copied sorary.support@gmail.com"), () => toast("Select the address to copy it")); return; }
+  const t = e.target.closest("[data-fcolor],[data-fstyle],[data-fsubject]"); if (t) { Object.assign(S.filters, { cat: "All", style: "all", subject: "all", color: null }); if (t.dataset.fcolor) S.filters.color = t.dataset.fcolor; if (t.dataset.fstyle) S.filters.style = t.dataset.fstyle; if (t.dataset.fsubject) S.filters.subject = t.dataset.fsubject; }
+  const f = e.target.closest("[data-follow]"); if (f) { e.preventDefault(); toggleFollow(f.dataset.follow); return; }
+  const s = e.target.closest("[data-save]"); if (s) { e.preventDefault(); toggleSave(s.dataset.save); return; }
+});
+
+/* ============ static launch build for sorary.se: no accounts yet, waitlist instead ============ */
+const STATIC_ARTISTS = [{"name": "Marcel Mandini", "slug": "marcel-mandini", "city": "Stockholm", "country": "Sweden", "cat": "Painting", "born": "2003", "statement": "Expressive acrylic paintings where scribbled figures, signs and words surface through layered fields of colour.", "bio": "Marcel Mandini is a Stockholm-based painter working in acrylic. His paintings combine dense, layered colour fields with drawn figures, symbols and fragments of text, an approach he explores in the series Brutta Arte.\n\nRecent works from 2025 and 2026 divide the canvas into a luminous upper field and a dark horizon band.\n\nBorn 2003. Lives and works in Stockholm.", "style": ["Expressive", "Abstract"], "subject": "Non-figurative", "id": "marcel-mandini", "joinedAt": 1793277000000, "listed": true, "works": [{"alt": "Fenix, 2025, acrylic painting in grey and blue tones", "availability": "available", "category": "Painting", "currency": "SEK", "description": "Silver-grey field over a dark horizon band, with figures and signs scratched into the surface.", "dimensions": "", "h": 702, "id": "mm390842", "listedAt": 1793276900000, "medium": "Acrylic", "price": 12000, "slug": "fenix", "title": "Fenix", "w": 572, "year": "2025", "colors": ["blue", "grey"], "style": ["Abstract"], "subject": "Non-figurative", "src": "art/sorary-390842.webp"}, {"alt": "Flora Flora, 2026, acrylic painting in muted greens", "availability": "available", "category": "Painting", "currency": "SEK", "description": "A misty green field with small drawn figures above a dark band of water-like colour.", "dimensions": "", "h": 586, "id": "mm390839", "listedAt": 1793276800000, "medium": "Acrylic", "price": 11500, "slug": "flora-flora", "title": "Flora Flora", "w": 519, "year": "2026", "colors": ["grey", "green"], "style": ["Abstract", "Expressive"], "subject": "Nature", "src": "art/sorary-390839.webp"}, {"alt": "Purple Rain, 2026, acrylic painting in magenta and violet", "availability": "available", "category": "Painting", "currency": "SEK", "description": "Magenta and violet layers with drawn marks, resting on a deep purple horizon band.", "dimensions": "", "h": 721, "id": "mm390836", "listedAt": 1793276700000, "medium": "Acrylic", "price": 11500, "slug": "purple-rain", "title": "Purple Rain", "w": 554, "year": "2026", "colors": ["pink", "black"], "style": ["Abstract", "Expressive"], "subject": "Non-figurative", "src": "art/sorary-390836.webp"}, {"alt": "Gloria, 2026, acrylic painting in amber and burnt orange", "availability": "available", "category": "Painting", "currency": "SEK", "description": "A glowing amber centre opening out of burnt orange, above a dark brown band.", "dimensions": "", "h": 769, "id": "mm390835", "listedAt": 1793276600000, "medium": "Acrylic", "price": 11500, "slug": "gloria", "title": "Gloria", "w": 610, "year": "2026", "colors": ["brown", "black", "orange"], "style": ["Abstract"], "subject": "Non-figurative", "src": "art/sorary-390835.webp"}, {"alt": "Renatus, 2026, acrylic painting in acid green and black", "availability": "available", "category": "Painting", "currency": "SEK", "description": "Acid green light breaking through a dark field, with drawn figures above a deep horizon.", "dimensions": "", "h": 685, "id": "mm390834", "listedAt": 1793276500000, "medium": "Acrylic", "price": 12500, "slug": "renatus", "title": "Renatus", "w": 568, "year": "2026", "colors": ["grey", "green", "black"], "style": ["Abstract", "Expressive"], "subject": "Nature", "src": "art/sorary-390834.webp"}, {"alt": "Friki Olivia, 2024, large acrylic painting in pale blue with drawn figures", "availability": "available", "category": "Painting", "currency": "SEK", "description": "A large pale blue canvas filled with drawn creatures, words and bursts of colour.", "dimensions": "120 × 160 cm", "h": 499, "id": "mm315587", "listedAt": 1793276400000, "medium": "Acrylic", "price": 16000, "slug": "friki-olivia", "title": "Friki Olivia", "w": 367, "year": "2024", "colors": ["blue"], "style": ["Expressive", "Figurative"], "subject": "Figures & faces", "src": "art/sorary-315587.webp"}, {"alt": "Rosso Amore Ardente, 2023, acrylic painting in deep red", "availability": "available", "category": "Painting", "currency": "SEK", "description": "Deep red and black, worked in vertical drips. From the series Non Title.", "dimensions": "60 × 80 × 5 cm", "h": 628, "id": "mm284611", "listedAt": 1793276300000, "medium": "Acrylic", "price": 6500, "slug": "rosso-amore-ardente", "title": "Rosso Amore Ardente", "w": 425, "year": "2023", "colors": ["black", "red"], "style": ["Abstract", "Expressive"], "subject": "Non-figurative", "src": "art/sorary-284611.webp"}, {"alt": "Mistero Simbolico, 2023, textured gold acrylic painting with drawn faces", "availability": "available", "category": "Painting", "currency": "SEK", "description": "A textured gold surface covered in drawn faces, symbols and words. From the series Brutta Arte.", "dimensions": "60 × 80 × 5 cm", "h": 693, "id": "mm284610", "listedAt": 1793276200000, "medium": "Acrylic", "price": 7500, "slug": "mistero-simbolico", "title": "Mistero Simbolico", "w": 495, "year": "2023", "colors": ["orange", "brown"], "style": ["Expressive", "Figurative"], "subject": "Figures & faces", "src": "art/sorary-284610.webp"}, {"alt": "Flora Flora, 2023, acrylic painting with white drawings on deep green", "availability": "available", "category": "Painting", "currency": "SEK", "description": "White chalk-like drawings of figures and objects on deep green. From the series Brutta Arte.", "dimensions": "60 × 80 × 5 cm", "h": 403, "id": "mm284606", "listedAt": 1793276100000, "medium": "Acrylic", "price": 6500, "slug": "flora-flora-brutta-arte", "title": "Flora Flora (Brutta Arte)", "w": 316, "year": "2023", "colors": ["black", "green", "blue"], "style": ["Expressive", "Figurative"], "subject": "Figures & faces", "src": "art/sorary-284606.webp"}, {"alt": "Teresa, 2023, acrylic painting in pink, red and turquoise", "availability": "available", "category": "Painting", "currency": "SEK", "description": "Hot pink and red layers with flashes of turquoise. From the series Brutta Arte.", "dimensions": "80 × 110 × 5 cm", "h": 335, "id": "mm284603", "listedAt": 1793276000000, "medium": "Acrylic", "price": 9500, "slug": "teresa", "title": "Teresa", "w": 272, "year": "2023", "colors": ["red", "pink"], "style": ["Abstract", "Expressive"], "subject": "Non-figurative", "src": "art/sorary-284603.webp"}, {"alt": "Bel Alma, 2024, acrylic painting in brown and green with scratched text", "availability": "available", "category": "Painting", "currency": "SEK", "description": "Earth browns and acid greens with scratched words and signs. From the series Brutta Arte.", "dimensions": "60 × 80 × 5 cm", "h": 602, "id": "mm271461", "listedAt": 1793275900000, "medium": "Acrylic", "price": 6500, "slug": "bel-alma", "title": "Bel Alma", "w": 451, "year": "2024", "colors": ["orange", "brown"], "style": ["Expressive"], "subject": "Figures & faces", "src": "art/sorary-271461.webp"}]}];
+function openWaitlist(role, msg, context) {
+  const ov = document.createElement("div"); ov.className = "ov"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-labelledby", "wl-h");
+  ov.innerHTML = `<div class="modal"><button class="xbtn" data-x>Close</button><span class="eyebrow">SORARY opens soon</span><h3 id="wl-h" style="margin-top:12px">Join the waitlist</h3>
+    <p class="hint" style="margin:6px 0 24px">${esc(msg || "Be first to collect, or first to sell, when SORARY opens in Stockholm.")}</p>
+    <form class="ifm" novalidate><div class="roles" role="group" aria-label="I am"><button type="button" data-r="artist" aria-pressed="${role === "artist"}">I'm an artist<span>Sell for free, keep the full price</span></button><button type="button" data-r="buyer" aria-pressed="${role !== "artist"}">I want to collect<span>Buy original works with buyer protection</span></button></div>
+    <div class="field"><label for="wl-n">Name</label><input class="in" id="wl-n" name="name" maxlength="100" autocomplete="name"></div>
+    <div class="field"><label for="wl-e">Email</label><input class="in" id="wl-e" name="email" type="email" maxlength="160" autocomplete="email"></div>
+    <div class="field" id="wl-lf" ${role === "artist" ? "" : "hidden"}><label for="wl-l">Instagram or portfolio (optional)</label><input class="in" id="wl-l" name="link" maxlength="200" placeholder="@yourstudio"></div>
+    <div class="hp" aria-hidden="true"><label for="wl-b">Leave empty</label><input id="wl-b" name="bot-field" tabindex="-1" autocomplete="off"></div>
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><button class="btn" type="submit">Join the waitlist</button><span class="msg" role="status" style="font-size:13.5px"></span></div>
+    <p class="hint">We only email you about the SORARY launch. Unsubscribe any time. <a class="tlink" href="#privacy">Privacy</a></p></form></div>`;
+  let r = role === "artist" ? "artist" : "buyer";
+  const close = () => { ov.remove(); document.removeEventListener("keydown", key); }; const key = e => { if (e.key === "Escape") close(); };
+  ov.onclick = e => { if (e.target === ov || e.target.dataset.x !== undefined) close(); };
+  $$("[data-r]", ov).forEach(b => b.onclick = () => { r = b.dataset.r; $$("[data-r]", ov).forEach(x => x.setAttribute("aria-pressed", x === b)); $("#wl-lf", ov).hidden = r !== "artist"; });
+  const f = $("form", ov);
+  f.onsubmit = async e => {
+    e.preventDefault(); const msgEl = $(".msg", f); const email = $("#wl-e", f).value.trim();
+    if (!EMAIL_RE.test(email)) { msgEl.textContent = "Enter a valid email address."; msgEl.style.color = "var(--danger)"; return; }
+    const btn = $("button[type=submit]", f); btn.disabled = true; btn.textContent = "Joining…";
+    const body = new URLSearchParams({ "form-name": "waitlist", name: $("#wl-n", f).value.trim(), email, role: r, link: $("#wl-l", f).value.trim(), context: context || "", "bot-field": $("#wl-b", f).value });
+    try {
+      const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() });
+      if (!res.ok) throw new Error(res.status);
+      f.innerHTML = `<div style="display:flex;flex-direction:column;gap:12px"><p style="font-size:20px">You're on the list.</p><p class="muted">${r === "artist" ? "We'll be in touch before launch about listing your work." : "We'll email you the moment SORARY opens."}</p></div>`;
+    } catch (err) { btn.disabled = false; btn.textContent = "Join the waitlist"; msgEl.style.color = "var(--danger)"; msgEl.innerHTML = 'Could not join right now. Email <span class="sel">sorary.support@gmail.com</span> instead.'; }
+  };
+  document.addEventListener("keydown", key); document.body.appendChild(ov); $("#wl-n", ov).focus();
+}
+needUser = () => { openWaitlist("buyer", "Following artists and saving works open at launch. Join the waitlist to be first in."); return true; };
+openInquiry = (a, w) => openWaitlist("buyer", w ? `Buying opens at launch. Join the waitlist and we'll tell you when ${w.title} by ${a.name} can be bought.` : `Messaging artists opens at launch.`, w ? `${a.name}: ${w.title}` : a.name);
+const waitPage = (role, title, text) => { app().innerHTML = shell(role === "artist" ? "sell" : "", `<div class="gate"><span class="eyebrow">SORARY opens soon</span><h1>${title}</h1><p>${text}</p><div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap"><button class="btn" data-wait="${role}">Join the waitlist</button><a class="btn o" href="#sell">How selling works</a></div></div>`); };
+studioGate = () => { waitPage("artist", "Sell your work on SORARY.", "Artist accounts open at launch. Join the waitlist and we will invite you to list your work before collectors arrive."); return false; };
+pageFollowing = () => waitPage("buyer", "Follow the artists you love.", "Following artists and saving works opens at launch.");
+document.addEventListener("click", e => { const t = e.target.closest("[data-wait]"); if (t) { e.preventDefault(); openWaitlist(t.dataset.wait); } });
+boot = async function () { S.artists = STATIC_ARTISTS; S.ready = true; S.mk = null; route(); };
+boot();
+</script>
+</body></html>

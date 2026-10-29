@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SORARY — Original contemporary art</title>
+<meta name="description" content="SORARY is a new marketplace for original contemporary art. Free for artists to sell. Buyer protection for collectors. Join the waitlist.">
+<link rel="canonical" href="https://sorary.se/">
+<meta property="og:type" content="website"><meta property="og:url" content="https://sorary.se/"><meta property="og:title" content="SORARY — Original contemporary art">
+<meta property="og:description" content="A new marketplace for original contemporary art. Join the waitlist.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=DM+Mono:wght@300;400&display=swap">
+<style>
+/* SORARY landing — gallery white, one column of calm, the form as the centre of gravity. */
+:root{--bg:#fff;--fg:#111;--muted:#777;--line:#EAEAEA;--surface:#F8F8F6;--hover:#F4F4F2;--danger:#8A2B2B;--ok:#3F5A45;
+  --sans:"Jost","Avenir Next","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.6,.2,1);--max:1240px;color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-weight:300;margin:0;text-wrap:balance}
+p{margin:0}
+[hidden]{display:none!important}
+:focus-visible{outline:1px solid var(--fg);outline-offset:3px}
+::selection{background:#111;color:#fff}
+.wrap{max-width:var(--max);margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.mono{font-family:var(--mono)}
+.logo svg{height:14px;width:auto;fill:currentColor;display:block}
+
+header{display:flex;justify-content:space-between;align-items:center;padding-block:calc(env(safe-area-inset-top,0px) + 28px) 28px;max-width:var(--max);margin:0 auto}
+header nav{display:flex;gap:32px;align-items:center}
+header nav a{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:#555;transition:color .25s}
+header nav a:hover{color:var(--fg)}
+header nav a.cta{color:var(--fg);border-bottom:1px solid var(--fg);padding-bottom:3px}
+@media (max-width:700px){header nav a:not(.cta){display:none}}
+
+.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-block:clamp(40px,7vw,104px) clamp(56px,8vw,120px);align-items:center}
+.hero .tx{grid-column:1/-1}
+.hero h1{font-size:clamp(48px,9vw,148px);line-height:.95;letter-spacing:-.035em;margin-top:22px;max-width:11ch}
+.hero .sub{font-size:clamp(17px,1.6vw,21px);color:#444;max-width:48ch;margin-top:36px}
+.hero .meta{display:flex;gap:clamp(28px,6vw,96px);flex-wrap:wrap;margin-top:clamp(48px,6vw,88px);font-size:13px;color:var(--muted)}
+.hero .meta b{display:block;font-family:var(--mono);font-weight:300;font-size:22px;color:var(--fg);letter-spacing:-.01em}
+.hero figure{grid-column:8/13;margin:0}
+.hero figure .im{background:var(--surface);padding:clamp(22px,3.4vw,52px);display:flex;justify-content:center}
+.hero figure img{max-height:min(64vh,620px);width:auto}
+.hero figcaption{font-size:13px;margin-top:12px;color:#555}
+.hero figcaption i{color:var(--fg)}
+@media (max-width:900px){.hero .tx,.hero figure{grid-column:1/-1}.hero figure{order:-1;max-width:520px}}
+
+/* waitlist */
+.wl{border-top:1px solid var(--fg);padding-block:clamp(48px,6vw,88px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.wl .l{grid-column:1/5}
+.wl .l h2{font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.02em;margin-top:16px}
+.wl .l p{color:#555;margin-top:18px;max-width:34ch}
+.wl form{grid-column:6/13;display:flex;flex-direction:column;gap:28px}
+@media (max-width:900px){.wl .l,.wl form{grid-column:1/-1}}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.roles label{position:relative;border:1px solid var(--line);padding:20px 20px 18px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .25s,background .25s}
+.roles label:hover{border-color:#bbb}
+.roles input{position:absolute;opacity:0;pointer-events:none}
+.roles label:has(input:checked){border-color:var(--fg);box-shadow:inset 0 0 0 1px var(--fg)}
+.roles label:has(input:focus-visible){outline:1px solid var(--fg);outline-offset:3px}
+.roles .t{font-size:19px;font-weight:400;display:flex;justify-content:space-between;align-items:center}
+.roles .t::after{content:"";width:12px;height:12px;border-radius:50%;border:1px solid #bbb}
+.roles label:has(input:checked) .t::after{background:var(--fg);border-color:var(--fg);box-shadow:inset 0 0 0 2px #fff}
+.roles .d{font-size:13.5px;color:var(--muted);line-height:1.5}
+@media (max-width:520px){.roles{grid-template-columns:1fr}}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:26px 28px}
+.fg .full{grid-column:1/-1}
+@media (max-width:620px){.fg{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.in{font-weight:300;font-size:17px;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 0 11px;border-radius:0;width:100%;outline:none;transition:border-color .3s}
+.in:focus{border-color:var(--fg)}
+.in::placeholder{color:#b5b5b5}
+select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:22px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.act{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--fg);color:#fff;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;padding:17px 32px;min-height:54px;border:1px solid var(--fg);border-radius:0;cursor:pointer;transition:background .3s}
+.btn:hover{background:#2c2c2c}
+.btn[disabled]{opacity:.4;cursor:default}
+.btn.o{background:transparent;color:var(--fg)}
+.btn.o:hover{background:var(--hover)}
+.msg{font-size:13.5px}
+.msg.err{color:var(--danger)}
+.fine{font-size:12.5px;color:var(--muted)}
+.fine a{border-bottom:1px solid var(--line)}
+.done{border:1px solid var(--fg);padding:32px;display:flex;flex-direction:column;gap:10px}
+.done h3{font-size:28px;letter-spacing:-.01em}
+.done p{color:#555}
+
+/* strip */
+.strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,2vw,28px);padding-block:clamp(32px,5vw,72px);align-items:end}
+.strip figure{margin:0}
+.strip .im{background:var(--surface);padding:clamp(10px,1.6vw,22px)}
+.strip figcaption{font-size:12.5px;margin-top:10px;color:var(--muted)}
+.strip figcaption i{color:var(--fg)}
+.strip figure:nth-child(2){margin-bottom:clamp(20px,5vw,72px)}
+.strip figure:nth-child(4){margin-bottom:clamp(12px,3vw,40px)}
+@media (max-width:760px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:nth-child(n+5){display:none}.strip figure:nth-child(n){margin-bottom:0}}
+
+/* about */
+.sec{padding-block:clamp(72px,9vw,140px);border-top:1px solid var(--line)}
+.about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.about .h{grid-column:1/6}
+.about .h h2{font-size:clamp(32px,4vw,58px);line-height:1.04;letter-spacing:-.025em;margin-top:16px}
+.about .b{grid-column:7/13;font-size:clamp(17px,1.5vw,19px);color:#333;display:flex;flex-direction:column;gap:1.1em;max-width:58ch}
+@media (max-width:900px){.about .h,.about .b{grid-column:1/-1}}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);margin-top:clamp(56px,7vw,104px)}
+.three>div{border-top:1px solid var(--fg);padding-top:22px}
+.three .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.three h3{font-size:22px;font-weight:400;margin:14px 0 10px}
+.three p{color:#555;max-width:34ch}
+@media (max-width:820px){.three{grid-template-columns:1fr}}
+
+.split{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.split>div{padding:clamp(40px,5vw,72px) clamp(0px,4vw,56px) clamp(40px,5vw,72px) 0;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+.split>div+div{border-left:1px solid var(--line);padding-left:clamp(24px,4vw,56px);padding-right:0}
+.split h2{font-size:clamp(28px,3vw,42px);letter-spacing:-.02em;line-height:1.08}
+.split ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;color:#444}
+.split li{padding-left:20px;position:relative}
+.split li::before{content:"";position:absolute;left:0;top:.8em;width:9px;height:1px;background:var(--fg)}
+.split .fee{font-family:var(--mono);font-size:13px;color:var(--muted)}
+@media (max-width:820px){.split{grid-template-columns:1fr}.split>div{padding-right:0}.split>div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+
+.faq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.faq .h{grid-column:1/5}
+.faq .h h2{font-size:clamp(28px,3vw,42px);letter-spacing:-.02em;margin-top:16px}
+.faq .q{grid-column:6/13;border-top:1px solid var(--fg)}
+@media (max-width:900px){.faq .h,.faq .q{grid-column:1/-1}}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;gap:16px;font-size:18px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted);font-family:var(--mono)}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 22px;color:#555;max-width:60ch}
+
+.final{padding-block:clamp(88px,12vw,180px);border-top:1px solid var(--line);text-align:left}
+.final h2{font-size:clamp(40px,6.4vw,96px);line-height:1;letter-spacing:-.03em;max-width:12ch;margin-bottom:44px}
+footer{border-top:1px solid var(--line);padding-block:40px calc(env(safe-area-inset-bottom,0px) + 40px);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline;font-size:13px;color:var(--muted);max-width:var(--max);margin:0 auto}
+footer .mail{color:var(--fg);user-select:all}
+.cp{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:0;color:var(--muted);cursor:pointer;margin-left:8px}
+.cp:hover{color:var(--fg)}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,10px);background:var(--fg);color:#fff;font-size:13px;padding:12px 18px;opacity:0;transition:.3s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.rise{animation:rise .9s var(--ease) both}.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style></head>
+<body>
+<header><a class="logo" href="/" aria-label="SORARY"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 939 118"><path fill-rule="evenodd" d="M37.0 110.8C32.2 110.0 30.4 109.6 26.2 108.4C23.7 107.6 20.3 106.1 18.6 105.0C18.2 104.7 17.5 104.3 17.2 104.1C16.3 103.6 13.1 101.3 12.2 100.5C11.9 100.1 10.6 99.0 9.4 98.0C6.5 95.5 6.5 95.6 7.9 93.8C10.2 91.0 11.3 89.8 11.5 89.8C11.7 89.8 13.2 91.2 15.0 92.9C18.9 96.9 20.8 98.4 24.6 100.2C32.1 103.9 40.2 105.2 49.6 104.2C53.6 103.8 56.4 103.0 60.1 101.2C61.6 100.5 62.0 100.3 63.9 99.0C66.1 97.4 68.6 94.4 69.9 91.7C71.9 87.3 72.0 80.2 70.2 76.2C67.3 69.5 60.9 66.0 42.8 61.0C26.9 56.6 20.1 53.5 15.7 48.8C12.9 45.7 11.6 43.1 10.6 38.4C9.6 33.3 9.8 29.7 11.6 24.9C16.2 11.8 31.8 4.4 49.9 6.7C54.7 7.4 59.0 8.4 61.6 9.6C62.0 9.8 63.1 10.3 64.0 10.6C68.5 12.6 76.2 18.3 76.2 19.8C76.2 20.2 74.7 22.3 72.5 25.0C72.0 25.5 71.4 25.2 70.0 23.6C67.1 20.4 63.1 17.7 57.9 15.5C50.5 12.3 38.5 12.0 31.5 14.7C26.3 16.7 21.6 20.5 19.5 24.4C17.0 29.3 16.8 35.6 19.2 40.4C21.8 45.7 28.3 49.3 42.4 53.0C54.9 56.3 63.1 59.4 68.4 62.9C70.2 64.0 74.1 67.9 75.1 69.5C77.8 73.6 78.8 77.5 78.8 83.0C78.7 90.3 77.5 94.0 73.1 99.6C69.0 104.9 62.8 108.4 54.0 110.2C51.2 110.7 50.2 110.8 44.6 110.9C41.2 110.9 37.8 110.9 37.0 110.8ZM222.1 110.7C221.9 110.5 221.9 109.2 222.0 107.4L222.1 104.4L225.6 104.1C231.5 103.6 238.0 101.6 242.2 99.0C242.8 98.6 243.9 98.0 244.5 97.6C248.3 95.3 253.1 90.5 256.1 86.0C260.0 80.2 262.3 74.6 263.6 67.8C264.4 63.3 264.3 54.1 263.4 49.8C262.7 46.4 262.1 44.0 261.8 43.0C259.6 37.3 259.5 37.1 257.9 34.4C254.7 28.8 250.0 23.8 244.9 20.2C243.0 18.9 242.1 18.4 239.1 17.1C235.1 15.4 234.8 15.3 233.2 15.0C231.4 14.7 231.2 14.4 231.2 11.0C231.2 8.9 231.3 8.0 231.6 7.8C232.5 7.0 244.7 11.6 247.0 13.7C247.2 13.8 247.5 14.0 247.6 14.0C248.3 14.0 252.7 17.5 255.9 20.6C260.8 25.3 265.2 32.0 267.7 38.9C268.1 39.7 268.5 40.7 268.7 41.2C268.8 41.6 269.0 42.2 269.0 42.4C269.0 42.6 269.2 43.4 269.5 44.2C269.7 45.0 270.0 46.1 270.1 46.8C270.2 47.4 270.4 48.5 270.6 49.4C271.6 53.6 271.6 62.7 270.7 68.1C270.0 72.6 267.9 79.5 266.5 82.2C266.4 82.4 266.0 83.3 265.6 84.1C265.2 85.0 264.7 85.9 264.5 86.2C264.3 86.6 263.4 87.9 262.6 89.1C259.9 93.2 256.3 97.2 252.4 100.3C246.6 104.9 241.8 107.3 234.4 109.4C231.0 110.3 222.5 111.2 222.1 110.7ZM885.8 109.2L885.2 109.0L885.2 87.6L885.2 66.1L882.2 61.5C880.5 59.0 878.5 56.0 877.9 54.9C877.2 53.8 875.7 51.4 874.4 49.5C870.1 43.1 866.2 37.1 863.8 33.2C862.8 31.7 862.4 31.1 860.4 28.1C859.9 27.4 858.5 25.2 857.2 23.1C856.0 21.1 854.7 19.1 854.5 18.9C854.2 18.6 854.0 18.3 854.0 18.2C854.0 18.1 853.7 17.5 853.2 16.9C852.0 15.2 848.2 9.5 847.8 8.9C847.6 8.5 847.4 8.2 847.5 8.2C847.6 8.1 853.8 7.9 855.3 8.0C855.7 8.0 857.1 9.9 859.9 14.4C861.1 16.3 861.4 16.7 864.9 22.2C867.6 26.3 870.2 30.4 870.9 31.4C871.2 32.0 873.6 35.8 874.4 37.0C874.7 37.5 875.4 38.6 875.9 39.4C878.3 43.3 879.5 45.2 882.1 49.1C883.7 51.5 885.3 54.1 885.9 54.9C886.4 55.8 887.8 57.9 888.9 59.6C890.0 61.3 891.2 63.4 891.7 64.3L892.5 65.9L892.5 87.2C892.5 104.7 892.5 108.6 892.2 108.9C891.8 109.3 886.6 109.5 885.8 109.2ZM360.6 109.0C360.3 108.9 360.3 98.6 360.3 58.5L360.4 8.1L380.4 8.0C402.0 7.8 404.5 7.9 407.8 8.8C415.2 11.0 419.9 14.1 423.9 19.5C430.9 28.7 431.3 43.8 425.0 53.5C421.6 58.7 417.5 61.9 411.4 64.2C410.3 64.6 405.9 65.7 404.5 65.9C402.9 66.1 402.5 66.6 403.2 67.4C403.5 67.8 405.6 71.0 407.9 74.5C410.2 78.0 412.6 81.6 413.2 82.5C413.8 83.4 417.6 89.1 421.6 95.1C425.6 101.2 429.3 106.7 429.9 107.3C430.4 108.0 430.7 108.7 430.7 108.9C430.5 109.4 422.8 109.4 422.2 108.9C422.0 108.8 421.2 107.6 420.4 106.4C419.7 105.1 416.7 100.5 413.7 96.1C410.8 91.6 407.4 86.5 406.3 84.7C405.1 82.9 403.4 80.3 402.5 79.0C401.6 77.7 399.5 74.5 397.9 71.9C396.3 69.3 394.9 67.0 394.7 66.9C394.6 66.7 391.1 66.6 385.8 66.5L377.1 66.4L377.1 63.5C377.0 61.7 377.1 60.6 377.3 60.4C377.5 60.1 380.1 60.0 390.2 59.9C404.7 59.8 405.3 59.7 409.6 57.7C415.8 54.7 419.7 50.0 421.4 43.3C422.2 40.2 422.3 34.8 421.6 31.6C420.3 25.3 415.7 19.3 410.5 16.8C405.1 14.2 404.7 14.2 384.8 14.2C375.4 14.2 367.6 14.3 367.5 14.4C367.3 14.5 367.2 32.7 367.2 61.6C367.2 97.9 367.2 108.7 366.9 109.0C366.6 109.3 361.1 109.4 360.6 109.0ZM515.5 108.9C515.3 108.6 515.3 108.4 515.7 107.7C516.2 106.8 517.2 104.7 519.2 99.8C519.9 98.2 521.1 95.4 521.8 93.6C522.6 91.8 524.0 88.5 524.9 86.2C525.8 84.0 527.1 80.9 527.7 79.4C528.4 77.9 529.5 75.2 530.3 73.4C531.0 71.6 532.5 67.9 533.7 65.2C534.8 62.4 535.8 60.2 535.8 60.1C535.8 60.0 536.6 58.1 537.5 55.8C538.5 53.5 540.1 49.6 541.1 47.1C542.1 44.6 543.1 42.2 543.3 41.8C543.6 41.3 544.6 38.7 545.8 36.0C546.9 33.3 548.0 30.6 548.3 30.0C548.6 29.4 549.1 28.2 549.4 27.4C549.7 26.6 550.3 25.1 550.7 24.1C551.2 23.2 552.2 20.8 552.9 18.9C553.7 17.0 554.7 14.6 555.2 13.4C555.6 12.3 556.3 10.9 556.5 10.2C557.6 7.7 557.2 7.9 560.9 7.8C563.3 7.8 564.2 7.8 564.6 8.1C565.2 8.5 566.1 10.5 568.2 16.1C568.6 17.4 569.1 18.6 569.2 18.9C569.4 19.1 569.9 20.3 570.3 21.5C571.4 24.1 572.0 25.5 572.2 26.1C572.4 26.4 572.8 27.5 573.3 28.5C573.7 29.5 574.2 30.7 574.4 31.1C574.6 31.5 575.4 33.6 576.2 35.8C577.1 37.9 578.0 40.1 578.3 40.8C578.5 41.4 579.1 42.7 579.5 43.8C580.0 44.8 581.0 47.4 581.9 49.5C582.8 51.6 584.5 56.0 585.9 59.2C587.2 62.5 589.3 67.7 590.6 70.9C593.0 76.6 594.7 80.8 595.7 83.1C596.1 83.8 596.7 85.3 597.2 86.5C597.6 87.7 598.1 88.8 598.3 89.1C598.4 89.3 598.7 89.9 598.8 90.4C599.2 91.5 600.9 95.5 601.4 96.6C601.5 97.0 602.0 98.2 602.4 99.1C603.9 103.0 604.1 103.6 604.3 103.9C604.4 104.0 604.6 104.6 604.8 105.1C605.0 105.7 605.4 106.7 605.7 107.3C606.6 109.2 606.5 109.2 602.5 109.2C599.6 109.2 599.0 109.2 598.7 108.8C598.3 108.4 597.3 106.0 596.7 104.0C596.3 103.0 594.9 99.4 592.2 93.1C591.7 91.8 591.0 90.1 590.7 89.5C590.5 88.9 589.3 86.0 588.1 83.1C586.1 78.2 582.4 69.0 581.1 65.6C580.8 64.8 580.0 63.0 579.4 61.5C578.7 60.1 577.6 57.2 576.8 55.1C575.3 51.4 573.4 46.9 571.1 41.4C570.5 39.9 569.6 37.7 569.1 36.6C568.7 35.5 568.1 34.2 567.9 33.6C567.7 33.1 567.3 32.3 567.1 31.9C567.0 31.5 566.1 29.2 565.1 26.9C564.2 24.5 563.1 21.8 562.8 20.9C562.4 19.9 562.0 18.8 561.9 18.4C561.7 17.7 561.1 17.3 560.7 17.7C560.5 17.9 559.9 19.3 558.1 24.1C557.7 25.4 556.6 28.0 555.8 30.0C554.9 32.0 553.8 34.6 553.4 35.8C552.9 36.9 552.0 39.1 551.4 40.6C550.7 42.1 550.1 43.8 549.9 44.2C549.7 44.7 549.2 45.9 548.8 46.9C548.3 47.8 547.2 50.6 546.2 53.0C545.3 55.4 544.4 57.6 544.3 57.9C543.0 60.5 541.0 65.5 538.8 70.9C534.3 82.2 531.6 88.8 530.4 91.6C528.6 95.9 526.3 101.3 525.0 104.8C523.0 109.7 523.7 109.1 519.5 109.2C516.5 109.3 515.8 109.2 515.5 108.9ZM695.1 108.9C694.8 108.5 694.7 8.8 695.0 8.3C695.2 7.9 698.2 7.9 716.7 7.9C728.5 8.0 738.7 8.0 739.4 8.1C741.9 8.5 747.8 10.4 749.5 11.5C749.7 11.6 750.0 11.8 750.2 11.9C751.7 12.5 755.0 15.1 756.8 17.0C761.0 21.4 763.0 25.9 764.0 32.8C765.8 45.1 761.1 56.0 751.4 61.8C748.4 63.6 743.6 65.2 740.1 65.6C739.3 65.7 738.4 65.8 738.2 65.9C737.7 66.0 737.6 67.1 738.0 67.4C738.1 67.5 739.8 69.9 741.8 72.8C743.7 75.7 745.7 78.7 746.2 79.3C746.6 80.0 747.0 80.5 747.0 80.6C747.0 80.7 747.4 81.4 748.0 82.2C748.5 83.0 750.5 85.9 752.3 88.8C754.2 91.6 756.2 94.5 756.8 95.4C757.4 96.2 758.6 97.9 759.4 99.2C760.3 100.6 761.4 102.2 761.9 103.0C762.5 103.7 763.3 105.0 763.7 105.7C764.2 106.5 764.8 107.4 765.2 107.8C766.4 109.1 766.0 109.2 761.5 109.2C756.9 109.2 757.1 109.3 755.6 106.8C755.2 106.2 754.4 104.8 753.6 103.8C752.9 102.7 752.0 101.3 751.5 100.5C750.4 98.5 749.7 97.5 746.6 92.9C742.8 87.2 742.0 86.0 742.0 85.9C742.0 85.8 741.1 84.5 740.1 82.9C737.5 79.1 735.3 75.9 734.1 73.9C731.8 70.0 729.7 67.0 729.3 66.8C729.0 66.6 725.8 66.5 720.4 66.5C712.7 66.5 712.0 66.5 711.8 66.1C711.7 65.8 711.6 64.4 711.7 62.9L711.9 60.1L724.8 60.0C739.0 59.8 740.1 59.7 743.9 58.1C749.7 55.6 754.6 50.1 756.3 44.1C757.1 41.3 757.2 34.3 756.5 31.4C755.6 27.8 754.4 25.4 752.2 22.6C748.8 18.3 744.4 15.7 738.6 14.7C735.9 14.2 702.6 13.8 702.1 14.3C701.8 14.5 701.7 24.0 701.8 61.7C701.8 99.3 701.7 108.9 701.4 109.0C700.9 109.4 695.3 109.3 695.1 108.9ZM197.6 108.3C194.2 107.1 193.7 106.8 191.6 105.8C183.1 101.5 174.0 92.5 170.2 84.5C168.6 81.2 168.0 79.8 168.0 79.5C168.0 79.3 167.8 78.9 167.6 78.5C166.8 77.0 165.4 71.9 164.7 67.8C163.6 61.6 164.1 50.2 165.7 44.8C166.5 41.9 168.1 37.3 168.6 36.3C168.8 35.9 169.1 35.3 169.3 34.9C172.8 27.6 177.3 21.9 182.6 17.7C185.3 15.6 192.3 11.3 193.0 11.2C193.1 11.2 193.5 11.1 193.9 10.8C197.1 9.1 204.4 7.1 207.6 7.1L209.6 7.1L209.8 10.1C210.1 13.0 210.1 13.1 209.5 13.5C209.1 13.8 208.5 14.0 207.8 14.0C206.1 14.0 200.3 15.4 197.9 16.5C196.5 17.1 193.5 18.6 192.9 19.0C192.5 19.3 191.8 19.7 191.4 19.9C189.5 20.9 184.2 25.6 182.2 28.0C177.5 33.4 174.6 39.3 172.7 46.9C170.9 54.1 170.9 64.4 172.7 71.2C175.7 82.4 182.0 91.7 190.6 97.3C192.9 98.8 195.9 100.3 199.1 101.5C201.4 102.4 201.3 102.2 201.2 105.7L201.1 108.9L200.4 108.9C200.0 109.0 198.7 108.7 197.6 108.3ZM897.8 57.6C897.6 57.4 897.0 56.4 896.5 55.3C895.9 54.3 895.3 53.0 895.0 52.6C894.4 51.6 894.2 51.8 897.9 46.6C899.5 44.4 901.5 41.6 902.3 40.3C904.3 37.4 908.7 30.9 913.1 24.4C915.0 21.6 918.0 17.1 919.9 14.4C921.7 11.6 923.5 9.1 923.8 8.7L924.4 8.0L928.2 7.8C931.6 7.7 932.0 7.8 932.2 8.2C932.3 8.4 932.2 8.7 932.1 8.9C932.0 9.1 931.1 10.3 930.2 11.7C929.2 13.0 928.0 14.7 927.5 15.5C926.4 17.0 925.6 18.2 921.4 24.4C919.9 26.6 918.4 28.8 918.0 29.2C917.6 29.7 916.4 31.5 915.2 33.2C914.0 35.0 911.9 38.1 910.5 40.1C907.9 43.8 899.4 56.4 898.8 57.5C898.4 58.1 898.2 58.1 897.8 57.6Z"/></svg></a>
+  <nav aria-label="Main"><a class="cta" href="#join">Join the waitlist</a></nav></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="tx">
+      <span class="eyebrow rise">Opening soon</span>
+      <h1 class="rise d1">Collect the artists of now.</h1>
+      <p class="sub rise d2">SORARY is a new marketplace for original contemporary art. Artists sell for free and keep the full price. Collectors buy with protection, directly from the studio.</p>
+      <div class="rise d3" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px"><a class="btn" href="#join">Join the waitlist</a></div>
+      <div class="meta rise d3"><div><b>0%</b>Taken from artists</div><div><b>100%</b>Of the price to the artist</div><div><b>Originals</b>Only, no prints</div></div>
+    </div>
+  </section>
+
+  <section class="wl" id="join" style="margin-bottom:clamp(48px,6vw,96px)" aria-labelledby="join-h">
+    <div class="l"><span class="eyebrow">Waitlist</span><h2 id="join-h">Be first in.</h2>
+      <p>Artists get an invitation to list their work before we open. Collectors hear the moment the first works go on sale.</p></div>
+    <form name="waitlist" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" id="wlf" novalidate>
+      <input type="hidden" name="form-name" value="waitlist"><input type="hidden" name="context" value="landing">
+      <fieldset class="roles" style="border:0;padding:0;margin:0"><legend class="field" style="padding:0;margin-bottom:12px"><span class="eyebrow">I am</span></legend>
+        <label><input type="radio" name="role" value="collector" checked><span class="t">A collector</span><span class="d">I want to discover and buy original art.</span></label>
+        <label><input type="radio" name="role" value="artist"><span class="t">An artist</span><span class="d">I want to sell my work, free of commission.</span></label>
+      </fieldset>
+      <div class="fg">
+        <div class="field"><label for="f-n">Name</label><input class="in" id="f-n" name="name" autocomplete="name" maxlength="100" placeholder="Anna Lindberg"></div>
+        <div class="field"><label for="f-e">Email</label><input class="in" id="f-e" name="email" type="email" autocomplete="email" maxlength="160" placeholder="anna@example.com" required></div>
+        <div class="field" id="f-artist-1" hidden><label for="f-l">Instagram or portfolio</label><input class="in" id="f-l" name="link" maxlength="200" placeholder="@yourstudio"></div>
+        <div class="field" id="f-artist-2" hidden><label for="f-m">Main medium</label><select class="in" id="f-m" name="medium"><option value="">Choose</option><option>Painting</option><option>Sculpture</option><option>Photography</option><option>Works on paper</option><option>Other</option></select></div>
+        <div class="field full" id="f-col" ><label for="f-i">What are you looking for? (optional)</label><input class="in" id="f-i" name="interest" maxlength="200" placeholder="Abstract painting, under 15 000 kr"></div>
+        <div class="field full"><label for="f-c">City</label><input class="in" id="f-c" name="city" maxlength="60" autocomplete="address-level2" placeholder="Your city"></div>
+      </div>
+      <p class="hp" aria-hidden="true"><label for="f-b">Leave this empty</label><input id="f-b" name="bot-field" tabindex="-1" autocomplete="off"></p>
+      <div class="act"><button class="btn" type="submit">Join the waitlist</button><span class="msg" id="f-msg" role="status"></span></div>
+      <p class="fine">We only email you about SORARY's launch, and never share your details. To be removed, write to <span style="user-select:all;color:var(--fg)">sorary.support@gmail.com</span>.</p>
+    </form>
+  </section>
+
+
+
+
+
+</main>
+<footer><a class="logo" href="/" aria-label="SORARY"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 939 118"><path fill-rule="evenodd" d="M37.0 110.8C32.2 110.0 30.4 109.6 26.2 108.4C23.7 107.6 20.3 106.1 18.6 105.0C18.2 104.7 17.5 104.3 17.2 104.1C16.3 103.6 13.1 101.3 12.2 100.5C11.9 100.1 10.6 99.0 9.4 98.0C6.5 95.5 6.5 95.6 7.9 93.8C10.2 91.0 11.3 89.8 11.5 89.8C11.7 89.8 13.2 91.2 15.0 92.9C18.9 96.9 20.8 98.4 24.6 100.2C32.1 103.9 40.2 105.2 49.6 104.2C53.6 103.8 56.4 103.0 60.1 101.2C61.6 100.5 62.0 100.3 63.9 99.0C66.1 97.4 68.6 94.4 69.9 91.7C71.9 87.3 72.0 80.2 70.2 76.2C67.3 69.5 60.9 66.0 42.8 61.0C26.9 56.6 20.1 53.5 15.7 48.8C12.9 45.7 11.6 43.1 10.6 38.4C9.6 33.3 9.8 29.7 11.6 24.9C16.2 11.8 31.8 4.4 49.9 6.7C54.7 7.4 59.0 8.4 61.6 9.6C62.0 9.8 63.1 10.3 64.0 10.6C68.5 12.6 76.2 18.3 76.2 19.8C76.2 20.2 74.7 22.3 72.5 25.0C72.0 25.5 71.4 25.2 70.0 23.6C67.1 20.4 63.1 17.7 57.9 15.5C50.5 12.3 38.5 12.0 31.5 14.7C26.3 16.7 21.6 20.5 19.5 24.4C17.0 29.3 16.8 35.6 19.2 40.4C21.8 45.7 28.3 49.3 42.4 53.0C54.9 56.3 63.1 59.4 68.4 62.9C70.2 64.0 74.1 67.9 75.1 69.5C77.8 73.6 78.8 77.5 78.8 83.0C78.7 90.3 77.5 94.0 73.1 99.6C69.0 104.9 62.8 108.4 54.0 110.2C51.2 110.7 50.2 110.8 44.6 110.9C41.2 110.9 37.8 110.9 37.0 110.8ZM222.1 110.7C221.9 110.5 221.9 109.2 222.0 107.4L222.1 104.4L225.6 104.1C231.5 103.6 238.0 101.6 242.2 99.0C242.8 98.6 243.9 98.0 244.5 97.6C248.3 95.3 253.1 90.5 256.1 86.0C260.0 80.2 262.3 74.6 263.6 67.8C264.4 63.3 264.3 54.1 263.4 49.8C262.7 46.4 262.1 44.0 261.8 43.0C259.6 37.3 259.5 37.1 257.9 34.4C254.7 28.8 250.0 23.8 244.9 20.2C243.0 18.9 242.1 18.4 239.1 17.1C235.1 15.4 234.8 15.3 233.2 15.0C231.4 14.7 231.2 14.4 231.2 11.0C231.2 8.9 231.3 8.0 231.6 7.8C232.5 7.0 244.7 11.6 247.0 13.7C247.2 13.8 247.5 14.0 247.6 14.0C248.3 14.0 252.7 17.5 255.9 20.6C260.8 25.3 265.2 32.0 267.7 38.9C268.1 39.7 268.5 40.7 268.7 41.2C268.8 41.6 269.0 42.2 269.0 42.4C269.0 42.6 269.2 43.4 269.5 44.2C269.7 45.0 270.0 46.1 270.1 46.8C270.2 47.4 270.4 48.5 270.6 49.4C271.6 53.6 271.6 62.7 270.7 68.1C270.0 72.6 267.9 79.5 266.5 82.2C266.4 82.4 266.0 83.3 265.6 84.1C265.2 85.0 264.7 85.9 264.5 86.2C264.3 86.6 263.4 87.9 262.6 89.1C259.9 93.2 256.3 97.2 252.4 100.3C246.6 104.9 241.8 107.3 234.4 109.4C231.0 110.3 222.5 111.2 222.1 110.7ZM885.8 109.2L885.2 109.0L885.2 87.6L885.2 66.1L882.2 61.5C880.5 59.0 878.5 56.0 877.9 54.9C877.2 53.8 875.7 51.4 874.4 49.5C870.1 43.1 866.2 37.1 863.8 33.2C862.8 31.7 862.4 31.1 860.4 28.1C859.9 27.4 858.5 25.2 857.2 23.1C856.0 21.1 854.7 19.1 854.5 18.9C854.2 18.6 854.0 18.3 854.0 18.2C854.0 18.1 853.7 17.5 853.2 16.9C852.0 15.2 848.2 9.5 847.8 8.9C847.6 8.5 847.4 8.2 847.5 8.2C847.6 8.1 853.8 7.9 855.3 8.0C855.7 8.0 857.1 9.9 859.9 14.4C861.1 16.3 861.4 16.7 864.9 22.2C867.6 26.3 870.2 30.4 870.9 31.4C871.2 32.0 873.6 35.8 874.4 37.0C874.7 37.5 875.4 38.6 875.9 39.4C878.3 43.3 879.5 45.2 882.1 49.1C883.7 51.5 885.3 54.1 885.9 54.9C886.4 55.8 887.8 57.9 888.9 59.6C890.0 61.3 891.2 63.4 891.7 64.3L892.5 65.9L892.5 87.2C892.5 104.7 892.5 108.6 892.2 108.9C891.8 109.3 886.6 109.5 885.8 109.2ZM360.6 109.0C360.3 108.9 360.3 98.6 360.3 58.5L360.4 8.1L380.4 8.0C402.0 7.8 404.5 7.9 407.8 8.8C415.2 11.0 419.9 14.1 423.9 19.5C430.9 28.7 431.3 43.8 425.0 53.5C421.6 58.7 417.5 61.9 411.4 64.2C410.3 64.6 405.9 65.7 404.5 65.9C402.9 66.1 402.5 66.6 403.2 67.4C403.5 67.8 405.6 71.0 407.9 74.5C410.2 78.0 412.6 81.6 413.2 82.5C413.8 83.4 417.6 89.1 421.6 95.1C425.6 101.2 429.3 106.7 429.9 107.3C430.4 108.0 430.7 108.7 430.7 108.9C430.5 109.4 422.8 109.4 422.2 108.9C422.0 108.8 421.2 107.6 420.4 106.4C419.7 105.1 416.7 100.5 413.7 96.1C410.8 91.6 407.4 86.5 406.3 84.7C405.1 82.9 403.4 80.3 402.5 79.0C401.6 77.7 399.5 74.5 397.9 71.9C396.3 69.3 394.9 67.0 394.7 66.9C394.6 66.7 391.1 66.6 385.8 66.5L377.1 66.4L377.1 63.5C377.0 61.7 377.1 60.6 377.3 60.4C377.5 60.1 380.1 60.0 390.2 59.9C404.7 59.8 405.3 59.7 409.6 57.7C415.8 54.7 419.7 50.0 421.4 43.3C422.2 40.2 422.3 34.8 421.6 31.6C420.3 25.3 415.7 19.3 410.5 16.8C405.1 14.2 404.7 14.2 384.8 14.2C375.4 14.2 367.6 14.3 367.5 14.4C367.3 14.5 367.2 32.7 367.2 61.6C367.2 97.9 367.2 108.7 366.9 109.0C366.6 109.3 361.1 109.4 360.6 109.0ZM515.5 108.9C515.3 108.6 515.3 108.4 515.7 107.7C516.2 106.8 517.2 104.7 519.2 99.8C519.9 98.2 521.1 95.4 521.8 93.6C522.6 91.8 524.0 88.5 524.9 86.2C525.8 84.0 527.1 80.9 527.7 79.4C528.4 77.9 529.5 75.2 530.3 73.4C531.0 71.6 532.5 67.9 533.7 65.2C534.8 62.4 535.8 60.2 535.8 60.1C535.8 60.0 536.6 58.1 537.5 55.8C538.5 53.5 540.1 49.6 541.1 47.1C542.1 44.6 543.1 42.2 543.3 41.8C543.6 41.3 544.6 38.7 545.8 36.0C546.9 33.3 548.0 30.6 548.3 30.0C548.6 29.4 549.1 28.2 549.4 27.4C549.7 26.6 550.3 25.1 550.7 24.1C551.2 23.2 552.2 20.8 552.9 18.9C553.7 17.0 554.7 14.6 555.2 13.4C555.6 12.3 556.3 10.9 556.5 10.2C557.6 7.7 557.2 7.9 560.9 7.8C563.3 7.8 564.2 7.8 564.6 8.1C565.2 8.5 566.1 10.5 568.2 16.1C568.6 17.4 569.1 18.6 569.2 18.9C569.4 19.1 569.9 20.3 570.3 21.5C571.4 24.1 572.0 25.5 572.2 26.1C572.4 26.4 572.8 27.5 573.3 28.5C573.7 29.5 574.2 30.7 574.4 31.1C574.6 31.5 575.4 33.6 576.2 35.8C577.1 37.9 578.0 40.1 578.3 40.8C578.5 41.4 579.1 42.7 579.5 43.8C580.0 44.8 581.0 47.4 581.9 49.5C582.8 51.6 584.5 56.0 585.9 59.2C587.2 62.5 589.3 67.7 590.6 70.9C593.0 76.6 594.7 80.8 595.7 83.1C596.1 83.8 596.7 85.3 597.2 86.5C597.6 87.7 598.1 88.8 598.3 89.1C598.4 89.3 598.7 89.9 598.8 90.4C599.2 91.5 600.9 95.5 601.4 96.6C601.5 97.0 602.0 98.2 602.4 99.1C603.9 103.0 604.1 103.6 604.3 103.9C604.4 104.0 604.6 104.6 604.8 105.1C605.0 105.7 605.4 106.7 605.7 107.3C606.6 109.2 606.5 109.2 602.5 109.2C599.6 109.2 599.0 109.2 598.7 108.8C598.3 108.4 597.3 106.0 596.7 104.0C596.3 103.0 594.9 99.4 592.2 93.1C591.7 91.8 591.0 90.1 590.7 89.5C590.5 88.9 589.3 86.0 588.1 83.1C586.1 78.2 582.4 69.0 581.1 65.6C580.8 64.8 580.0 63.0 579.4 61.5C578.7 60.1 577.6 57.2 576.8 55.1C575.3 51.4 573.4 46.9 571.1 41.4C570.5 39.9 569.6 37.7 569.1 36.6C568.7 35.5 568.1 34.2 567.9 33.6C567.7 33.1 567.3 32.3 567.1 31.9C567.0 31.5 566.1 29.2 565.1 26.9C564.2 24.5 563.1 21.8 562.8 20.9C562.4 19.9 562.0 18.8 561.9 18.4C561.7 17.7 561.1 17.3 560.7 17.7C560.5 17.9 559.9 19.3 558.1 24.1C557.7 25.4 556.6 28.0 555.8 30.0C554.9 32.0 553.8 34.6 553.4 35.8C552.9 36.9 552.0 39.1 551.4 40.6C550.7 42.1 550.1 43.8 549.9 44.2C549.7 44.7 549.2 45.9 548.8 46.9C548.3 47.8 547.2 50.6 546.2 53.0C545.3 55.4 544.4 57.6 544.3 57.9C543.0 60.5 541.0 65.5 538.8 70.9C534.3 82.2 531.6 88.8 530.4 91.6C528.6 95.9 526.3 101.3 525.0 104.8C523.0 109.7 523.7 109.1 519.5 109.2C516.5 109.3 515.8 109.2 515.5 108.9ZM695.1 108.9C694.8 108.5 694.7 8.8 695.0 8.3C695.2 7.9 698.2 7.9 716.7 7.9C728.5 8.0 738.7 8.0 739.4 8.1C741.9 8.5 747.8 10.4 749.5 11.5C749.7 11.6 750.0 11.8 750.2 11.9C751.7 12.5 755.0 15.1 756.8 17.0C761.0 21.4 763.0 25.9 764.0 32.8C765.8 45.1 761.1 56.0 751.4 61.8C748.4 63.6 743.6 65.2 740.1 65.6C739.3 65.7 738.4 65.8 738.2 65.9C737.7 66.0 737.6 67.1 738.0 67.4C738.1 67.5 739.8 69.9 741.8 72.8C743.7 75.7 745.7 78.7 746.2 79.3C746.6 80.0 747.0 80.5 747.0 80.6C747.0 80.7 747.4 81.4 748.0 82.2C748.5 83.0 750.5 85.9 752.3 88.8C754.2 91.6 756.2 94.5 756.8 95.4C757.4 96.2 758.6 97.9 759.4 99.2C760.3 100.6 761.4 102.2 761.9 103.0C762.5 103.7 763.3 105.0 763.7 105.7C764.2 106.5 764.8 107.4 765.2 107.8C766.4 109.1 766.0 109.2 761.5 109.2C756.9 109.2 757.1 109.3 755.6 106.8C755.2 106.2 754.4 104.8 753.6 103.8C752.9 102.7 752.0 101.3 751.5 100.5C750.4 98.5 749.7 97.5 746.6 92.9C742.8 87.2 742.0 86.0 742.0 85.9C742.0 85.8 741.1 84.5 740.1 82.9C737.5 79.1 735.3 75.9 734.1 73.9C731.8 70.0 729.7 67.0 729.3 66.8C729.0 66.6 725.8 66.5 720.4 66.5C712.7 66.5 712.0 66.5 711.8 66.1C711.7 65.8 711.6 64.4 711.7 62.9L711.9 60.1L724.8 60.0C739.0 59.8 740.1 59.7 743.9 58.1C749.7 55.6 754.6 50.1 756.3 44.1C757.1 41.3 757.2 34.3 756.5 31.4C755.6 27.8 754.4 25.4 752.2 22.6C748.8 18.3 744.4 15.7 738.6 14.7C735.9 14.2 702.6 13.8 702.1 14.3C701.8 14.5 701.7 24.0 701.8 61.7C701.8 99.3 701.7 108.9 701.4 109.0C700.9 109.4 695.3 109.3 695.1 108.9ZM197.6 108.3C194.2 107.1 193.7 106.8 191.6 105.8C183.1 101.5 174.0 92.5 170.2 84.5C168.6 81.2 168.0 79.8 168.0 79.5C168.0 79.3 167.8 78.9 167.6 78.5C166.8 77.0 165.4 71.9 164.7 67.8C163.6 61.6 164.1 50.2 165.7 44.8C166.5 41.9 168.1 37.3 168.6 36.3C168.8 35.9 169.1 35.3 169.3 34.9C172.8 27.6 177.3 21.9 182.6 17.7C185.3 15.6 192.3 11.3 193.0 11.2C193.1 11.2 193.5 11.1 193.9 10.8C197.1 9.1 204.4 7.1 207.6 7.1L209.6 7.1L209.8 10.1C210.1 13.0 210.1 13.1 209.5 13.5C209.1 13.8 208.5 14.0 207.8 14.0C206.1 14.0 200.3 15.4 197.9 16.5C196.5 17.1 193.5 18.6 192.9 19.0C192.5 19.3 191.8 19.7 191.4 19.9C189.5 20.9 184.2 25.6 182.2 28.0C177.5 33.4 174.6 39.3 172.7 46.9C170.9 54.1 170.9 64.4 172.7 71.2C175.7 82.4 182.0 91.7 190.6 97.3C192.9 98.8 195.9 100.3 199.1 101.5C201.4 102.4 201.3 102.2 201.2 105.7L201.1 108.9L200.4 108.9C200.0 109.0 198.7 108.7 197.6 108.3ZM897.8 57.6C897.6 57.4 897.0 56.4 896.5 55.3C895.9 54.3 895.3 53.0 895.0 52.6C894.4 51.6 894.2 51.8 897.9 46.6C899.5 44.4 901.5 41.6 902.3 40.3C904.3 37.4 908.7 30.9 913.1 24.4C915.0 21.6 918.0 17.1 919.9 14.4C921.7 11.6 923.5 9.1 923.8 8.7L924.4 8.0L928.2 7.8C931.6 7.7 932.0 7.8 932.2 8.2C932.3 8.4 932.2 8.7 932.1 8.9C932.0 9.1 931.1 10.3 930.2 11.7C929.2 13.0 928.0 14.7 927.5 15.5C926.4 17.0 925.6 18.2 921.4 24.4C919.9 26.6 918.4 28.8 918.0 29.2C917.6 29.7 916.4 31.5 915.2 33.2C914.0 35.0 911.9 38.1 910.5 40.1C907.9 43.8 899.4 56.4 898.8 57.5C898.4 58.1 898.2 58.1 897.8 57.6Z"/></svg></a>
+  <span>Support <span class="mail">sorary.support@gmail.com</span><button class="cp" type="button" data-copy>Copy</button></span>
+  <span>© <span id="yr">2026</span> SORARY</span></footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  $("#yr").textContent = new Date().getFullYear();
+  var f = $("#wlf"), msg = $("#f-msg");
+  function setRole(r) {
+    var artist = r === "artist";
+    $("#f-artist-1").hidden = !artist; $("#f-artist-2").hidden = !artist; $("#f-col").hidden = artist;
+  }
+  Array.prototype.forEach.call(f.querySelectorAll('input[name=role]'), function (i) { i.addEventListener("change", function () { setRole(i.value); }); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-role]"), function (a) {
+    a.addEventListener("click", function () { var i = f.querySelector('input[value="' + a.dataset.role + '"]'); i.checked = true; setRole(a.dataset.role); setTimeout(function () { $("#f-n").focus({ preventScroll: true }); }, 500); });
+  });
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = $("#f-e").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = "Enter a valid email address."; msg.className = "msg err"; $("#f-e").focus(); return; }
+    var btn = f.querySelector("button[type=submit]"); btn.disabled = true; btn.textContent = "Joining…"; msg.textContent = "";
+    var role = f.querySelector('input[name=role]:checked').value;
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(f)).toString() })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); })
+      .then(function () {
+        f.innerHTML = '<div class="done"><span class="eyebrow">You are on the list</span><h3>Thank you.</h3><p>' + (role === "artist" ? "We will be in touch before launch with an invitation to list your work." : "We will email you the moment the first works go on sale.") + '</p></div>';
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = "Join the waitlist"; msg.innerHTML = 'Something went wrong. Email <span style="user-select:all">sorary.support@gmail.com</span> and we will add you.'; msg.className = "msg err"; });
+  });
+  $("[data-copy]").addEventListener("click", function () {
+    var t = $("#toast");
+    navigator.clipboard.writeText("sorary.support@gmail.com").then(function () { t.textContent = "Email copied"; }, function () { t.textContent = "Select the address to copy it"; }).then(function () { t.classList.add("on"); setTimeout(function () { t.classList.remove("on"); }, 2200); });
+  });
+})();
+</script>
+</body></html>
