@@ -2,7 +2,13 @@
 
 _Last updated: 29 October 2026 · Phase 3 of 7 · Launch plan: artists first, payments later_
 
-## Phase 3: works upload, Artworks from the database, artwork page — built
+## Launch preparation (while the sorary.se email domain is being verified in Resend)
+- **Privacy Policy** (`/privacy`) and **Terms of Service** (`/terms`): written to match what the platform actually does, marked "Draft · to be reviewed before launch". Fill in the company's legal name and organisation number in `LEGAL` in `src/config/site.ts`. Update both before messages and purchases open.
+- **Buyer protection** (`/buyer-protection`) and **About** (`/about`) pages. Fee figures come from `src/config/fees.ts`.
+- **Netlify:** `netlify.toml` (Node 24, `npm run build`) and `.nvmrc`. Security headers set in `next.config.ts`.
+- **Waiting on:** Resend domain verification for sorary.se (24–48 h), then SMTP in Supabase and a higher email limit. A GitHub repository, then a new Netlify site for this repo.
+
+## Phase 3: works upload, Artworks from the database, artwork page — done (commit 450cf47)
 
 ### What works
 - **Database:** `supabase/migrations/0003_works.sql` (applied). `works` table with RLS: published works by listed artists are public; drafts are visible only to their artist; artists edit only their own; `lift_until` cannot be set through the API. The `artworks` storage bucket (public read, WebP/JPEG only, max 6 MB per file); artists can write only to their own folder.
@@ -73,8 +79,8 @@ npm run build
 - **Resend** (phase 7): domain verification for sorary.se, then custom SMTP in Supabase.
 
 ## Not built yet
-- **Before taking in artists:** custom email (Resend SMTP in Supabase), deploy to Netlify, Privacy Policy and Terms.
+- **Before taking in artists:** custom email (Resend SMTP in Supabase), deploy to Netlify, legal review of the Privacy Policy and Terms.
 - Reordering works in the studio, editing the detected colours, an artists list page.
-- Artists list, Momentum, Following, Buyer protection, About, Privacy and Terms pages. Their links lead to "Nothing here yet".
+- Artists list, Momentum and Following pages. Their links lead to "Nothing here yet".
 - Follow, save and inquiries (phase 4), checkout and payouts (phase 5), activity and Momentum (phase 6), Lift, admin, emails and legal pages (phase 7).
 - Account and data deletion.
