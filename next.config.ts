@@ -1,8 +1,15 @@
 import type { NextConfig } from "next";
 
+// Artwork images are served from Supabase Storage; allow next/image to optimise them.
+const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname : null;
+
 const nextConfig: NextConfig = {
-  // Artwork files are already web-sized WebP; uploads will be resized on the server in phase 3.
-  images: { formats: ["image/webp"] },
+  images: {
+    formats: ["image/webp"],
+    remotePatterns: supabaseHost
+      ? [{ protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/artworks/**" }]
+      : [],
+  },
 };
 
 export default nextConfig;

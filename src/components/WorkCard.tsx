@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { artistHref, isLifted, workHref, type ListedWork } from "@/data/sample";
+import { artistHref, isLifted, workHref, type ListedWork } from "@/lib/catalog";
 import { formatPrice } from "@/lib/format";
 
 export function WorkPrice({ work }: { work: ListedWork["work"] }) {
@@ -18,7 +18,7 @@ export function WorkCard({ artist, work, priority = false }: ListedWork & { prio
         className="flex items-center justify-center bg-surface p-[clamp(14px,1.8vw,26px)]"
       >
         <Image
-          src={work.src}
+          src={work.thumb ?? work.src}
           alt={work.alt}
           width={work.width}
           height={work.height}

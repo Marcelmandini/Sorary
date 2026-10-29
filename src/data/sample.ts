@@ -1,46 +1,11 @@
-// Phase 1 sample listings, taken from reference/prototype.html. Replaced by Supabase data in phase 3.
-// These are real works with real prices, so they are not labelled "Demo". No activity figures are
-// invented: Momentum, views and saves stay empty until there is genuine activity.
+// Sample listings from reference/prototype.html: real works by Marcel Mandini, not stored in the database.
+// Shown only when SHOW_SAMPLE_WORKS=true (development). They cannot be bought, and no activity figures
+// are invented for them.
 
-import type { Availability, ColourKey, Medium, Style, Subject } from "@/lib/taxonomy";
+import type { Artist, ListedWork } from "@/lib/catalog";
 
-export type Work = {
-  id: string;
-  slug: string;
-  title: string;
-  year: string;
-  medium: string;
-  category: Medium;
-  dimensions: string;
-  price: number;
-  currency: "SEK";
-  availability: Availability;
-  description: string;
-  alt: string;
-  src: string;
-  width: number;
-  height: number;
-  colours: ColourKey[];
-  styles: Style[];
-  subject: Subject;
-  listedAt: string;
-  liftUntil?: string;
-};
-
-export type Artist = {
-  id: string;
-  slug: string;
-  name: string;
-  city: string;
-  country: string;
-  medium: Medium;
-  born: string;
-  statement: string;
-  joinedAt: string;
-  works: Work[];
-};
-
-export type ListedWork = { artist: Artist; work: Work };
+export type { Artist, ListedWork, Work } from "@/lib/catalog";
+export { artistHref, isLifted, workHref } from "@/lib/catalog";
 
 const marcel: Artist = {
   id: "marcel-mandini",
@@ -145,15 +110,10 @@ const marcel: Artist = {
   ],
 };
 
+marcel.works.forEach((w) => (w.sample = true));
+
 export const ARTISTS: Artist[] = [marcel];
 
 export function allWorks(): ListedWork[] {
   return ARTISTS.flatMap((artist) => artist.works.map((work) => ({ artist, work })));
 }
-
-export function isLifted(work: Work, now = Date.now()): boolean {
-  return !!work.liftUntil && new Date(work.liftUntil).getTime() > now;
-}
-
-export const workHref = (a: Artist, w: Work) => `/artworks/${a.slug}/${w.slug}`;
-export const artistHref = (a: Artist) => `/artists/${a.slug}`;

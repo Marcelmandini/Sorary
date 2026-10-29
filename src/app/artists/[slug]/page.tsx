@@ -3,10 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { WorkCard } from "@/components/WorkCard";
 import { ARTISTS, type Artist as SampleArtist } from "@/data/sample";
+import type { ListedWork } from "@/lib/catalog";
 import { getArtistBySlug, getCurrentUser, type ArtistRow } from "@/lib/data/artists";
+import { getPublishedWorksFor, showSampleWorks, toArtist, toWork } from "@/lib/data/works";
 
-// Profiles come from Supabase. Until works move to the database in phase 3, the sample works are shown
-// for the artist with the matching address, and the sample profile stands in if no database row exists.
+// Profiles and works come from Supabase. In development (SHOW_SAMPLE_WORKS=true) the sample profile and
+// works stand in for an address that has no database profile or no published works yet.
 
 type Profile = {
   slug: string;
@@ -59,7 +61,7 @@ const fromSample = (a: SampleArtist): Profile => ({
 async function loadProfile(slug: string): Promise<Profile | null> {
   const row = await getArtistBySlug(slug);
   if (row) return fromRow(row);
-  const sample = ARTISTS.find((a) => a.slug === slug);
+  const sample = showSampleWorks() ? ARTISTS.find((a) => a.slug === slug) : undefined;
   return sample ? fromSample(sample) : null;
 }
 
@@ -83,8 +85,14 @@ export default async function ArtistPage({ params }: { params: Promise<{ slug: s
 
   const user = await getCurrentUser();
   const isOwner = !!user && user.id === p.ownerId;
-  const sample = ARTISTS.find((a) => a.slug === p.slug);
-  const works = sample ? sample.works.map((work) => ({ artist: sample, work })) : [];
+  const row = p.ownerId ? await getArtistBySlug(slug) : null;
+  let works: ListedWork[] = [];
+  if (row) {
+    const artist = toArtist(row, (await getPublishedWorksFor(row.id)).map(toWork));
+    works = artist.works.map((work) => ({ artist, work }));
+  }
+  const sample = showSampleWorks() ? ARTISTS.find((a) => a.slug === p.slug) : undefined;
+  if (!works.length && sample) works = sample.works.map((work) => ({ artist: sample, work }));
   const available = works.filter((x) => x.work.availability === "available").length;
   const meta = [[p.city, p.country].filter(Boolean).join(", "), p.born && `b. ${p.born}`, `On SORARY since ${monthYear(p.joinedAt)}`]
     .filter(Boolean)
@@ -146,7 +154,11 @@ export default async function ArtistPage({ params }: { params: Promise<{ slug: s
         ) : (
           <div className="flex flex-col items-center gap-3.5 border border-line px-6 py-[clamp(32px,6vw,72px)] text-center text-[#555]">
             <h3 className="text-2xl text-fg">No works listed yet</h3>
-            {isOwner && <p>Uploading works opens in the next phase.</p>}
+            {isOwner && (
+              <Link href="/studio/works" className="btn btn-outline mt-2">
+                Add works
+              </Link>
+            )}
           </div>
         )}
       </section>

@@ -1,8 +1,24 @@
 # SORARY — status
 
-_Last updated: 29 October 2026 · Phase 2 of 7_
+_Last updated: 29 October 2026 · Phase 3 of 7 · Launch plan: artists first, payments later_
 
-## Phase 2: auth, artist onboarding, profile — built, final check in progress
+## Phase 3: works upload, Artworks from the database, artwork page — built
+
+### What works
+- **Database:** `supabase/migrations/0003_works.sql` (applied). `works` table with RLS: published works by listed artists are public; drafts are visible only to their artist; artists edit only their own; `lift_until` cannot be set through the API. The `artworks` storage bucket (public read, WebP/JPEG only, max 6 MB per file); artists can write only to their own folder.
+- **Permission tests:** `supabase/tests/rls_works.sql` passed in the project ("All works permission tests passed"), rolled back.
+- **Upload** (`/studio/works`): drop or choose JPG/PNG/WebP up to 25 MB. The browser resizes to WebP (2400px and 900px) and detects the colours, so the original never leaves the artist's computer and GPS data is stripped. Each upload becomes a draft.
+- **Edit listing:** title, year, category, medium, dimensions, price ("You receive X. Buyer pays Y"), availability, styles (several), subject, alt text, description, Published switch, remove listing. A work for sale needs a price before it can be published.
+- **Artworks** (`/artworks`) and **home** read published works from Supabase. Filters are saved in the address (`/artworks?style=Abstract&colour=blue`). Honest empty states when nothing is published yet.
+- **Artwork page** (`/artworks/[artist]/[work]`): large image with a full-screen view, details, links from category, style, subject and colour into filtered Artworks, price, buyer protection and total, previous/next work. "Buy now" is shown but disabled: "Purchases with buyer protection open soon." Drafts show a note to their owner only.
+- **Artist page** shows the artist's published works.
+- **Sample works** only when `SHOW_SAMPLE_WORKS=true` (set in `.env.local` for development, unset in production). They are marked "Sample listing for development. Not for sale."
+- **Tests:** 39 passing (adds work form, price parsing, colour detection, URL filters). Typecheck and build pass. Artwork page checked at 1280px and 375px.
+
+### Not yet confirmed
+- The upload flow by a signed-in artist, end to end in the browser. The database and storage rules are tested; the browser flow waits for the first artist sign-in (email limit, see below).
+
+## Phase 2: auth, artist onboarding, profile — done (commit 6d036a3)
 
 ### What works
 - **Supabase connected:** project `zonkbijetabcwyvutfvl` ("Sorary Gallery"). Settings are in `.env.local`, which is not committed; `.env.example` shows the variables.
@@ -26,7 +42,6 @@ _Last updated: 29 October 2026 · Phase 2 of 7_
 
 ### Known limits
 - **Email limit:** Supabase's built-in email only sends a few sign-in emails per hour, and its templates cannot be edited. Both go away with custom SMTP (Resend, phase 7, or earlier if needed). When that happens, switch sign-in back to the token-hash link in the templates.
-- **Works are still sample data:** the 11 works in `src/data/sample.ts` appear on the page of whoever owns the address `marcel-mandini`. They move to the database in phase 3.
 - **Account deletion** (GDPR) is not built yet. It needs a server-only secret key; planned before launch.
 
 ## Phase 1: project setup, design system, layout, static pages — done (commit d921a63)
@@ -58,7 +73,8 @@ npm run build
 - **Resend** (phase 7): domain verification for sorary.se, then custom SMTP in Supabase.
 
 ## Not built yet
-- Works upload, the works database, artwork pages and URL filters (phase 3). Artwork cards already link to `/artworks/[artist]/[work]`.
+- **Before taking in artists:** custom email (Resend SMTP in Supabase), deploy to Netlify, Privacy Policy and Terms.
+- Reordering works in the studio, editing the detected colours, an artists list page.
 - Artists list, Momentum, Following, Buyer protection, About, Privacy and Terms pages. Their links lead to "Nothing here yet".
 - Follow, save and inquiries (phase 4), checkout and payouts (phase 5), activity and Momentum (phase 6), Lift, admin, emails and legal pages (phase 7).
 - Account and data deletion.

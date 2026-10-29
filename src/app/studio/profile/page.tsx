@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ProfileForm } from "./ProfileForm";
 import { StudioShell } from "../StudioShell";
 import { requireArtist } from "@/lib/data/guards";
@@ -14,7 +15,13 @@ export default async function StudioProfilePage({ searchParams }: { searchParams
       {welcome && (
         <div className="mb-10 flex flex-wrap items-baseline gap-4 border border-fg bg-surface px-5 py-4 text-sm text-[#555]" role="status">
           <b className="font-normal text-fg">Your artist profile is live.</b>
-          <span>Add a biography below. Uploading works opens in the next phase.</span>
+          <span>
+            Add a biography below, then{" "}
+            <Link href="/studio/works" className="border-b border-current">
+              add your first works
+            </Link>
+            .
+          </span>
         </div>
       )}
       <ProfileForm artist={artist} />

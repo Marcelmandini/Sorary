@@ -2,20 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHead } from "@/components/SectionHead";
 import { WorkCard } from "@/components/WorkCard";
-import { ARTISTS, allWorks, artistHref, isLifted, workHref } from "@/data/sample";
+import { artistHref, isLifted, workHref, type Artist } from "@/lib/catalog";
+import { getNewArtists } from "@/lib/data/artists";
+import { getCatalog, toArtist } from "@/lib/data/works";
 
-// Static Discover page. Momentum (ticker, trending, emerging) is calculated from genuine activity in
-// phase 6; until then those sections show their honest empty states instead of invented numbers.
+// Discover page. Momentum (ticker, trending, emerging) is calculated from genuine activity in phase 6;
+// until then those sections show honest empty states instead of invented numbers.
 
-export default function HomePage() {
-  const works = allWorks();
+export default async function HomePage() {
+  const [works, newArtistRows] = await Promise.all([getCatalog(), getNewArtists(5)]);
   const available = works.filter((x) => x.work.availability !== "sold");
-  const lead = ARTISTS[0];
-  const featured = lead.works.find((w) => w.availability === "available" && w.width <= w.height) ?? lead.works[0];
   const sponsored = available.filter((x) => isLifted(x.work)).slice(0, 4);
   const newest = [...available]
     .sort((p, q) => new Date(q.work.listedAt).getTime() - new Date(p.work.listedAt).getTime())
     .slice(0, 8);
+  // Featured: a Lift placement if there is one, otherwise the newest portrait-format work.
+  const featuredItem =
+    sponsored[0] ?? newest.find((x) => x.work.width <= x.work.height && x.work.availability === "available") ?? newest[0];
+  const lead = featuredItem?.artist;
+  const featured = featuredItem?.work;
+
+  // New artists: database profiles first, then sample artists in development, each with a cover work if any.
+  const byId = new Map<string, Artist>();
+  for (const x of works) if (!byId.has(x.artist.id)) byId.set(x.artist.id, x.artist);
+  const newArtists: Artist[] = newArtistRows.map((r) => byId.get(r.id) ?? toArtist(r));
+  for (const a of byId.values()) if (newArtists.length < 5 && !newArtists.some((n) => n.slug === a.slug)) newArtists.push(a);
 
   return (
     <>
@@ -39,7 +50,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {featured && (
+        {featured && lead && (
           <figure className="col-span-12 m-0 animate-rise [animation-delay:160ms] min-[900px]:col-span-5 min-[900px]:col-start-8">
             <Link href={workHref(lead, featured)} className="flex justify-center bg-surface p-[clamp(20px,3vw,44px)]">
               <Image
@@ -106,11 +117,15 @@ export default function HomePage() {
           sub="Recently listed works, available now."
           link={{ href: "/artworks", label: "All artworks" }}
         />
-        <div className="masonry">
-          {newest.map((x) => (
-            <WorkCard key={x.work.id} {...x} />
-          ))}
-        </div>
+        {newest.length ? (
+          <div className="masonry">
+            {newest.map((x) => (
+              <WorkCard key={x.work.id} {...x} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted">The first works appear here as soon as artists publish them.</p>
+        )}
       </section>
 
       <section className="grid grid-cols-1 items-start gap-[clamp(32px,6vw,96px)] pt-[clamp(64px,8vw,120px)] min-[900px]:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
@@ -118,31 +133,43 @@ export default function HomePage() {
           {/* Becomes "Emerging" (joined in the last twelve months, growing following) once Momentum exists. */}
           <SectionHead title="New artists" sub="Recently joined SORARY." />
           <div className="border-t border-line">
-            {ARTISTS.map((a) => (
-              <Link
-                key={a.id}
-                href={artistHref(a)}
-                className="grid grid-cols-[52px_minmax(0,1fr)_auto] items-center gap-4 border-b border-line py-3 hover:bg-surface"
-              >
-                <span className="flex size-[52px] items-center justify-center bg-surface p-1.5">
-                  <Image
-                    src={a.works[0].src}
-                    alt=""
-                    width={a.works[0].width}
-                    height={a.works[0].height}
-                    sizes="52px"
-                    className="size-full object-contain"
-                  />
-                </span>
-                <span className="flex min-w-0 flex-col text-[15px]">
-                  {a.name}
-                  <span className="text-[12.5px] text-muted">
-                    {a.city} · {a.medium}
+            {newArtists.length === 0 && <p className="py-4 text-muted">The first artists are joining now.</p>}
+            {newArtists.map((a) => {
+              const cover = a.works[0];
+              return (
+                <Link
+                  key={a.id}
+                  href={artistHref(a)}
+                  className="grid grid-cols-[52px_minmax(0,1fr)_auto] items-center gap-4 border-b border-line py-3 hover:bg-surface"
+                >
+                  <span className="flex size-[52px] items-center justify-center bg-surface p-1.5">
+                    {cover ? (
+                      <Image
+                        src={cover.thumb ?? cover.src}
+                        alt=""
+                        width={cover.width}
+                        height={cover.height}
+                        sizes="52px"
+                        className="size-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-sm text-muted">
+                        {a.name
+                          .split(/\s+/)
+                          .map((s) => s[0])
+                          .join("")
+                          .slice(0, 2)}
+                      </span>
+                    )}
                   </span>
-                </span>
-                <span className="hint">New on SORARY</span>
-              </Link>
-            ))}
+                  <span className="flex min-w-0 flex-col text-[15px]">
+                    {a.name}
+                    <span className="text-[12.5px] text-muted">{[a.city, a.medium].filter(Boolean).join(" · ")}</span>
+                  </span>
+                  <span className="hint">New on SORARY</span>
+                </Link>
+              );
+            })}
           </div>
         </div>
 

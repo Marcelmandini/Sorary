@@ -4,7 +4,7 @@ import type { ArtistRow } from "@/lib/data/artists";
 
 const ITEMS = [
   { key: "profile", href: "/studio/profile", label: "Profile", ready: true },
-  { key: "works", href: "/studio/works", label: "Works", ready: false },
+  { key: "works", href: "/studio/works", label: "Works", ready: true },
   { key: "inquiries", href: "/studio/inquiries", label: "Inquiries", ready: false },
   { key: "analytics", href: "/studio/analytics", label: "Analytics", ready: false },
 ] as const;

@@ -1,19 +1,25 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { WorkCard } from "@/components/WorkCard";
-import type { ListedWork } from "@/data/sample";
-import { DEFAULT_FILTERS, filterWorks, hasActiveFilters, type SortKey, type WorkFilters } from "@/lib/filter-works";
+import type { ListedWork } from "@/lib/catalog";
+import { DEFAULT_FILTERS, filterWorks, filtersToParams, hasActiveFilters, type SortKey, type WorkFilters } from "@/lib/filter-works";
 import { COLOURS, MEDIUMS, PRICE_BANDS, STYLES, SUBJECTS, type PriceBandKey, type Subject } from "@/lib/taxonomy";
 
-// Phase 1: filters run in the browser over the sample works. Phase 3 moves them to URL search params
-// and a Supabase query so filtered views can be linked from the artwork page.
+// Filters run in the browser over the published catalogue (a few hundred works at most for now) and are
+// mirrored in the address, so filtered views can be shared and linked from artwork pages.
 
-export function ArtworkBrowser({ works }: { works: ListedWork[] }) {
-  const [f, setF] = useState<WorkFilters>(DEFAULT_FILTERS);
+export function ArtworkBrowser({ works, initialFilters }: { works: ListedWork[]; initialFilters: WorkFilters }) {
+  const [f, setF] = useState<WorkFilters>(initialFilters);
   // On phones the secondary filters fold away so the works are visible on the first screen.
   const [panelOpen, setPanelOpen] = useState(false);
   const set = (patch: Partial<WorkFilters>) => setF((cur) => ({ ...cur, ...patch }));
+
+  useEffect(() => {
+    const q = filtersToParams(f).toString();
+    const url = q ? `${window.location.pathname}?${q}` : window.location.pathname;
+    if (url !== window.location.pathname + window.location.search) window.history.replaceState(null, "", url);
+  }, [f]);
   const list = useMemo(() => filterWorks(works, f), [works, f]);
   const colourName = f.colour ? COLOURS.find((c) => c.key === f.colour)?.label.toLowerCase() : "";
   const secondaryCount =
@@ -146,6 +152,11 @@ export function ArtworkBrowser({ works }: { works: ListedWork[] }) {
           {list.map((x, i) => (
             <WorkCard key={x.work.id} {...x} priority={i < 4} />
           ))}
+        </div>
+      ) : works.length === 0 ? (
+        <div className="flex flex-col items-center gap-3.5 border border-line px-6 py-[clamp(32px,6vw,72px)] text-center text-[#555]">
+          <h3 className="text-2xl text-fg">The first works are on their way</h3>
+          <p>Artists are setting up their studios. New works appear here as soon as they are published.</p>
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3.5 border border-line px-6 py-[clamp(32px,6vw,72px)] text-center text-[#555]">

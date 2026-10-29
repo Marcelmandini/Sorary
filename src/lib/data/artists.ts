@@ -40,6 +40,14 @@ export const getMyArtist = cache(async (): Promise<ArtistRow | null> => {
   return (data as ArtistRow | null) ?? null;
 });
 
+/** Most recently joined listed artists, for the home page. */
+export const getNewArtists = cache(async (limit = 5): Promise<ArtistRow[]> => {
+  const supabase = await createClient();
+  if (!supabase) return [];
+  const { data } = await supabase.from("artists").select(COLUMNS).eq("listed", true).order("created_at", { ascending: false }).limit(limit);
+  return (data as ArtistRow[] | null) ?? [];
+});
+
 /** A public artist profile. RLS returns unlisted profiles only to their owner. */
 export const getArtistBySlug = cache(async (slug: string): Promise<ArtistRow | null> => {
   const supabase = await createClient();
