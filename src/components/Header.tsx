@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { MAIN_NAV, SECONDARY_NAV, isActive } from "./nav";
+import { MAIN_NAV, isActive, secondaryNav, type Account } from "./nav";
 
 const navLink =
   "relative text-[11px] font-normal uppercase tracking-[.24em] text-[#555] transition-colors duration-200 hover:text-fg aria-[current=page]:text-fg " +
   "aria-[current=page]:after:absolute aria-[current=page]:after:inset-x-0 aria-[current=page]:after:right-[.24em] aria-[current=page]:after:-bottom-1.5 aria-[current=page]:after:h-px aria-[current=page]:after:bg-fg aria-[current=page]:after:content-['']";
 
-export function Header({ logo }: { logo: ReactNode }) {
+export function Header({ logo, account }: { logo: ReactNode; account: Account }) {
   const pathname = usePathname();
+  const SECONDARY_NAV = secondaryNav(account);
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const menuBtnRef = useRef<HTMLButtonElement>(null);

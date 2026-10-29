@@ -5,10 +5,14 @@ export const MAIN_NAV = [
   { href: "/momentum", label: "Momentum" },
 ] as const;
 
-export const SECONDARY_NAV = [
-  { href: "/following", label: "Following" },
-  { href: "/sell", label: "For artists" },
-] as const;
+export type Account = { signedIn: boolean; isArtist: boolean };
+
+export function secondaryNav(account: Account) {
+  return [
+    { href: "/following", label: "Following" },
+    account.isArtist ? { href: "/studio", label: "Studio" } : { href: "/sell", label: "For artists" },
+  ];
+}
 
 export const FOOTER_NAV = [
   { href: "/artworks", label: "Artworks" },

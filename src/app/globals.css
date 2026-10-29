@@ -255,6 +255,33 @@
     line-height: 1.6;
   }
 
+  /* Studio navigation: a vertical list on desktop, a scrolling row of labels on phones. */
+  .studio-link {
+    display: flex;
+    align-items: baseline;
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .studio-link[aria-current="page"] { color: var(--color-fg); }
+  @media (min-width: 900px) {
+    .studio-link {
+      font-size: 14px;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 300;
+      color: #555;
+      padding: 8px 10px;
+      margin-inline: -10px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    a.studio-link:hover { background: var(--color-hover); color: var(--color-fg); }
+    .studio-link[aria-current="page"] { background: var(--color-surface); }
+  }
+
   /* Artwork masonry: works keep their own proportions and are never cropped. */
   .masonry { columns: 4; column-gap: clamp(18px, 2.4vw, 36px); }
   @media (max-width: 1100px) { .masonry { columns: 3; } }
