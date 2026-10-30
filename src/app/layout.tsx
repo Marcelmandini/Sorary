@@ -4,7 +4,9 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Logo } from "@/components/Logo";
 import { SITE_URL } from "@/config/site";
+import { SessionRefresher } from "@/components/SessionRefresher";
 import { getCurrentUser, getMyArtist } from "@/lib/data/artists";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 import "./globals.css";
 
 const jost = Jost({ subsets: ["latin"], weight: ["200", "300", "400"], variable: "--font-jost", display: "swap" });
@@ -40,6 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
         </main>
         <Footer />
+        {isSupabaseConfigured() && <SessionRefresher />}
       </body>
     </html>
   );
