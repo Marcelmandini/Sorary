@@ -1,10 +1,11 @@
 # SORARY — status
 
-_Last updated: 29 October 2026 · Phase 3 of 7 · Launch plan: artists first, payments later_
+_Last updated: 5 November 2026 · Phase 3 of 7 · Launch plan: artists first, payments later_
 
 ## Live site
 - **https://sorary-app.netlify.app**: Netlify project `sorary-app` (team marcel-mandini), separate from the waitlist site `sorary`. The three public environment variables are set on the project; `SHOW_SAMPLE_WORKS` is not, so only genuine listings appear.
-- **Visibility:** the project was created as Private (Netlify team default). Click **Make public** on the project overview to open it to visitors.
+- **Visibility:** Public for production since 5 November 2026 (Deploy Previews stay Private). Checked as a visitor: home, Artworks, For artists, About, Buyer protection, Privacy, Terms and Sign in return 200; Studio redirects to Sign in; Artworks shows the honest empty state with no sample works; home, Artworks, For artists and Sign in have no horizontal scroll at 375px. Not checked on the live site: receiving a sign-in link and upload.
+- **Badge:** the "Powered by Netlify" badge shows on public pages. Removing it needs a paid Netlify plan.
 - **Deploying:** run `powershell -ExecutionPolicy Bypass -File .\.netlify\deploy-prod.ps1` (builds locally, keeps `.env.local` out, publishes). Stop the local dev server first: it locks files the deploy needs to move. Linking the GitHub repo in Netlify (Project configuration → Build & deploy → Link repository) would make Netlify build on Linux at every push instead.
 - **Session proxy disabled:** Netlify's CLI cannot bundle a Next.js proxy on Windows, so `src/proxy.ts` is removed and `SessionRefresher` keeps sessions fresh in the browser. Restore the proxy once Netlify builds from GitHub (see the comment in `src/lib/supabase/proxy.ts`).
 - **Supabase:** `https://sorary-app.netlify.app/**` added to Redirect URLs.
@@ -14,7 +15,7 @@ _Last updated: 29 October 2026 · Phase 3 of 7 · Launch plan: artists first, pa
 - **Privacy Policy** (`/privacy`) and **Terms of Service** (`/terms`): written to match what the platform actually does, marked "Draft · to be reviewed before launch". Fill in the company's legal name and organisation number in `LEGAL` in `src/config/site.ts`. Update both before messages and purchases open.
 - **Buyer protection** (`/buyer-protection`) and **About** (`/about`) pages. Fee figures come from `src/config/fees.ts`.
 - **Netlify:** `netlify.toml` (Node 24, `npm run build`) and `.nvmrc`. Security headers set in `next.config.ts`.
-- **Waiting on:** Resend domain verification for sorary.se (24–48 h), then SMTP in Supabase and a higher email limit. A GitHub repository, then a new Netlify site for this repo.
+- **Waiting on:** Resend domain verification for sorary.se (24–48 h), then SMTP in Supabase and a higher email limit.
 
 ## Phase 3: works upload, Artworks from the database, artwork page — done (commit 450cf47)
 
@@ -77,17 +78,16 @@ npm run build
 ```
 
 ## Supabase settings in use
-- Auth → URL Configuration: Site URL `http://localhost:3000`; Redirect URLs `http://localhost:3000/**`. Add the Netlify address here when the app is deployed.
+- Auth → URL Configuration: Site URL `http://localhost:3000`; Redirect URLs `http://localhost:3000/**` and `https://sorary-app.netlify.app/**`.
 - New database changes go in `supabase/migrations/` as numbered files and are run in the SQL Editor.
 
 ## Needs external setup (later phases)
-- **GitHub:** create an empty repository and push.
-- **Netlify:** a new site for this repo, with environment variables `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `NEXT_PUBLIC_SITE_URL`. Do not replace sorary.se until the platform is tested.
+- **sorary.se:** do not point the domain at this platform until it is tested.
 - **Stripe** (phase 5): Connect in test mode, webhook secret.
 - **Resend** (phase 7): domain verification for sorary.se, then custom SMTP in Supabase.
 
 ## Not built yet
-- **Before taking in artists:** custom email (Resend SMTP in Supabase), deploy to Netlify, legal review of the Privacy Policy and Terms.
+- **Before taking in artists:** custom email (Resend SMTP in Supabase), a first sign-in and upload test on the live site, legal review of the Privacy Policy and Terms.
 - Reordering works in the studio, editing the detected colours, an artists list page.
 - Artists list, Momentum and Following pages. Their links lead to "Nothing here yet".
 - Follow, save and inquiries (phase 4), checkout and payouts (phase 5), activity and Momentum (phase 6), Lift, admin, emails and legal pages (phase 7).
